@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/left_arrow"
+            android:onClick="onBack" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Movie Details"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Directed by:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_director"
+                            style="@style/move_details_text" />
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Produce by:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_producer"
+                            style="@style/move_details_text"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Starred by:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_stare"
+                            style="@style/move_details_text"
+                             />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Generie:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_type"
+                            style="@style/move_details_text" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Year:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_year"
+                            style="@style/move_details_text"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Country:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_country"
+                            style="@style/move_details_text"
+                             />
+
+                    </LinearLayout>
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Running time:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_runtime"
+                            style="@style/move_details_text" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Budget:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_budget"
+                            style="@style/move_details_text"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Box office:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_boxoffice"
+                            style="@style/move_details_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Releasing Date:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_release_date"
+                            style="@style/move_details_text" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            style="@style/move_details_text"
+                            android:text="Synopsis:"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/tv_synopsis"
+                            style="@style/move_details_text" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mov_icon"
+                        android:scaleType="fitStart"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/group_ratting" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <com.google.android.youtube.player.YouTubePlayerView
+                    android:id="@+id/youtube_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="30dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/iv_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="30dp"
+                    android:visibility="visible"
+                    android:scaleType="fitXY"/>
+
+                <FrameLayout
+                    android:id="@+id/fl_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="30dp"
+
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/bt_thumbnail"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/youtube_icon" />
+                </FrameLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+   <!-- android:background="#55151414"-->

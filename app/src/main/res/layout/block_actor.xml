@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/iv_actor"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ts_1"
+        />
+
+    <TextView
+        android:id="@+id/tv_actor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mario"
+        android:textColor="@color/dirty_yellow"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/iv_actor"
+        android:layout_toEndOf="@+id/iv_actor"
+        android:layout_alignTop="@+id/iv_actor"
+        android:gravity="center_vertical"
+        android:layout_alignBottom="@+id/iv_actor" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/iv_delete"
+        android:layout_alignTop="@+id/tv_actor"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onDeleteClick"
+        android:src="@android:drawable/ic_delete"/>
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cdcdcd"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
