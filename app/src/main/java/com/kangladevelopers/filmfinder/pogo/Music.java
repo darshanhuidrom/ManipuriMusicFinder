@@ -4,7 +4,9 @@ package com.kangladevelopers.filmfinder.pogo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Music {
+import java.io.Serializable;
+
+public class Music implements Serializable {
 
     @SerializedName("id")
     @Expose

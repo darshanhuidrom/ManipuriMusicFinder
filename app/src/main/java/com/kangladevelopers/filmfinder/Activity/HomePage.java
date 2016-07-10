@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +48,7 @@ import retrofit2.Response;
 public class HomePage extends BaseDrawerActivity {
     private LinearLayout llSingerCondition, llComposerCondition, llDirectorCondition, llActorCondition;
     private LinearLayout llSingerParentLayout, llComposerParentLayout, llDirectorParentLayout, llActorParentLayout;
-    AutoCompleteTextView actvActor, actvDirector, director, actor;
+    AutoCompleteTextView actvSinger, actvComposer, actvDirector, actvActor;
     ArrayList<View> viewSingerList = new ArrayList<>();
     ArrayList<View> viewComposerList = new ArrayList<>();
     ArrayList<View> viewDirectorList = new ArrayList<>();
@@ -61,6 +63,7 @@ public class HomePage extends BaseDrawerActivity {
     private LinearLayout llTypeCondition2;
     ArrayList<Integer> drawerTabIds;
     RvMusicAdapter musicAdapter;
+    Switch swSinger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,47 +85,47 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void setListeners() {
-        actvActor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvActor.getText().toString().trim() + ".jpg";
+                String url = Constants.SINGER_URL + actvSinger.getText().toString().trim() + ".jpg";
                 Log.d(">>>>>>", url);
-                addActorView(actvActor.getText().toString(), url.replace(" ", ""));
-                actvActor.setText("");
+                addActorView(actvSinger.getText().toString(), url.replace(" ", ""));
+                actvSinger.setText("");
+            }
+        });
+        actvComposer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String url = Constants.SINGER_URL + actvComposer.getText().toString().trim() + ".jpg";
+                Log.d(">>>>>>", url);
+                if (viewComposerList.size() == 0) {
+                    addDirectorView(actvComposer.getText().toString(), url.replace(" ", ""));
+                    actvComposer.setText("");
+                    actvComposer.setVisibility(View.GONE);
+                }
             }
         });
         actvDirector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvDirector.getText().toString().trim() + ".jpg";
-                Log.d(">>>>>>", url);
-                if (viewComposerList.size() == 0) {
-                    addDirectorView(actvDirector.getText().toString(), url.replace(" ", ""));
-                    actvDirector.setText("");
-                    actvDirector.setVisibility(View.GONE);
-                }
-            }
-        });
-        director.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + director.getText().toString().trim() + "_icon" + ".jpg";
+                String url = Constants.SINGER_URL + actvDirector.getText().toString().trim() + "_icon" + ".jpg";
                 Log.d(">>>>>>", url);
                 if (viewDirectorList.size() == 0) {
-                    addDirectorViewEXT(director.getText().toString(), url.replace(" ", ""));
-                    director.setText("");
-                    director.setVisibility(View.GONE);
+                    addDirectorViewEXT(actvDirector.getText().toString(), url.replace(" ", ""));
+                    actvDirector.setText("");
+                    actvDirector.setVisibility(View.GONE);
                 }
 
             }
         });
-        actor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actvActor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actor.getText().toString().trim() + ".jpg";
+                String url = Constants.SINGER_URL + actvActor.getText().toString().trim() + ".jpg";
                 Log.d(">>>>>>", url);
-                addActorViewEXT(actor.getText().toString(), url.replace(" ", ""));
-                actor.setText("");
+                addActorViewEXT(actvActor.getText().toString(), url.replace(" ", ""));
+                actvActor.setText("");
             }
         });
 
@@ -130,16 +133,18 @@ public class HomePage extends BaseDrawerActivity {
 
     private void initializeData() {
         musicRestAdapter = new MusicRestAdapter();
-        String[] actors = StringUtility.getActorList();
+        String[] singers = StringUtility.getSingerList();
         String[] directors = StringUtility.getDirectorList();
         String[] dir = StringUtility.getDirectorList();
+        String[] actors = StringUtility.getActorList();
         calendar = Calendar.getInstance();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, actors);
-        actvActor.setAdapter(adapter);
-        actvDirector.setAdapter(adapter);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, singers);
+        ArrayAdapter actorAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, actors);
+        actvSinger.setAdapter(adapter);
+        actvComposer.setAdapter(adapter);
+        actvActor.setAdapter(actorAdapter);
         ArrayAdapter adapter3 = new ArrayAdapter<String>(this, R.layout.simple_text_layout, dir);
-        director.setAdapter(adapter3);
-        actor.setAdapter(adapter);
+        actvDirector.setAdapter(adapter3);
         if (drawerTabIds == null) {
             drawerTabIds = new ArrayList<>();
             drawerTabIds.add(R.id.ll_castCondition);
@@ -165,10 +170,10 @@ public class HomePage extends BaseDrawerActivity {
         llSingerParentLayout = (LinearLayout) findViewById(R.id.ll_actor_parent_layout);
         llDirectorParentLayout = (LinearLayout) findViewById(R.id.ll_director_parent_layoutttt);
         llActorParentLayout = (LinearLayout) findViewById(R.id.ll_actor_parent_layoutttt);
-        actvActor = (AutoCompleteTextView) findViewById(R.id.actv_actor);
-        actvDirector = (AutoCompleteTextView) findViewById(R.id.actv_director);
-        director = (AutoCompleteTextView) findViewById(R.id.actv_directorrrr);
-        actor = (AutoCompleteTextView) findViewById(R.id.actv_actorrr);
+        actvSinger = (AutoCompleteTextView) findViewById(R.id.actv_actor);
+        actvComposer = (AutoCompleteTextView) findViewById(R.id.actv_director);
+        actvDirector = (AutoCompleteTextView) findViewById(R.id.actv_directorrrr);
+        actvActor = (AutoCompleteTextView) findViewById(R.id.actv_actorrr);
         tvSingerCount = (TextView) findViewById(R.id.tv_actors_count);
         tvComposerCount = (TextView) findViewById(R.id.tv_director_count);
         tvDirectorCount = (TextView) findViewById(R.id.tv_director_counttt);
@@ -176,6 +181,7 @@ public class HomePage extends BaseDrawerActivity {
         rvMusic = (RecyclerView) findViewById(R.id.rv_moveList);
         btStartDate = (Button) findViewById(R.id.bt_start_date);
         btEndDate = (Button) findViewById(R.id.bt_end_date);
+        swSinger= (Switch) findViewById(R.id.sw_singer);
 
     }
 
@@ -253,7 +259,7 @@ public class HomePage extends BaseDrawerActivity {
                 }
                 viewSingerList.remove(viewTobeDeleted);
                 if (viewSingerList.size() == 0) {
-                    tvSingerCount.setVisibility(View.GONE);
+                    tvSingerCount.setVisibility(View.INVISIBLE);
                 } else {
                     tvSingerCount.setVisibility(View.VISIBLE);
                 }
@@ -275,7 +281,7 @@ public class HomePage extends BaseDrawerActivity {
                 } else {
                     tvComposerCount.setVisibility(View.VISIBLE);
                 }
-                actvDirector.setVisibility(View.VISIBLE);
+                actvComposer.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.iv_delete_directorrr:
@@ -294,7 +300,7 @@ public class HomePage extends BaseDrawerActivity {
                 } else {
                     tvDirectorCount.setVisibility(View.VISIBLE);
                 }
-                director.setVisibility(View.VISIBLE);
+                actvDirector.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.iv_delete_actorrrr:
@@ -307,14 +313,14 @@ public class HomePage extends BaseDrawerActivity {
                         llActorParentLayout.removeView(viewActor.get(i));
                     }
                 }
-                viewSingerList.remove(viewTobeDeleted4);
-                if (viewSingerList.size() == 0) {
+                viewActor.remove(viewTobeDeleted4);
+                if (viewActor.size() == 0) {
                     tvActorCount.setVisibility(View.GONE);
                 } else {
                     tvActorCount.setVisibility(View.VISIBLE);
                 }
                 tvActorCount.setText("" + viewDirectorList.size());
-                director.setVisibility(View.VISIBLE);
+                actvDirector.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -379,7 +385,7 @@ public class HomePage extends BaseDrawerActivity {
         llSingerParentLayout.addView(view);
 
         if (viewSingerList.size() == 0) {
-            tvSingerCount.setVisibility(View.GONE);
+            tvSingerCount.setVisibility(View.INVISIBLE);
         } else {
             tvSingerCount.setVisibility(View.VISIBLE);
         }
@@ -479,8 +485,10 @@ public class HomePage extends BaseDrawerActivity {
         String singerList = null;
         String composerList = null;
         String directorList = null;
+        String actorList=null;
         String startTime;
         String endTime;
+        String fixSinger;
 
         for (int i = 0; i < viewSingerList.size(); i++) {
             View view = viewSingerList.get(i);
@@ -521,14 +529,32 @@ public class HomePage extends BaseDrawerActivity {
                 directorList = directorList + ",";
         }
 
+        for (int i = 0; i < viewActor.size(); i++) {
+            View view = viewActor.get(i);
+            TextView tvActor = (TextView) view.findViewById(R.id.tv_actorrrrr);
+            if (actorList == null) {
+                actorList = tvActor.getText().toString();
+            } else {
+                actorList = actorList + tvActor.getText().toString();
+            }
 
+            if (i < viewActor.size() - 1)
+                actorList = actorList + ",";
+        }
+
+        if(swSinger.isChecked()){
+            fixSinger="true";
+        }
+        else {
+            fixSinger="false";
+        }
         startTime = btStartDate.getText().toString();
         endTime = btEndDate.getText().toString();
-        String query = singerList + "&" + directorList;
+        String query = singerList + "&" +composerList+"&"+directorList+"&"+actorList;
         Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
-        Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, null, directorList, startTime, endTime);
+        Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList,actorList,fixSinger, startTime, endTime);
         call.enqueue(new Callback<List<Music>>() {
             @Override
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
@@ -536,6 +562,14 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", musics.toString());
                 if (musicAdapter == null) {
                     musicAdapter = new RvMusicAdapter(getApplicationContext(), musics);
+                    musicAdapter.setRvAdapterClickLIstener(new RvMusicAdapter.RvAdapterClickListener() {
+                        @Override
+                        public void onItemClick(int i, View v) {
+                            Intent intent = new Intent(HomePage.this,MusicDetailActivity.class);
+                            intent.putExtra("music",musicAdapter.getData().get(i));
+                            startActivity(intent);
+                        }
+                    });
                     rvMusic.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     rvMusic.setAdapter(musicAdapter);
                 } else {
@@ -549,7 +583,7 @@ public class HomePage extends BaseDrawerActivity {
             public void onFailure(Call<List<Music>> call, Throwable t) {
 
                 String aa = t.getMessage();
-                Log.d(">>>>>>", aa);
+           //     Log.d(">>>>>>", aa);
             }
         });
         mDrawerLayout.closeDrawers();

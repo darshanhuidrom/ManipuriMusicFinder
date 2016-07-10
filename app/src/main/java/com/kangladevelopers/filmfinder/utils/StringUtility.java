@@ -40,7 +40,7 @@ public class StringUtility {
         return data;
     }
 
-    public static  String[] getActorList(){
+    public static  String[] getSingerList(){
         String data = readAsStringFromAsset("singers.txt");
         String[] array =data.split(",");
         return array;
@@ -48,7 +48,11 @@ public class StringUtility {
 
     public static  String[] getDirectorList(){
         String data = readAsStringFromAsset("directors.txt");
-        int pos = data.indexOf(",");
+        String[] array =data.split(",");
+        return array;
+    }
+    public static  String[] getActorList(){
+        String data = readAsStringFromAsset("actors.txt");
         String[] array =data.split(",");
         return array;
     }

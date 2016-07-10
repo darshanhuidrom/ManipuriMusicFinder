@@ -24,8 +24,8 @@ public class MusicRestAdapter {
 
 
 
-    public Call<List<Music>> getMusicDetails(String singer,String composer,String director,String startTime,String endTime) {
-        return musicApi.getMusicDetails(singer, composer, director,startTime,endTime);
+    public Call<List<Music>> getMusicDetails(String singer,String composer,String director,String actor,String fixSinger,String startTime,String endTime) {
+        return musicApi.getMusicDetails(singer, composer, director,actor,fixSinger,startTime,endTime);
     }
 
 }

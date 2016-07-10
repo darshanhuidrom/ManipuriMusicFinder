@@ -22,6 +22,8 @@ public interface MusicAPI {
             @Query("singer") String singer,
             @Query("composer") String composer,
             @Query(("director")) String director,
+            @Query(("actor")) String actor,
+            @Query(("fix_singer")) String fixSinger,
             @Query("start_time") String startTime,
             @Query(("end_time")) String endTime
     );

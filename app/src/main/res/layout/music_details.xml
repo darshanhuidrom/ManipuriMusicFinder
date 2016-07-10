@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/left_arrow"
+            android:onClick="onBack" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Video Details"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3"
+        android:layout_gravity="center_horizontal" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            >
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <com.google.android.youtube.player.YouTubePlayerView
+                        android:id="@+id/youtube_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="30dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/iv_thumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="30dp"
+                        android:visibility="visible"
+                        android:scaleType="fitXY"/>
+
+                    <FrameLayout
+                        android:id="@+id/fl_thumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="30dp"
+
+                        android:visibility="visible">
+
+                        <Button
+                            android:id="@+id/bt_thumbnail"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/youtube_icon" />
+                    </FrameLayout>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llgv_song_name"
+                    style="@style/song_detail_block">
+
+                    <TextView
+                        style="@style/song_detail_block2"
+                        android:text="Song Name:">
+
+                    </TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Hingliba Punsise"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_movie"
+                    style="@style/song_detail_block">
+
+                    <TextView
+                        style="@style/song_detail_block2"
+                        android:text="Movie:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Chang Se Change"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_album"
+                    style="@style/song_detail_block">
+
+                    <TextView
+                        style="@style/song_detail_block2"
+                        android:text="Album:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Nangse Eigi Thawai"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_cast"
+                    style="@style/song_detail_block">
+
+                    <TextView
+                        style="@style/song_detail_block2"
+                        android:text="Cast:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Ahila,Bala,Prem sharma,Suraj,Susmita,Biju,"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_singer"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Singer:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Dinesh,Pusparani"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_director"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Director:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Hemanta Khuman"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_production"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Production:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="H360 Pictures"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_composer"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Composer:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Rahul Blue"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_choreographer"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Choreographer:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Binita"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_year"
+                    style="@style/song_detail_block">
+
+                    <TextView
+                        style="@style/song_detail_block2"
+                        android:text="Year:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="2015"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_upload_date"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Upload Date:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="2016-05-27"></TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llgv_upload_by"
+                    style="@style/song_detail_block">
+
+                    <TextView
+
+                        style="@style/song_detail_block2"
+                        android:text="Upload By:"></TextView>
+
+                    <TextView
+                        style="@style/song_detail_block3"
+                        android:text="Tantha"></TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>
