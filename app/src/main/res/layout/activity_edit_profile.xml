@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.regalix.android.combodemo.EditProfile">
+    <include layout="@layout/toolbar_shadow_layout" />
+
+    <EditText
+        android:id="@+id/et_first_name"
+        style="@style/profile_edit_block"
+        android:layout_marginTop="20dp"
+        android:hint="First Name" />
+
+    <EditText
+        android:id="@+id/et_last_name"
+        style="@style/profile_edit_block"
+        android:hint="Last Name"
+        android:layout_marginBottom="5dp"/>
+
+    <EditText
+        android:id="@+id/et_phone"
+        style="@style/profile_edit_block"
+        android:hint="Phone No"
+        android:layout_marginBottom="5dp"/>
+    <EditText
+        android:id="@+id/et_mail"
+        style="@style/profile_edit_block"
+        android:hint="email"
+        android:layout_marginBottom="5dp"/>
+
+
+        <TextView
+            style="@style/profile_edit_block"
+            android:text="01-03-1991"
+            android:textColor="#000000"
+          />
+
+
+
+
+</LinearLayout>

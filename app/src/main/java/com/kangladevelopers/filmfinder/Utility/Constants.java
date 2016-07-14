@@ -12,11 +12,11 @@ public class Constants {
     public static final String Postsdfse ="apple.php";
     public static final String Posafe ="apple.php";
     public static final String PostURL ="apple.php";
-    public static final String SINGER_URL="http://192.168.1.10/leichal/person_icon/";
+    public static final String SINGER_URL="http://192.168.1.3/leichal/person_icon/";
     public static final String YOUTUBE_IMAGE_URL="http://img.youtube.com/vi/";
   //  http://beta.json-generator.com/api/json/get/4JJdOKUVZ
     // 192.168.1.10:8080/move_finder/webapi/movieV2?start_year=1995&end_year=2016&director=Director1
-    public static final String BASE_URL2="http://192.168.1.10:8080/move_finder/webapi/";
+    public static final String BASE_URL2="http://192.168.1.3:8080/move_finder/webapi/";
   public static final String ROOT_URL ="http://beta.json-generator.com/api/json/get";
   public static final String SEARCH_URL ="http://beta.json-generator.com/api/json/get/4JJdOKUVZ";
 

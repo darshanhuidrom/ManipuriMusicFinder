@@ -38,6 +38,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".Activity.MusicDetailActivity" >
         </activity>
+        <activity android:name=".Activity.EditProfile" />
+        <activity android:name=".Activity.Profile" />
     </application>
 
 </manifest>

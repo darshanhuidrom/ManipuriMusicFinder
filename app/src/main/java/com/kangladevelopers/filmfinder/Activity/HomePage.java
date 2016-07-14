@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMovieAdapter;
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
+import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
@@ -38,6 +40,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -58,12 +61,13 @@ public class HomePage extends BaseDrawerActivity {
     private Calendar calendar;
     RecyclerView rvMusic;
     int mDD, mMM, mYY;
-    Button btStartDate, btEndDate;
+    TextView btStartDate, btEndDate;
     int SELECTOR;
     private LinearLayout llTypeCondition2;
     ArrayList<Integer> drawerTabIds;
     RvMusicAdapter musicAdapter;
     Switch swSinger;
+    private String[] singers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +96,16 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", url);
                 addActorView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
+                HomePage.this.getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                );
             }
         });
         actvComposer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                 String url = Constants.SINGER_URL + actvComposer.getText().toString().trim() + ".jpg";
                 Log.d(">>>>>>", url);
                 if (viewComposerList.size() == 0) {
@@ -104,7 +113,10 @@ public class HomePage extends BaseDrawerActivity {
                     actvComposer.setText("");
                     actvComposer.setVisibility(View.GONE);
                 }
+
+
             }
+
         });
         actvDirector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -117,6 +129,7 @@ public class HomePage extends BaseDrawerActivity {
                     actvDirector.setVisibility(View.GONE);
                 }
 
+
             }
         });
         actvActor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -126,6 +139,7 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", url);
                 addActorViewEXT(actvActor.getText().toString(), url.replace(" ", ""));
                 actvActor.setText("");
+
             }
         });
 
@@ -133,12 +147,14 @@ public class HomePage extends BaseDrawerActivity {
 
     private void initializeData() {
         musicRestAdapter = new MusicRestAdapter();
-        String[] singers = StringUtility.getSingerList();
+         singers = StringUtility.getSingerList();
         String[] directors = StringUtility.getDirectorList();
         String[] dir = StringUtility.getDirectorList();
         String[] actors = StringUtility.getActorList();
         calendar = Calendar.getInstance();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, singers);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, getOnlyName(Arrays.asList(singers)));
+       // SimpleAdapter simpleAdapter = new SimpleAdapter(getApplicationContext(), Arrays.asList(singers));
+
         ArrayAdapter actorAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, actors);
         actvSinger.setAdapter(adapter);
         actvComposer.setAdapter(adapter);
@@ -179,8 +195,8 @@ public class HomePage extends BaseDrawerActivity {
         tvDirectorCount = (TextView) findViewById(R.id.tv_director_counttt);
         tvActorCount = (TextView) findViewById(R.id.tv_actor_counttt);
         rvMusic = (RecyclerView) findViewById(R.id.rv_moveList);
-        btStartDate = (Button) findViewById(R.id.bt_start_date);
-        btEndDate = (Button) findViewById(R.id.bt_end_date);
+        btStartDate = (TextView) findViewById(R.id.bt_start_date);
+        btEndDate = (TextView) findViewById(R.id.bt_end_date);
         swSinger= (Switch) findViewById(R.id.sw_singer);
 
     }
@@ -624,5 +640,17 @@ public class HomePage extends BaseDrawerActivity {
     public void onEndClick(View view) {
         SELECTOR = 2;
         showDatePickerDialog();
+    }
+
+    public void onImageClick(View view){
+        startActivity(new Intent(this, Profile.class));
+    }
+    private List<String> getOnlyName(List<String> list){
+        ArrayList<String> newList =new ArrayList<>();
+        for (int i=0;i<list.size();i++){
+            int pos = list.get(i).indexOf(":");
+             newList.add(list.get(i).substring(0,pos));
+        }
+       return newList;
     }
 }

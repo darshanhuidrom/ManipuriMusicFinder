@@ -66,7 +66,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_cast).setVisibility(View.VISIBLE);
             tvCast.setText(music.getActor());
-            makeTagLinks(music.getActor(),tvCast);
+            makeTagLinks(addSpace(music.getActor()),tvCast);
         }
 //////////////////////////////////
         if (music.getSingers().isEmpty() || music.getSingers() == null) {
@@ -74,7 +74,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_singer).setVisibility(View.VISIBLE);
             tvSinger.setText(music.getSingers());
-            makeTagLinks(music.getSingers(), tvSinger);
+            makeTagLinks(addSpace(music.getSingers()), tvSinger);
         }
 //////////////////////////////////////
         if (music.getDirector().isEmpty() || music.getDirector() == null) {
@@ -205,6 +205,13 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         }
         tv.setMovementMethod(LinkMovementMethod.getInstance());
         tv.setText(ss, TextView.BufferType.SPANNABLE);
+
+    }
+
+    private String  addSpace(String string){
+        String ss = string.replaceAll(",",", ");
+
+      return ss;
 
     }
 

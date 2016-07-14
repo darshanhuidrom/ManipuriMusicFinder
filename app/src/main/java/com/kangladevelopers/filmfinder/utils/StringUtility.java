@@ -42,7 +42,7 @@ public class StringUtility {
 
     public static  String[] getSingerList(){
         String data = readAsStringFromAsset("singers.txt");
-        String[] array =data.split(",");
+        String[] array =data.split("\n");
         return array;
     }
 

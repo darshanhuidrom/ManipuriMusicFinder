@@ -36,7 +36,8 @@
                     android:padding="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
-                    app:civ_border_width="2dp"/>
+                    app:civ_border_width="2dp"
+                    android:onClick="onImageClick"/>
 
                 <TextView
                     android:layout_height="wrap_content"
@@ -66,9 +67,7 @@
                 android:animateLayoutChanges="true">
                 <RelativeLayout
                     android:id="@+id/rl_cast"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:onClick="filterConditionClick"
+                  style="@style/filter_navigation"
                    >
                     <ImageView
                         style="@style/drawer_icon"
@@ -143,9 +142,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_director"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:onClick="filterConditionClick"
+                    style="@style/filter_navigation"
                     android:animateLayoutChanges="true">
                     <ImageView
                         android:id="@+id/imageView3"
@@ -209,15 +206,14 @@
                             android:layout_margin="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
-                            android:background="@color/b_whiteGreny" />
+                            android:background="@drawable/rounded"
+                            android:paddingLeft="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:onClick="filterConditionClick"
+                    style="@style/filter_navigation"
                     android:animateLayoutChanges="true">
                     <ImageView
                         android:id="@+id/imageView4"
@@ -274,14 +270,13 @@
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
-                        android:background="@color/b_whiteGreny" />
+                        android:background="@drawable/rounded"
+                        android:paddingLeft="10dp" />
                 </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_other"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:onClick="filterConditionClick"
+                    style="@style/filter_navigation"
                     android:animateLayoutChanges="true">
                     <ImageView
                         android:id="@+id/imageView6"
@@ -338,13 +333,12 @@
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="24dp"
-                        android:background="@color/b_whiteGreny" />
+                        android:background="@drawable/rounded"
+                        android:paddingLeft="10dp" />
                 </LinearLayout>
                 <RelativeLayout
                     android:id="@+id/rl_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:onClick="filterConditionClick"
+                    style="@style/filter_navigation"
                     android:animateLayoutChanges="true">
                     <ImageView
                         android:id="@+id/imageView5"
@@ -390,7 +384,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:animateLayoutChanges="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
 
                     <include layout="@layout/block_date_picker" />
                 </LinearLayout>

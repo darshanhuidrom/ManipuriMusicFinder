@@ -1,1 +1,61 @@
-AK JAN,Aj Maisnam,Akash,Aphao,Arjun Ningthemcha,Astique LA,B Maisnam,Banka,Bidyarani,Bishow,Bishow ch,Bitan,Bitan Chongtham,Bonium,Boriz Bob,CJ Wahengbam,Chitar,Chitra,Datu Khuman,David Soibam,Deepak,DiP Laishram,Dinesh Sharma,Dj Aniel. Devv, Geetarani,Gems,Gems Chongtham,Hokraj,Imphal Talkies,Jack,Jack Rk and David Soibam,Jeson,Johnson Khuman, KT Thoi, Kajal, Kenedy, Linda, Loveguru, Madhuri, Malemnganba, Mandakini, Master Mahatama,Nandeshwori, Natasa, Prakash Soraisham, Premlata, Punil,Pushparani,Pusparani, R.K. Nolin, Raj, Ranbir Thouna, Rani Sharma, Romesh, Roshan Thoudam,Sadananda,Sanathoi,Sangeeta,Sorri Senjam,Summet Sagolsem,Suren,Surjit,Surjit Thangtek,Surma,Sushmita,Sweety Aheibam,Tekcham Raina,Tinku
+AK JAN:M
+Aj Maisnam:M
+Akash:M
+Aphao:M
+Arjun Ningthemcha:M
+Astique LA:M
+B Maisnam:M
+Banka:M
+Bidyarani:F
+Bishow ch://Bishow:
+Bitan Chongtham: //Bitan
+Bonium:M
+Boriz Bob:M
+CJ Wahengbam:F
+Chitar:F
+Datu Khuman:M
+David Soibam:M
+Deepak:M
+DiP Laishram:M
+Dinesh Sharma:M
+Dj Aniel. Devv:M
+Geetarani:F
+Gems:M//Gems Chongtham 
+Hokraj:M
+Imphal Talkies:B
+Jack Rk:M//Jack 
+Jeson:M
+Johnson Khuman:M
+KT Thoi:F
+Kajal:F
+Kenedy:M
+Linda:F
+Loveguru:M
+Madhuri:F
+Malemnganba:M
+Mandakini:F
+Master Mahatama:M
+Nandeshwori:F
+Natasa:F
+Prakash Soraisham:M
+Premlata:F
+Punil:M
+Pushparani:F//Pusparani
+R.K. Nolin:M
+Raj:M
+Ranbir Thouna:M
+Rani Sharma:F
+Romesh:M
+Roshan Thoudam:M
+Sadananda:M
+Sanathoi:F
+Sangeeta:F
+Sorri Senjam:M//Sorri
+Summet Sagolsem:M
+Suren:M
+Surjit Thangtek:M//Surjit
+Surma:F
+Sushmita:F
+Sweety Aheibam:F
+Tekcham Raina:F
+Tinku:M
