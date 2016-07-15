@@ -48,12 +48,18 @@ public class StringUtility {
 
     public static  String[] getDirectorList(){
         String data = readAsStringFromAsset("directors.txt");
-        String[] array =data.split(",");
+        String[] array =data.split("\n");
         return array;
     }
     public static  String[] getActorList(){
         String data = readAsStringFromAsset("actors.txt");
-        String[] array =data.split(",");
+        String[] array =data.split("\n");
+        return array;
+    }
+
+    public static  String[] getComposer(){
+        String data = readAsStringFromAsset("composer.txt");
+        String[] array =data.split("\n");
         return array;
     }
 
@@ -69,7 +75,20 @@ public class StringUtility {
 
     public static  String extractYouTubeCode(String url) {
         int pos = url.indexOf("=");
-        String code = url.substring(pos+1);
+        String code = url.substring(pos + 1);
         return code;
+    }
+
+    public static String getOnlyName(String data) {
+        int pos = data.indexOf(":");
+        return data.substring(0, pos);
+    }
+    public static boolean isMale(String s){
+        int pos = s.indexOf(":");
+        if(s.substring(pos+1,pos+2).equals("M")){
+            return true;
+        }
+        return false;
+
     }
 }

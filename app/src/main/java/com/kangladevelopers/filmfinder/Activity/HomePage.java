@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -25,6 +27,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kangladevelopers.filmfinder.Adapter.AutocompleteCustomArrayAdapter;
 import com.kangladevelopers.filmfinder.Adapter.RvMovieAdapter;
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
@@ -42,6 +45,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -68,6 +72,13 @@ public class HomePage extends BaseDrawerActivity {
     RvMusicAdapter musicAdapter;
     Switch swSinger;
     private String[] singers;
+    HashMap<String,String> singerMap=new HashMap<>();
+    HashMap<String,String> composeMapMap=new HashMap<>();
+    HashMap<String,String> directorMap=new HashMap<>();
+    HashMap<String,String> actorMap=new HashMap<>();
+    private String[] directors;
+    private String[] composer;
+    private String[] actor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +107,7 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", url);
                 addActorView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
-                HomePage.this.getWindow().setSoftInputMode(
-                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-                );
+
             }
         });
         actvComposer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -113,9 +122,12 @@ public class HomePage extends BaseDrawerActivity {
                     actvComposer.setText("");
                     actvComposer.setVisibility(View.GONE);
                 }
-
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
             }
+
+
 
         });
         actvDirector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -148,19 +160,47 @@ public class HomePage extends BaseDrawerActivity {
     private void initializeData() {
         musicRestAdapter = new MusicRestAdapter();
          singers = StringUtility.getSingerList();
-        String[] directors = StringUtility.getDirectorList();
-        String[] dir = StringUtility.getDirectorList();
-        String[] actors = StringUtility.getActorList();
-        calendar = Calendar.getInstance();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, getOnlyName(Arrays.asList(singers)));
-       // SimpleAdapter simpleAdapter = new SimpleAdapter(getApplicationContext(), Arrays.asList(singers));
+        String[] displayData = new String[singers.length];
+        for (int i = 0; i < singers.length; i++) {
+            displayData[i] = StringUtility.getOnlyName(singers[i]);
+            singerMap.put(displayData[i],singers[i]);
+        }
 
-        ArrayAdapter actorAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, actors);
-        actvSinger.setAdapter(adapter);
-        actvComposer.setAdapter(adapter);
+        ////////////////////////////////////////////////////////////////////////////
+         composer = StringUtility.getComposer();
+        String[] displayComposer = new String[composer.length];
+        for (int i = 0; i < composer.length; i++) {
+            displayComposer[i] = StringUtility.getOnlyName(composer[i]);
+            composeMapMap.put(displayComposer[i],composer[i]);
+        }
+
+   ///////////////////////////////////////////////////////////////////////////////
+        directors = StringUtility.getDirectorList();
+        String[] displayDirector = new String[directors.length];
+        for (int i = 0; i < directors.length; i++) {
+            displayDirector[i] = StringUtility.getOnlyName(directors[i]);
+            directorMap.put(displayDirector[i],directors[i]);
+        }
+
+        ////////////////////////////////////////////////////////////////////
+        actor = StringUtility.getActorList();
+        String[] displayActor = new String[actor.length];
+        for (int i = 0; i < actor.length; i++) {
+            displayActor[i] = StringUtility.getOnlyName(actor[i]);
+            actorMap.put(displayActor[i], actor[i]);
+        }
+
+
+        calendar = Calendar.getInstance();
+        ArrayAdapter singerAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, displayData);
+        ArrayAdapter composerAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, displayComposer);
+        ArrayAdapter directorAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, displayDirector);
+        ArrayAdapter actorAdapter = new ArrayAdapter<String>(this, R.layout.simple_text_layout, displayActor);
+        actvSinger.setAdapter(singerAdapter);
+        actvComposer.setAdapter(composerAdapter);
         actvActor.setAdapter(actorAdapter);
-        ArrayAdapter adapter3 = new ArrayAdapter<String>(this, R.layout.simple_text_layout, dir);
-        actvDirector.setAdapter(adapter3);
+
+        actvDirector.setAdapter(directorAdapter);
         if (drawerTabIds == null) {
             drawerTabIds = new ArrayList<>();
             drawerTabIds.add(R.id.ll_castCondition);
@@ -408,16 +448,30 @@ public class HomePage extends BaseDrawerActivity {
         tvSingerCount.setText("" + viewSingerList.size());
         actorName.setText(actorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader.displayImage(imageUrl, actorImage, options);
+        if(StringUtility.isMale(singerMap.get(actorNamee))){
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.m)
+                    .showImageForEmptyUri(R.mipmap.m)
+                    .showImageOnFail(R.mipmap.m)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
+        else {
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.f)
+                    .showImageForEmptyUri(R.mipmap.f)
+                    .showImageOnFail(R.mipmap.f)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
     }
 
     private void addDirectorView(String DirectorNamee, String imageUrl) {
@@ -433,16 +487,30 @@ public class HomePage extends BaseDrawerActivity {
         }
         actorName.setText(DirectorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader.displayImage(imageUrl, actorImage, options);
+        if(StringUtility.isMale(composeMapMap.get(DirectorNamee))){
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.m)
+                    .showImageForEmptyUri(R.mipmap.m)
+                    .showImageOnFail(R.mipmap.m)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
+        else {
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.f)
+                    .showImageForEmptyUri(R.mipmap.f)
+                    .showImageOnFail(R.mipmap.f)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
     }
 
 
@@ -459,16 +527,30 @@ public class HomePage extends BaseDrawerActivity {
         }
         actorName.setText(DirectorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader.displayImage(imageUrl, actorImage, options);
+        if(StringUtility.isMale(directorMap.get(DirectorNamee))){
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.m)
+                    .showImageForEmptyUri(R.mipmap.m)
+                    .showImageOnFail(R.mipmap.m)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
+        else {
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.f)
+                    .showImageForEmptyUri(R.mipmap.f)
+                    .showImageOnFail(R.mipmap.f)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
     }
 
     private void addActorViewEXT(String DirectorNamee, String imageUrl) {
@@ -485,16 +567,30 @@ public class HomePage extends BaseDrawerActivity {
         tvActorCount.setText("" + viewActor.size());
         actorName.setText(DirectorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader.displayImage(imageUrl, actorImage, options);
+        if(StringUtility.isMale(actorMap.get(DirectorNamee))){
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.m)
+                    .showImageForEmptyUri(R.mipmap.m)
+                    .showImageOnFail(R.mipmap.m)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
+        else {
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.f)
+                    .showImageForEmptyUri(R.mipmap.f)
+                    .showImageOnFail(R.mipmap.f)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .bitmapConfig(Bitmap.Config.RGB_565)
+                    .build();
+            imageLoader.displayImage(imageUrl, actorImage, options);
+        }
     }
 
     private void searchMovies() {
@@ -645,12 +741,5 @@ public class HomePage extends BaseDrawerActivity {
     public void onImageClick(View view){
         startActivity(new Intent(this, Profile.class));
     }
-    private List<String> getOnlyName(List<String> list){
-        ArrayList<String> newList =new ArrayList<>();
-        for (int i=0;i<list.size();i++){
-            int pos = list.get(i).indexOf(":");
-             newList.add(list.get(i).substring(0,pos));
-        }
-       return newList;
-    }
+
 }
