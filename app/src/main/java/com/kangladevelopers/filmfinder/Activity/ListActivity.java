@@ -1,8 +1,11 @@
 package com.kangladevelopers.filmfinder.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,7 +16,7 @@ import com.kangladevelopers.filmfinder.utils.StringUtility;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity  implements AdapterView.OnItemClickListener{
 
     private Toolbar toolbar;
     private ListView lvListAll;
@@ -57,7 +60,7 @@ public class ListActivity extends AppCompatActivity {
         if(dataList!=null){
             adapter = new SimpleAdapter(getApplicationContext(), Arrays.asList(dataList));
             lvListAll.setAdapter(adapter);
-           // lvListAll.setOnItemClickListener(this);
+            lvListAll.setOnItemClickListener(this);
         }
 
 
@@ -67,6 +70,12 @@ public class ListActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         lvListAll = (ListView) findViewById(R.id.lv_list);
 
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        startActivity(new Intent(this,BioDataActivity.class));
 
     }
 }
