@@ -8,6 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/black</item>
         <item name="android:textColor">@color/greyish_white</item>
+        <item name="actionOverflowMenuStyle">@style/OptionsMenu</item>
+
 
     </style>
 
@@ -141,6 +143,10 @@
         <item name="android:layout_height">45dp</item>
         <item name="android:onClick">filterConditionClick</item>
 
+    </style>
+
+    <style name="OptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/light_black</item>
     </style>
 
 

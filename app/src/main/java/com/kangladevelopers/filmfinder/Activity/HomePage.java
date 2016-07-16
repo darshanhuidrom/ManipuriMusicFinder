@@ -11,39 +11,31 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kangladevelopers.filmfinder.Adapter.AutocompleteCustomArrayAdapter;
-import com.kangladevelopers.filmfinder.Adapter.RvMovieAdapter;
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
-import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
-import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
-import com.kangladevelopers.filmfinder.retrofit.adapter.ActorRestAdapter;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -122,11 +114,10 @@ public class HomePage extends BaseDrawerActivity {
                     actvComposer.setText("");
                     actvComposer.setVisibility(View.GONE);
                 }
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
             }
-
 
 
         });
@@ -241,18 +232,7 @@ public class HomePage extends BaseDrawerActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // toggle nav drawer on selecting action bar app icon/title
-        switch (item.getItemId()) {
-            // THIS IS YOUR DRAWER/HAMBURGER BUTTON
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
-                Log.d("NICK", "OPEN NAVI");
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     public void filterConditionClick(View view) {
         int id = view.getId();
@@ -741,5 +721,30 @@ public class HomePage extends BaseDrawerActivity {
     public void onImageClick(View view){
         startActivity(new Intent(this, Profile.class));
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // toggle nav drawer on selecting action bar app icon/title
+        switch (item.getItemId()) {
+            // THIS IS YOUR DRAWER/HAMBURGER BUTTON
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
+                Log.d("NICK", "OPEN NAVI");
+                return true;
+            case R.id.lists:
+               startActivity(new Intent(this,ListAllActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

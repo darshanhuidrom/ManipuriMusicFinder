@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cardview_light_background">
+    android:background="@color/light_black"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView1" />
+        android:gravity="left|center_vertical"
+        android:padding="20dp"
+        android:textSize="22sp"
+        android:text="New Text" />
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="1dp"></View>
 </LinearLayout>

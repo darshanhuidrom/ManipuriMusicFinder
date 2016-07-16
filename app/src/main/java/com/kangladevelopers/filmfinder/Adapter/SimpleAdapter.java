@@ -41,7 +41,7 @@ public class SimpleAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView= LayoutInflater.from(context).inflate(R.layout.textview1,null);
         TextView txt= (TextView) convertView.findViewById(R.id.textView1);
-        txt.setText(getOnlyName(list.get(position)));
+        txt.setText(list.get(position));
         return convertView;
     }
 
