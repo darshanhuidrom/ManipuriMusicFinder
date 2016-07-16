@@ -154,6 +154,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textStyle">bold</item>
     </style>
     <style name="bio_data_field2">
         <item name="android:layout_width">0dp</item>

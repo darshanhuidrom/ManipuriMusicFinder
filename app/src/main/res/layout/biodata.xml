@@ -108,7 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="About:" />
+        android:text="About:"
+        android:textStyle="bold"/>
 
 
     <TextView
@@ -129,9 +130,12 @@
         android:text="List"
         android:textSize="15sp" />
 
-    <ListView
-        android:id="@+id/lv_list"
+    <LinearLayout
+
+        android:id="@+id/ll_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
