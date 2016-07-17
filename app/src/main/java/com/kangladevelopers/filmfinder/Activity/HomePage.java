@@ -29,6 +29,7 @@ import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
+import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
@@ -64,10 +65,10 @@ public class HomePage extends BaseDrawerActivity {
     RvMusicAdapter musicAdapter;
     Switch swSinger;
     private String[] singers;
-    HashMap<String,String> singerMap=new HashMap<>();
-    HashMap<String,String> composeMapMap=new HashMap<>();
-    HashMap<String,String> directorMap=new HashMap<>();
-    HashMap<String,String> actorMap=new HashMap<>();
+    HashMap<String, String> singerMap = new HashMap<>();
+    HashMap<String, String> composeMapMap = new HashMap<>();
+    HashMap<String, String> directorMap = new HashMap<>();
+    HashMap<String, String> actorMap = new HashMap<>();
     private String[] directors;
     private String[] composer;
     private String[] actor;
@@ -150,27 +151,27 @@ public class HomePage extends BaseDrawerActivity {
 
     private void initializeData() {
         musicRestAdapter = new MusicRestAdapter();
-         singers = StringUtility.getSingerList();
+        singers = StringUtility.getSingerList();
         String[] displayData = new String[singers.length];
         for (int i = 0; i < singers.length; i++) {
             displayData[i] = StringUtility.getOnlyName(singers[i]);
-            singerMap.put(displayData[i],singers[i]);
+            singerMap.put(displayData[i], singers[i]);
         }
 
         ////////////////////////////////////////////////////////////////////////////
-         composer = StringUtility.getComposer();
+        composer = StringUtility.getComposer();
         String[] displayComposer = new String[composer.length];
         for (int i = 0; i < composer.length; i++) {
             displayComposer[i] = StringUtility.getOnlyName(composer[i]);
-            composeMapMap.put(displayComposer[i],composer[i]);
+            composeMapMap.put(displayComposer[i], composer[i]);
         }
 
-   ///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
         directors = StringUtility.getDirectorList();
         String[] displayDirector = new String[directors.length];
         for (int i = 0; i < directors.length; i++) {
             displayDirector[i] = StringUtility.getOnlyName(directors[i]);
-            directorMap.put(displayDirector[i],directors[i]);
+            directorMap.put(displayDirector[i], directors[i]);
         }
 
         ////////////////////////////////////////////////////////////////////
@@ -228,10 +229,9 @@ public class HomePage extends BaseDrawerActivity {
         rvMusic = (RecyclerView) findViewById(R.id.rv_moveList);
         btStartDate = (TextView) findViewById(R.id.bt_start_date);
         btEndDate = (TextView) findViewById(R.id.bt_end_date);
-        swSinger= (Switch) findViewById(R.id.sw_singer);
+        swSinger = (Switch) findViewById(R.id.sw_singer);
 
     }
-
 
 
     public void filterConditionClick(View view) {
@@ -428,7 +428,7 @@ public class HomePage extends BaseDrawerActivity {
         tvSingerCount.setText("" + viewSingerList.size());
         actorName.setText(actorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        if(StringUtility.isMale(singerMap.get(actorNamee))){
+        if (StringUtility.isMale(singerMap.get(actorNamee))) {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.m)
                     .showImageForEmptyUri(R.mipmap.m)
@@ -439,8 +439,7 @@ public class HomePage extends BaseDrawerActivity {
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .build();
             imageLoader.displayImage(imageUrl, actorImage, options);
-        }
-        else {
+        } else {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.f)
                     .showImageForEmptyUri(R.mipmap.f)
@@ -467,7 +466,7 @@ public class HomePage extends BaseDrawerActivity {
         }
         actorName.setText(DirectorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        if(StringUtility.isMale(composeMapMap.get(DirectorNamee))){
+        if (StringUtility.isMale(composeMapMap.get(DirectorNamee))) {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.m)
                     .showImageForEmptyUri(R.mipmap.m)
@@ -478,8 +477,7 @@ public class HomePage extends BaseDrawerActivity {
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .build();
             imageLoader.displayImage(imageUrl, actorImage, options);
-        }
-        else {
+        } else {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.f)
                     .showImageForEmptyUri(R.mipmap.f)
@@ -507,7 +505,7 @@ public class HomePage extends BaseDrawerActivity {
         }
         actorName.setText(DirectorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        if(StringUtility.isMale(directorMap.get(DirectorNamee))){
+        if (StringUtility.isMale(directorMap.get(DirectorNamee))) {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.m)
                     .showImageForEmptyUri(R.mipmap.m)
@@ -518,8 +516,7 @@ public class HomePage extends BaseDrawerActivity {
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .build();
             imageLoader.displayImage(imageUrl, actorImage, options);
-        }
-        else {
+        } else {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.f)
                     .showImageForEmptyUri(R.mipmap.f)
@@ -547,7 +544,7 @@ public class HomePage extends BaseDrawerActivity {
         tvActorCount.setText("" + viewActor.size());
         actorName.setText(DirectorNamee);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        if(StringUtility.isMale(actorMap.get(DirectorNamee))){
+        if (StringUtility.isMale(actorMap.get(DirectorNamee))) {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.m)
                     .showImageForEmptyUri(R.mipmap.m)
@@ -558,8 +555,7 @@ public class HomePage extends BaseDrawerActivity {
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .build();
             imageLoader.displayImage(imageUrl, actorImage, options);
-        }
-        else {
+        } else {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.f)
                     .showImageForEmptyUri(R.mipmap.f)
@@ -577,7 +573,7 @@ public class HomePage extends BaseDrawerActivity {
         String singerList = null;
         String composerList = null;
         String directorList = null;
-        String actorList=null;
+        String actorList = null;
         String startTime;
         String endTime;
         String fixSinger;
@@ -634,19 +630,18 @@ public class HomePage extends BaseDrawerActivity {
                 actorList = actorList + ",";
         }
 
-        if(swSinger.isChecked()){
-            fixSinger="true";
-        }
-        else {
-            fixSinger="false";
+        if (swSinger.isChecked()) {
+            fixSinger = "true";
+        } else {
+            fixSinger = "false";
         }
         startTime = btStartDate.getText().toString();
         endTime = btEndDate.getText().toString();
-        String query = singerList + "&" +composerList+"&"+directorList+"&"+actorList;
+        String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
         Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
-        Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList,actorList,fixSinger, startTime, endTime);
+        Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
         call.enqueue(new Callback<List<Music>>() {
             @Override
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
@@ -657,8 +652,8 @@ public class HomePage extends BaseDrawerActivity {
                     musicAdapter.setRvAdapterClickLIstener(new RvMusicAdapter.RvAdapterClickListener() {
                         @Override
                         public void onItemClick(int i, View v) {
-                            Intent intent = new Intent(HomePage.this,MusicDetailActivity.class);
-                            intent.putExtra("music",musicAdapter.getData().get(i));
+                            Intent intent = new Intent(HomePage.this, MusicDetailActivity.class);
+                            intent.putExtra("music", musicAdapter.getData().get(i));
                             startActivity(intent);
                         }
                     });
@@ -675,7 +670,7 @@ public class HomePage extends BaseDrawerActivity {
             public void onFailure(Call<List<Music>> call, Throwable t) {
 
                 String aa = t.getMessage();
-           //     Log.d(">>>>>>", aa);
+                //     Log.d(">>>>>>", aa);
             }
         });
         mDrawerLayout.closeDrawers();
@@ -718,7 +713,7 @@ public class HomePage extends BaseDrawerActivity {
         showDatePickerDialog();
     }
 
-    public void onImageClick(View view){
+    public void onImageClick(View view) {
         startActivity(new Intent(this, Profile.class));
     }
 
@@ -739,12 +734,14 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d("NICK", "OPEN NAVI");
                 return true;
             case R.id.lists:
-               startActivity(new Intent(this,ListAllActivity.class));
+                startActivity(new Intent(this, ListAllActivity.class));
+                return true;
+            case R.id.developer:
+                startActivity(new Intent(this, DeveloperActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

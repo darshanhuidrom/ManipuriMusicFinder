@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -28,6 +29,7 @@ public class ListActivity extends AppCompatActivity  implements AdapterView.OnIt
         setContentView(R.layout.activity_list);
         mapWithXml();
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initializeData();
     }
@@ -53,10 +55,11 @@ public class ListActivity extends AppCompatActivity  implements AdapterView.OnIt
                 break;
             default:
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
-                getDelegate().getSupportActionBar().setTitle(name);
+
 
         }
 
+        getSupportActionBar().setTitle(name);
         if(dataList!=null){
             adapter = new SimpleAdapter(getApplicationContext(), Arrays.asList(dataList));
             lvListAll.setAdapter(adapter);
@@ -78,4 +81,17 @@ public class ListActivity extends AppCompatActivity  implements AdapterView.OnIt
         startActivity(new Intent(this,BioDataActivity.class));
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+

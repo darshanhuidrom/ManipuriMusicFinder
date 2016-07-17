@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class SimpleAdapter extends BaseAdapter {
 
-    private Context context;
-    List<String> list;
+    protected Context context;
+   protected  List<String> list;
     public SimpleAdapter(Context context,List<String> list){
         this.context=context;
         this.list=list;

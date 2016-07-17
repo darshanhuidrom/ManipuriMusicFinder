@@ -40,8 +40,9 @@
         <activity android:name=".Activity.EditProfile" />
         <activity android:name=".Activity.Profile" />
         <activity android:name=".Activity.ListAllActivity" />
-        <activity android:name=".Activity.ListActivity"></activity>
-        <activity android:name=".Activity.BioDataActivity"></activity>
+        <activity android:name=".Activity.ListActivity" />
+        <activity android:name=".Activity.BioDataActivity" />
+        <activity android:name=".developers.ui.DeveloperActivity"></activity>
     </application>
 
 </manifest>

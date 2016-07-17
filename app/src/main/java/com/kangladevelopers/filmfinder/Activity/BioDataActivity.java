@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -30,6 +31,7 @@ public class BioDataActivity extends AppCompatActivity implements View.OnClickLi
         mapWithXml();
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void mapWithXml() {
@@ -74,5 +76,16 @@ public class BioDataActivity extends AppCompatActivity implements View.OnClickLi
         TextView textView = (TextView) v.findViewById(R.id.textView1);
         Toast.makeText(getApplicationContext(),textView.getText(),Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

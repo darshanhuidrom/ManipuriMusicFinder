@@ -5,6 +5,8 @@ package com.kangladevelopers.filmfinder.Utility;
  */
 public class Constants {
 
+    public static final String USER_NAME = "email_address";
+    public static final String PASSWORD = "password";
     public static final String BASE_URL ="http://beta.json-generator.com/api/json/get/";
     public static final String ACTORS_URL ="http://beta.json-generator.com/api/json/get/EJaVLo24W";
     public static final String MainURL ="apple.php";
