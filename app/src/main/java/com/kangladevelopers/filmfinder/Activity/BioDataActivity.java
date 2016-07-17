@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by HUIDROM on 7/17/2016.
  */
-public class BioDataActivity extends AppCompatActivity {
+public class BioDataActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Toolbar toolbar;
     private LinearLayout llParent;
@@ -35,11 +35,23 @@ public class BioDataActivity extends AppCompatActivity {
     private void mapWithXml() {
         llParent = (LinearLayout) findViewById(R.id.ll_parent);
         toolbar= (Toolbar) findViewById(R.id.toolbar);
-        addView(new ArrayList<String>());
+       addView(new ArrayList<String>());
 
     }
     public void addView(List<String> list){
         ArrayList<String> strings =new ArrayList<>();
+        strings.add("Mensinba");
+        strings.add("Choirabi");
+        strings.add("Sak Udribi");
+        strings.add("Segaire");
+        strings.add("Mensinba");
+        strings.add("Choirabi");
+        strings.add("Sak Udribi");
+        strings.add("Segaire");
+        strings.add("Mensinba");
+        strings.add("Choirabi");
+        strings.add("Sak Udribi");
+        strings.add("Segaire");
         strings.add("Mensinba");
         strings.add("Choirabi");
         strings.add("Sak Udribi");
@@ -49,16 +61,18 @@ public class BioDataActivity extends AppCompatActivity {
             View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.textview2,null);
             TextView textView = (TextView) view.findViewById(R.id.textView1);
             textView.setText(strings.get(i));
-            view.setTag("alpha"+i);
+            textView.setOnClickListener(this);
+            view.setTag("alpha" + i);
             llParent.addView(view);
         }
 
     }
 
-    public void onTextClick(View view){
-       // TextView textView = (TextView) view.findViewById(R.id.textView1);
-        Toast.makeText(getApplicationContext(),"onText click",Toast.LENGTH_SHORT).show();
 
+    @Override
+    public void onClick(View v) {
+        TextView textView = (TextView) v.findViewById(R.id.textView1);
+        Toast.makeText(getApplicationContext(),textView.getText(),Toast.LENGTH_SHORT).show();
 
     }
 }

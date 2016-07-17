@@ -6,136 +6,154 @@
 
     <include layout="@layout/toolbar_shadow_layout" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:orientation="horizontal">
-
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3"
+        android:layout_gravity="center_horizontal" >
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
-            android:layout_weight="7"
-            android:orientation="vertical">
-
-
-            <LinearLayout style="@style/bio_data_block">
-
-                <TextView
-                    style="@style/bio_data_field1"
-                    android:text="Name:" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    style="@style/bio_data_field2"
-                    android:text="Sorri Senjam" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bio_data_block">
-
-                <TextView
-                    style="@style/bio_data_field1"
-                    android:text="Age:" />
-
-                <TextView
-                    android:id="@+id/tv_age"
-                    style="@style/bio_data_field2"
-                    android:text="36" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bio_data_block">
-
-                <TextView
-                    style="@style/bio_data_field1"
-                    android:text="Ocupation:" />
-
-                <TextView
-                    android:id="@+id/tv_desgn"
-                    style="@style/bio_data_field2"
-                    android:text="Composer, Singer" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/bio_data_block">
-
-                <TextView
-                    style="@style/bio_data_field1"
-                    android:text="Residence:" />
-
-                <TextView
-                    android:id="@+id/tv_residence"
-                    style="@style/bio_data_field2"
-                    android:text="Uchekon,Imphal East" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.2">
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/sori" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="7"
+                    android:orientation="vertical">
 
-              <!--  <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />-->
+
+                    <LinearLayout style="@style/bio_data_block">
+
+                        <TextView
+                            style="@style/bio_data_field1"
+                            android:text="Name:" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            style="@style/bio_data_field2"
+                            android:text="Sorri Senjam" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/bio_data_block">
+
+                        <TextView
+                            style="@style/bio_data_field1"
+                            android:text="Age:" />
+
+                        <TextView
+                            android:id="@+id/tv_age"
+                            style="@style/bio_data_field2"
+                            android:text="36" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/bio_data_block">
+
+                        <TextView
+                            style="@style/bio_data_field1"
+                            android:text="Ocupation:" />
+
+                        <TextView
+                            android:id="@+id/tv_desgn"
+                            style="@style/bio_data_field2"
+                            android:text="Composer, Singer" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/bio_data_block">
+
+                        <TextView
+                            style="@style/bio_data_field1"
+                            android:text="Residence:" />
+
+                        <TextView
+                            android:id="@+id/tv_residence"
+                            style="@style/bio_data_field2"
+                            android:text="Uchekon,Imphal East" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/sori" />
+
+                        <!--  <RatingBar
+                              android:id="@+id/ratingBar"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content" />-->
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="About:"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/about" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_black"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginTop="10dp"
+                android:text="List"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <LinearLayout
+
+                android:id="@+id/ll_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center_horizontal" />
+
+
         </LinearLayout>
-
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="About:"
-        android:textStyle="bold"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/about" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_black"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:layout_marginTop="10dp"
-        android:text="List"
-        android:textSize="15sp" />
-
-    <LinearLayout
-
-        android:id="@+id/ll_parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal" />
+    </ScrollView>
 </LinearLayout>
