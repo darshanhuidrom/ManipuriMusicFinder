@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.Network.HTTP;
@@ -14,6 +15,8 @@ import com.kangladevelopers.filmfinder.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class DeveloperActivity extends AppCompatActivity {
@@ -22,6 +25,8 @@ public class DeveloperActivity extends AppCompatActivity {
     private SimpleAdapter adapter;
     private ListView lv;
     private TextView tv_count;
+    private String data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +36,9 @@ public class DeveloperActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Developers");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        data = getIntent().getStringExtra("name");
         initializeData();
+
     }
 
     private void initializeData() {
@@ -40,7 +47,7 @@ public class DeveloperActivity extends AppCompatActivity {
             @Override
             protected List<String> doInBackground(Void... params) {
 
-                String url ="http://192.168.1.3:8080/move_finder/webapi/dev/getList/singer";
+                String url ="http://192.168.1.3:8080/move_finder/webapi/dev/getList/"+data;
                 String data = HTTP.sendGET(url);
                 List<String> list = convertToList(data);
                 return list;
@@ -81,7 +88,47 @@ public class DeveloperActivity extends AppCompatActivity {
 
         data = data.substring(1,data.length()-1);
         String[] strArray = data.split(",");
+     //   ArrayList<Name> listss = convertToNameList(strArray);
         return Arrays.asList(strArray);
 
     }
+
+    private ArrayList<Name> convertToNameList(String[] strArray) {
+
+        return null;
+    }
+
+    private class CustomComparator implements Comparator<Name> {// may be it would be Model
+        @Override
+        public int compare(Name obj1, Name obj2) {
+
+
+            return obj1.getFirstName().compareToIgnoreCase(obj2.getFirstName());
+        }
+    }
+    // darshan Huidrom Huidrom Darshan
+    private class Name {
+        private String firstName;
+        private String lastName;
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+    }
+
+
+
+
 }

@@ -39,19 +39,19 @@ public class ListActivity extends AppCompatActivity  implements AdapterView.OnIt
         String name = getIntent().getStringExtra("name");
         String[] dataList=null;
         switch (name) {
-            case "Singers":
+            case "Singer":
                 dataList = StringUtility.getSingerList();
                 break;
-            case "Composers":
+            case "Composer":
                 dataList=StringUtility.getComposer();
                 break;
-            case "Directors":
+            case "Director":
                 dataList=StringUtility.getDirectorList();
                 break;
-            case "Actors":
+            case "Actor":
                 dataList=StringUtility.getActorList();
                 break;
-            case "Lyrics":
+            case "Lyric":
                 break;
             default:
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();

@@ -737,7 +737,9 @@ public class HomePage extends BaseDrawerActivity {
                 startActivity(new Intent(this, ListAllActivity.class));
                 return true;
             case R.id.developer:
-                startActivity(new Intent(this, DeveloperActivity.class));
+                Intent intent = new Intent(this, ListAllActivity.class);
+                intent.putExtra("IS_FROM_DEVELOPER",true);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,8 @@ public class ListAllActivity extends AppCompatActivity implements AdapterView.On
     private Toolbar toolbar;
     private ListView lvListAll;
     private SimpleAdapter adapter;
+    private boolean IS_FROM_DEVELOPER;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,15 +32,16 @@ public class ListAllActivity extends AppCompatActivity implements AdapterView.On
         getDelegate().getSupportActionBar().setTitle("List All");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initializeData();
+        IS_FROM_DEVELOPER= getIntent().getBooleanExtra("IS_FROM_DEVELOPER",false);
     }
 
     private void initializeData() {
         ArrayList<String> listName= new ArrayList<>();
-        listName.add("Singers");
-        listName.add("Composers");
-        listName.add("Directors");
-        listName.add("Actors");
-        listName.add("Lyrics");
+        listName.add("Singer");
+        listName.add("Composer");
+        listName.add("Director");
+        listName.add("Actor");
+        listName.add("Lyric");
         adapter = new SimpleAdapter(getApplicationContext(),listName);
         lvListAll.setAdapter(adapter);
         lvListAll.setOnItemClickListener(this);
@@ -53,9 +57,16 @@ public class ListAllActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(IS_FROM_DEVELOPER){
+            Intent intent = new Intent(this,DeveloperActivity.class);
+            intent.putExtra("name",adapter.getData().get(position).toLowerCase());
+            startActivity(intent);
+            return;
+        }
         Toast.makeText(getApplicationContext(),adapter.getData().get(position),Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,ListActivity.class);
         intent.putExtra("name",adapter.getData().get(position));
+
         startActivity(intent);
 
     }
