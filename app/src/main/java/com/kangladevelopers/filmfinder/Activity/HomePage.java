@@ -600,6 +600,7 @@ public class HomePage extends BaseDrawerActivity {
         String endTime;
         String fixSinger;
         ProgressBarConfig.showProgressBar(this,null);
+        hideNoDataFound();
 
         for (int i = 0; i < viewSingerList.size(); i++) {
             View view = viewSingerList.get(i);
