@@ -85,6 +85,7 @@ public class HomePage extends BaseDrawerActivity {
     private String[] actor;
     private static final int CAMERA_REQUEST = 1888;
     private static int OPEN_GALLEY_REQUEST_CODE = 121;
+    private static int SIGN_IN_REQUEST = 111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +94,8 @@ public class HomePage extends BaseDrawerActivity {
 
         setWidget();
         if (isSignedIn()) {
-
+            tvUserName.setText(AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.USER_NAME));
         } else {
-
             tvUserName.setText("Sign In");
         }
         try {
@@ -817,14 +817,10 @@ public class HomePage extends BaseDrawerActivity {
             LocalStore.loadImageFromStorage(ivProfileImage);
 
 
-        } else {
-            Toast.makeText(getApplicationContext(), "You haven't picked Image" + "Request code:: " + requestCode + "result::" + resultCode + "data:: " + data,
-                    Toast.LENGTH_LONG).show();
+        } else if (requestCode == SIGN_IN_REQUEST && resultCode == RESULT_OK) {
+            tvUserName.setText(AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.USER_NAME));
         }
     }
-
-
-
 
 
     @Override
@@ -861,5 +857,7 @@ public class HomePage extends BaseDrawerActivity {
 
     public void onUserClick(View view) {
 
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivityForResult(intent, SIGN_IN_REQUEST);
     }
 }

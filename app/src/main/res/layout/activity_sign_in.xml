@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,12 +11,25 @@
         style="@style/profile_edit_block"
         android:layout_marginTop="20dp"
         android:hint="email"
+        android:layout_alignParentTop="true"
         android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/et_last_name"
+        android:layout_below="@+id/et_email"
         style="@style/profile_edit_block"
-        android:hint="Last Name"
+        android:hint="Password"
+        android:inputType="numberPassword"
         android:layout_marginBottom="5dp"/>
 
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/button"
+        android:textColor="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onSave"/>
+
+</RelativeLayout>
