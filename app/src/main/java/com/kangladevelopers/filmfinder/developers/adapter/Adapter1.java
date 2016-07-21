@@ -28,8 +28,6 @@ public class Adapter1 extends SimpleAdapter {
         convertView= LayoutInflater.from(context).inflate(R.layout.textview3,null);
         TextView txt= (TextView) convertView.findViewById(R.id.textView1);
         txt.setText(list.get(position));
-        i
-
         return convertView;
     }
 }

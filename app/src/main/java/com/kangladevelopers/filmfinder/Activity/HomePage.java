@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,6 +30,7 @@ import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
+import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
@@ -49,6 +51,7 @@ public class HomePage extends BaseDrawerActivity {
     private LinearLayout llSingerCondition, llComposerCondition, llDirectorCondition, llActorCondition;
     private LinearLayout llSingerParentLayout, llComposerParentLayout, llDirectorParentLayout, llActorParentLayout;
     AutoCompleteTextView actvSinger, actvComposer, actvDirector, actvActor;
+    TextView tvNoDataFound;
     ArrayList<View> viewSingerList = new ArrayList<>();
     ArrayList<View> viewComposerList = new ArrayList<>();
     ArrayList<View> viewDirectorList = new ArrayList<>();
@@ -100,6 +103,9 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", url);
                 addActorView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(actvSinger.getWindowToken(), 0);
+
 
             }
         });
@@ -116,7 +122,7 @@ public class HomePage extends BaseDrawerActivity {
                     actvComposer.setVisibility(View.GONE);
                 }
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(actvComposer.getWindowToken(), 0);
 
             }
 
@@ -132,6 +138,8 @@ public class HomePage extends BaseDrawerActivity {
                     actvDirector.setText("");
                     actvDirector.setVisibility(View.GONE);
                 }
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(actvDirector.getWindowToken(), 0);
 
 
             }
@@ -143,6 +151,8 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", url);
                 addActorViewEXT(actvActor.getText().toString(), url.replace(" ", ""));
                 actvActor.setText("");
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(actvActor.getWindowToken(), 0);
 
             }
         });
@@ -206,6 +216,7 @@ public class HomePage extends BaseDrawerActivity {
         hideAndUnhideDirector();
         hideAndUnhideYear();
         hideAndUnhideActorrr();
+        hideNoDataFound();
     }
 
     private void setWidget() {
@@ -230,7 +241,16 @@ public class HomePage extends BaseDrawerActivity {
         btStartDate = (TextView) findViewById(R.id.bt_start_date);
         btEndDate = (TextView) findViewById(R.id.bt_end_date);
         swSinger = (Switch) findViewById(R.id.sw_singer);
+        tvNoDataFound= (TextView) findViewById(R.id.tv_no_data_found);
 
+    }
+    private void hideNoDataFound(){
+        tvNoDataFound.setVisibility(View.GONE);
+        rvMusic.setVisibility(View.VISIBLE);
+    }
+    private void unHideNoDataFound(){
+        tvNoDataFound.setVisibility(View.VISIBLE);
+        rvMusic.setVisibility(View.GONE);
     }
 
 
@@ -451,6 +471,8 @@ public class HomePage extends BaseDrawerActivity {
                     .build();
             imageLoader.displayImage(imageUrl, actorImage, options);
         }
+
+
     }
 
     private void addDirectorView(String DirectorNamee, String imageUrl) {
@@ -577,6 +599,7 @@ public class HomePage extends BaseDrawerActivity {
         String startTime;
         String endTime;
         String fixSinger;
+        ProgressBarConfig.showProgressBar(this,null);
 
         for (int i = 0; i < viewSingerList.size(); i++) {
             View view = viewSingerList.get(i);
@@ -645,7 +668,13 @@ public class HomePage extends BaseDrawerActivity {
         call.enqueue(new Callback<List<Music>>() {
             @Override
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
+                ProgressBarConfig.dismissProgressBar();
                 List<Music> musics = response.body();
+                if(musics==null||musics.isEmpty()){
+                    unHideNoDataFound();
+                    return;
+                }
+                hideNoDataFound();
                 Log.d(">>>>>>", musics.toString());
                 if (musicAdapter == null) {
                     musicAdapter = new RvMusicAdapter(getApplicationContext(), musics);
@@ -671,6 +700,8 @@ public class HomePage extends BaseDrawerActivity {
 
                 String aa = t.getMessage();
                 //     Log.d(">>>>>>", aa);
+                unHideNoDataFound();
+                ProgressBarConfig.dismissProgressBar();
             }
         });
         mDrawerLayout.closeDrawers();

@@ -148,6 +148,11 @@
     <style name="OptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">@color/light_black</item>
     </style>
+    <style name="ProgressBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
     ///////////biodata related///////////////
 
     <style name="bio_data_field1">

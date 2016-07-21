@@ -19,9 +19,21 @@
                 android:id="@+id/rv_moveList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:visibility="gone">
 
             </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:id="@+id/tv_no_data_found"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="No data found."
+                android:textSize="22sp"
+                android:gravity="center"
+                android:layout_margin="10dp">
+
+            </TextView>
+
         </LinearLayout>
 
 
