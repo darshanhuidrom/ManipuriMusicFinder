@@ -24,6 +24,10 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void onSave(View view){
+        if(etEmail.getText().toString().trim().isEmpty()){
+            finish();
+            return;
+        }
         AppPreference.saveToAppPreference(getApplicationContext(), Constants.USER_NAME,etEmail.getText()+"");
         AppPreference.saveToAppPreference(getApplicationContext(),Constants.IS_SIGNED_IN,true);
         setResult(RESULT_OK);
