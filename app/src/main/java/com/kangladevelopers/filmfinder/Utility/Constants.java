@@ -23,5 +23,7 @@ public class Constants {
   public static final String SEARCH_URL ="http://beta.json-generator.com/api/json/get/4JJdOKUVZ";
 
     public static final String signature = "Jyk0noK7_g1VGXRrjFop6-c3LvxX35NbTlji0b7w";
+    public static final String IS_SIGNED_IN = "is_signed_in";
+
 
 }

@@ -3,6 +3,10 @@
     package="com.kangladevelopers.filmfinder">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
 
     <application
         android:name=".MyApplication"
@@ -42,7 +46,8 @@
         <activity android:name=".Activity.ListAllActivity" />
         <activity android:name=".Activity.ListActivity" />
         <activity android:name=".Activity.BioDataActivity" />
-        <activity android:name=".developers.ui.DeveloperActivity"></activity>
+        <activity android:name=".developers.ui.DeveloperActivity" />
+        <activity android:name=".Activity.SignInActivity"></activity>
     </application>
 
 </manifest>

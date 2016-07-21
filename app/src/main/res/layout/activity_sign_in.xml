@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.kangladevelopers.filmfinder.Activity.SignInActivity">
+
+    <EditText
+        android:id="@+id/et_email"
+        style="@style/profile_edit_block"
+        android:layout_marginTop="20dp"
+        android:hint="email"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/et_last_name"
+        style="@style/profile_edit_block"
+        android:hint="Last Name"
+        android:layout_marginBottom="5dp"/>
+
+</LinearLayout>

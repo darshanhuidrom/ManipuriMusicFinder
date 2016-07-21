@@ -4,9 +4,13 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,12 +32,14 @@ import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
+import com.kangladevelopers.filmfinder.storage.LocalStore;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -52,6 +58,8 @@ public class HomePage extends BaseDrawerActivity {
     private LinearLayout llSingerParentLayout, llComposerParentLayout, llDirectorParentLayout, llActorParentLayout;
     AutoCompleteTextView actvSinger, actvComposer, actvDirector, actvActor;
     TextView tvNoDataFound;
+    TextView tvUserName;
+    ImageView ivProfileImage;
     ArrayList<View> viewSingerList = new ArrayList<>();
     ArrayList<View> viewComposerList = new ArrayList<>();
     ArrayList<View> viewDirectorList = new ArrayList<>();
@@ -75,12 +83,26 @@ public class HomePage extends BaseDrawerActivity {
     private String[] directors;
     private String[] composer;
     private String[] actor;
+    private static final int CAMERA_REQUEST = 1888;
+    private static int OPEN_GALLEY_REQUEST_CODE = 121;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_page);
+
         setWidget();
+        if (isSignedIn()) {
+
+        } else {
+
+            tvUserName.setText("Sign In");
+        }
+        try {
+            LocalStore.loadImageFromStorage(ivProfileImage);
+        } catch (Exception e) {
+
+        }
         initializeData();
         setListeners();
         setDrawer();
@@ -103,7 +125,7 @@ public class HomePage extends BaseDrawerActivity {
                 Log.d(">>>>>>", url);
                 addActorView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(actvSinger.getWindowToken(), 0);
 
 
@@ -241,14 +263,18 @@ public class HomePage extends BaseDrawerActivity {
         btStartDate = (TextView) findViewById(R.id.bt_start_date);
         btEndDate = (TextView) findViewById(R.id.bt_end_date);
         swSinger = (Switch) findViewById(R.id.sw_singer);
-        tvNoDataFound= (TextView) findViewById(R.id.tv_no_data_found);
+        tvNoDataFound = (TextView) findViewById(R.id.tv_no_data_found);
+        tvUserName = (TextView) findViewById(R.id.tv_user_name);
+        ivProfileImage = (ImageView) findViewById(R.id.iv_profile_image);
 
     }
-    private void hideNoDataFound(){
+
+    private void hideNoDataFound() {
         tvNoDataFound.setVisibility(View.GONE);
         rvMusic.setVisibility(View.VISIBLE);
     }
-    private void unHideNoDataFound(){
+
+    private void unHideNoDataFound() {
         tvNoDataFound.setVisibility(View.VISIBLE);
         rvMusic.setVisibility(View.GONE);
     }
@@ -599,7 +625,7 @@ public class HomePage extends BaseDrawerActivity {
         String startTime;
         String endTime;
         String fixSinger;
-        ProgressBarConfig.showProgressBar(this,null);
+        ProgressBarConfig.showProgressBar(this, null);
         hideNoDataFound();
 
         for (int i = 0; i < viewSingerList.size(); i++) {
@@ -671,7 +697,7 @@ public class HomePage extends BaseDrawerActivity {
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
                 ProgressBarConfig.dismissProgressBar();
                 List<Music> musics = response.body();
-                if(musics==null||musics.isEmpty()){
+                if (musics == null || musics.isEmpty()) {
                     unHideNoDataFound();
                     return;
                 }
@@ -746,8 +772,59 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     public void onImageClick(View view) {
-        startActivity(new Intent(this, Profile.class));
+
+        CustomDialogBox dialogBox = new CustomDialogBox(this, new CustomDialogBox.Listeners() {
+            @Override
+            public void onGalleryClick() {
+
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, OPEN_GALLEY_REQUEST_CODE);
+            }
+
+            @Override
+            public void onCameraClick() {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+        });
+        dialogBox.show();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            LocalStore.saveToInternalStorage(photo);
+            LocalStore.loadImageFromStorage(ivProfileImage);
+        } else if (requestCode == OPEN_GALLEY_REQUEST_CODE && resultCode == RESULT_OK
+                && null != data) {
+            // Get the Image from data
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            // Get the cursor
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            // Move to first row
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String imgDecodableString = cursor.getString(columnIndex);
+            cursor.close();
+            Bitmap bitmap = BitmapFactory.decodeFile(imgDecodableString);
+            LocalStore.saveToInternalStorage(bitmap);
+            LocalStore.loadImageFromStorage(ivProfileImage);
+
+
+        } else {
+            Toast.makeText(getApplicationContext(), "You haven't picked Image" + "Request code:: " + requestCode + "result::" + resultCode + "data:: " + data,
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
 
 
     @Override
@@ -770,12 +847,19 @@ public class HomePage extends BaseDrawerActivity {
                 return true;
             case R.id.developer:
                 Intent intent = new Intent(this, ListAllActivity.class);
-                intent.putExtra("IS_FROM_DEVELOPER",true);
+                intent.putExtra("IS_FROM_DEVELOPER", true);
                 startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean isSignedIn() {
+        return (boolean) AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.IS_SIGNED_IN, AppPreference.MODE_BOOLEAN);
+    }
 
+
+    public void onUserClick(View view) {
+
+    }
 }
