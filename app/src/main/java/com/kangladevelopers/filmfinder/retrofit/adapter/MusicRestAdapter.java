@@ -4,6 +4,7 @@ import com.kangladevelopers.filmfinder.DataModel.MovieInfo2;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
+import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
 import com.kangladevelopers.filmfinder.retrofit.interfaces.MusicAPI;
 
 import java.util.List;
@@ -26,6 +27,10 @@ public class MusicRestAdapter {
 
     public Call<List<Music>> getMusicDetails(String singer,String composer,String director,String actor,String fixSinger,String startTime,String endTime) {
         return musicApi.getMusicDetails(singer, composer, director,actor,fixSinger,startTime,endTime);
+    }
+
+    public  Call<SimpleResponse> putMusicDetails(Music music){
+        return musicApi.PutMusicDetails(music);
     }
 
 }
