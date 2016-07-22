@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp">
-                <include layout="@layout/edit_music_details_block" />
             </LinearLayout>
 
             <TextView
