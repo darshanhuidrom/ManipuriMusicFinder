@@ -98,6 +98,7 @@
         <item name="android:layout_height">30dp</item>
 
     </style>
+
     <style name="song_block_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -122,11 +123,41 @@
 
 
     </style>
+
     <style name="song_detail_block3">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">3.3</item>
     </style>
+
+    /////////////////
+
+    <style name="song_detail_edit_block1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+
+    <style name="song_detail_edit_block2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="song_detail_edit_block3">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
+
+
+    ///////////////////
+
+
 
     <style name="profile_edit_block">
         <item name="android:layout_width">match_parent</item>
@@ -148,6 +179,7 @@
     <style name="OptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">@color/light_black</item>
     </style>
+
     <style name="ProgressBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColor">@color/white</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -161,6 +193,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="bio_data_field2">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -175,6 +208,7 @@
         <item name="android:paddingBottom">7dp</item>
 
     </style>
+
     <style name="full_screen_dialog" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>

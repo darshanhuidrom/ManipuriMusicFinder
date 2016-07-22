@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.kangladevelopers.filmfinder.Activity.EditMusicDetails">
+
     <include layout="@layout/toolbar_shadow_layout" />
 
     <ScrollView
@@ -18,6 +19,61 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/ll_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cast:"
+                android:textSize="18sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_black" />
+
+            <LinearLayout
+                android:id="@+id/ll_parent2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/block_actorrrrr" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <AutoCompleteTextView
+                        android:id="@+id/actv_director"
+                        android:layout_margin="10dp"
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="4"
+                        android:background="@drawable/rounded"
+                        android:paddingLeft="10dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:text="Add"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:background="@drawable/rounded"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Save"
+                android:textColor="@color/black"/>
 
 
         </LinearLayout>

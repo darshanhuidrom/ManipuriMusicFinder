@@ -123,21 +123,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llgv_album"
-                    style="@style/song_detail_block">
-
-                    <TextView
-                        style="@style/song_detail_block2"
-                        android:text="Album:"></TextView>
-
-                    <TextView
-                        android:id="@+id/tv_album"
-                        style="@style/song_detail_block3"
-                        android:text="Nangse Eigi Thawai"></TextView>
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/llgv_cast"
                     style="@style/song_detail_block">
 
