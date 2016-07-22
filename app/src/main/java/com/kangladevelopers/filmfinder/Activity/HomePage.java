@@ -284,7 +284,7 @@ public class HomePage extends BaseDrawerActivity {
         int id = view.getId();
         switch (id) {
             case R.id.rl_cast:
-                Toast.makeText(getApplicationContext(), "filterConditionClick", Toast.LENGTH_LONG).show();
+             //   Toast.makeText(getApplicationContext(), "filterConditionClick", Toast.LENGTH_LONG).show();
                 hideOthers(R.id.ll_castCondition);
                 break;
             case R.id.rl_director:
@@ -300,7 +300,7 @@ public class HomePage extends BaseDrawerActivity {
                 hideOthers(R.id.ll_timeCondition);
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -331,7 +331,7 @@ public class HomePage extends BaseDrawerActivity {
         switch (id) {
             case R.id.iv_delete:
                 View viewTobeDeleted = null;
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewSingerList.size(); i++) {
                     ImageView deleteButton = (ImageView) viewSingerList.get(i).findViewById(R.id.iv_delete);
                     if (deleteButton.equals(view)) {
@@ -349,7 +349,7 @@ public class HomePage extends BaseDrawerActivity {
                 break;
             case R.id.iv_delete_director:
                 View viewTobeDeleted2 = null;
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewComposerList.size(); i++) {
                     ImageView deleteButton = (ImageView) viewComposerList.get(i).findViewById(R.id.iv_delete_director);
                     if (deleteButton.equals(view)) {
@@ -368,7 +368,7 @@ public class HomePage extends BaseDrawerActivity {
 
             case R.id.iv_delete_directorrr:
                 View viewTobeDeleted3 = null;
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewDirectorList.size(); i++) {
                     ImageView deleteButton = (ImageView) viewDirectorList.get(i).findViewById(R.id.iv_delete_directorrr);
                     if (deleteButton.equals(view)) {
@@ -387,7 +387,7 @@ public class HomePage extends BaseDrawerActivity {
 
             case R.id.iv_delete_actorrrr:
                 View viewTobeDeleted4 = null;
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewActor.size(); i++) {
                     ImageView deleteButton = (ImageView) viewActor.get(i).findViewById(R.id.iv_delete_actorrrr);
                     if (deleteButton.equals(view)) {
@@ -688,7 +688,7 @@ public class HomePage extends BaseDrawerActivity {
         startTime = btStartDate.getText().toString();
         endTime = btEndDate.getText().toString();
         String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
-        Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
         Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);

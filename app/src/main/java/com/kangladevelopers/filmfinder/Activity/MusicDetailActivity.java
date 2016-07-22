@@ -1,5 +1,6 @@
 package com.kangladevelopers.filmfinder.Activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -245,5 +246,12 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
     }
     public void onBack(View view){
         finish();
+    }
+
+    public void onEditMusicDetails(View view){
+
+        Intent intent = new Intent(this,EditMusicDetails.class);
+        startActivity(intent);
+
     }
 }
