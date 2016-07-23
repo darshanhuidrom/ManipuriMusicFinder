@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
@@ -48,12 +49,14 @@ public class EditMusicDetails extends AppCompatActivity {
     private LinearLayout llCastParent;
     private LinearLayout llSingerParent;
 
+    private EditText etSongName, etMovie, etDirector, etComposer, etChereographer;
+
     private AutoCompleteTextView actvCast;
     private AutoCompleteTextView actvSinger;
-    private ArrayList<View> actorViews,singerViews;
-    private String[] actorListFromDb,singerListFromDb;
+    private ArrayList<View> actorViews, singerViews;
+    private String[] actorListFromDb, singerListFromDb;
     HashMap<String, String> actorMap = new HashMap<>();
-    private HashMap<String, String> singerMap=new HashMap<>();
+    private HashMap<String, String> singerMap = new HashMap<>();
     private Music music;
     MusicRestAdapter musicRestAdapter;
 
@@ -65,13 +68,12 @@ public class EditMusicDetails extends AppCompatActivity {
         dataList = getIntent().getStringArrayListExtra("data");
         actors = getIntent().getStringExtra("actors");
         singers = getIntent().getStringExtra("singers");
-        music= (Music) getIntent().getSerializableExtra("music");
+        music = (Music) getIntent().getSerializableExtra("music");
         mapWithXml();
         initializeData();
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Edit Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        addView(dataList);
         addCastView();
         addSingerView();
         musicRestAdapter = new MusicRestAdapter();
@@ -123,15 +125,58 @@ public class EditMusicDetails extends AppCompatActivity {
         });
 
 
+        /// initialize some data here
+
+        if (music.getSongName().isEmpty() || music.getSongName() == null) {
+            findViewById(R.id.llgv_song_name).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.llgv_song_name).setVisibility(View.VISIBLE);
+            etSongName.setText(music.getSongName());
+        }
+
+        if (music.getMovie().isEmpty() || music.getMovie() == null) {
+            findViewById(R.id.llgv_movie).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.llgv_movie).setVisibility(View.VISIBLE);
+            etMovie.setText(music.getMovie());
+        }
+
+        if (music.getDirector().isEmpty() || music.getDirector() == null) {
+            findViewById(R.id.llgv_director).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.llgv_director).setVisibility(View.VISIBLE);
+            etDirector.setText(music.getDirector());
+        }
+
+
+        if (music.getComposer().isEmpty() || music.getComposer() == null) {
+            findViewById(R.id.llgv_composer).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.llgv_composer).setVisibility(View.VISIBLE);
+            etComposer.setText(music.getComposer());
+        }
+
+        if (music.getChoreographer().isEmpty() || music.getChoreographer() == null) {
+            findViewById(R.id.llgv_choreographer).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.llgv_choreographer).setVisibility(View.VISIBLE);
+            etChereographer.setText(music.getChoreographer());
+        }
+
     }
 
     private void mapWithXml() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        etSongName = (EditText) findViewById(R.id.et_song_name);
+        etMovie = (EditText) findViewById(R.id.et_movie_name);
+        etDirector = (EditText) findViewById(R.id.et_director);
+        etComposer = (EditText) findViewById(R.id.et_composer);
+        etChereographer = (EditText) findViewById(R.id.et_choreographer);
         llParent = (LinearLayout) findViewById(R.id.ll_parent);
         llCastParent = (LinearLayout) findViewById(R.id.ll_parent2);
-        llSingerParent= (LinearLayout) findViewById(R.id.ll_parent3);
+        llSingerParent = (LinearLayout) findViewById(R.id.ll_parent3);
         actvCast = (AutoCompleteTextView) findViewById(R.id.actv_cast);
-        actvSinger= (AutoCompleteTextView) findViewById(R.id.actv_singer);
+        actvSinger = (AutoCompleteTextView) findViewById(R.id.actv_singer);
     }
 
 
@@ -231,7 +276,7 @@ public class EditMusicDetails extends AppCompatActivity {
         String[] arrayData = actors.split(",");
         List<String> dataList = Arrays.asList(arrayData);
         for (int i = 0; i < dataList.size(); i++) {
-           addCastView(dataList.get(i));
+            addCastView(dataList.get(i));
         }
 
     }
@@ -268,40 +313,87 @@ public class EditMusicDetails extends AppCompatActivity {
 
     }
 
-    public void addCast(View view){
-        if(!actvCast.getText().toString().trim().isEmpty()){
+    public void addCast(View view) {
+        if (!actvCast.getText().toString().trim().isEmpty()) {
             addCastView(actvCast.getText().toString());
             actvCast.setText("");
         }
     }
 
-    public void addSinger(View view){
-        if(!actvSinger.getText().toString().trim().isEmpty()){
+    public void addSinger(View view) {
+        if (!actvSinger.getText().toString().trim().isEmpty()) {
             addSingerView(actvSinger.getText().toString());
             actvSinger.setText("");
         }
     }
 
-    public void onSubmit(View view){
+    public void onSubmit(View view) {
+
+        String singerList = "";
+        String actorList = "";
+        ProgressBarConfig.showProgressBar(this, null);
 
 
+        for (int i = 0; i < singerViews.size(); i++) {
+            View v = singerViews.get(i);
+            TextView tvSinger = (TextView) v.findViewById(R.id.tv_actor);
+            if (singerList == null) {
+                singerList = tvSinger.getText().toString();
+            } else {
+                singerList = singerList + tvSinger.getText().toString();
+            }
+
+            if (i < singerViews.size() - 1)
+                singerList = singerList + ",";
+        }
+
+        for (int i = 0; i < actorViews.size(); i++) {
+            View v = actorViews.get(i);
+            TextView tvActor = (TextView) v.findViewById(R.id.tv_actorrrrr);
+            if (actorViews == null) {
+                actorList = tvActor.getText().toString();
+            } else {
+                actorList = actorList + tvActor.getText().toString();
+            }
+
+            if (i < actorViews.size() - 1)
+                actorList = actorList + ",";
+        }
 
 
-        Call <SimpleResponse> call= musicRestAdapter.putMusicDetails(music);
+        music.setSingers(singerList);
+        music.setActor(actorList);
+        music.setSongName((etSongName.getText().toString().trim().isEmpty()) ? music.getSongName() : etSongName.getText().toString());
+        music.setDirector((etDirector.getText().toString().trim().isEmpty()) ? music.getDirector() : etDirector.getText().toString());
+        music.setComposer((etComposer.getText().toString().trim().isEmpty()) ? music.getComposer() : etDirector.getText().toString());
+
+
+        Call<SimpleResponse> call = musicRestAdapter.putMusicDetails(music);
         call.enqueue(new Callback<SimpleResponse>() {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
-                SimpleResponse aa= response.body();
+                SimpleResponse aa = response.body();
+                if (aa.getStatus().equals("Success")) {
+                    ProgressBarConfig.dismissProgressBar();
+                    Toast.makeText(EditMusicDetails.this, aa.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    ProgressBarConfig.dismissProgressBar();
+                    Toast.makeText(EditMusicDetails.this, aa.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
 
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
                 Throwable t1 = t;
+                ProgressBarConfig.dismissProgressBar();
+                Toast.makeText(EditMusicDetails.this, t1.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
 
     }
+
 
 }

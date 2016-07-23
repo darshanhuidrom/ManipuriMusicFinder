@@ -20,11 +20,87 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/ll_parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:id="@+id/llgv_song_name"
+                style="@style/song_detail_edit_block1">
+                <TextView
+                    style="@style/song_detail_edit_block2"
+                    android:text="Song Name:">
+
+                </TextView>
+                <EditText
+                    android:id="@+id/et_song_name"
+                    style="@style/song_detail_edit_block3"
+                    android:background="@android:drawable/editbox_background"
+                    android:text="Hingliba Punsise"></EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llgv_movie"
+                style="@style/song_detail_edit_block1">
+
+                <TextView
+                    style="@style/song_detail_edit_block2"
+                    android:text="Movie:"></TextView>
+
+                <EditText
+                    android:id="@+id/et_movie_name"
+                    style="@style/song_detail_edit_block3"
+                    android:background="@android:drawable/editbox_background"
+                    android:text="Chang Se Change"></EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llgv_director"
+                style="@style/song_detail_edit_block1">
+
+                <TextView
+
+                    style="@style/song_detail_edit_block2"
+                    android:text="Director:"></TextView>
+
+                <EditText
+                    android:id="@+id/et_director"
+                    style="@style/song_detail_edit_block3"
+                    android:background="@android:drawable/editbox_background"
+                    android:text="Hemanta Khuman"></EditText>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llgv_composer"
+                style="@style/song_detail_edit_block1">
+
+                <TextView
+
+                    style="@style/song_detail_edit_block2"
+                    android:text="Composer:"></TextView>
+
+                <EditText
+                    android:id="@+id/et_composer"
+                    style="@style/song_detail_edit_block3"
+                    android:background="@android:drawable/editbox_background"
+                    android:text="Rahul Blue"></EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llgv_choreographer"
+                style="@style/song_detail_edit_block1">
+
+                <TextView
+
+                    style="@style/song_detail_edit_block2"
+                    android:text="Choreographer:"></TextView>
+
+                <EditText
+                    android:id="@+id/et_choreographer"
+                    style="@style/song_detail_edit_block3"
+                    android:background="@android:drawable/editbox_background"
+                    android:text="Binita"></EditText>
+
             </LinearLayout>
 
             <TextView
