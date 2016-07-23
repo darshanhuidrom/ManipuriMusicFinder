@@ -502,6 +502,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void addDirectorView(String DirectorNamee, String imageUrl) {
+
         final View view = LayoutInflater.from(this).inflate(R.layout.block_directer, null);
         TextView actorName = (TextView) view.findViewById(R.id.tv_director);
         ImageView actorImage = (ImageView) view.findViewById(R.id.iv_director);

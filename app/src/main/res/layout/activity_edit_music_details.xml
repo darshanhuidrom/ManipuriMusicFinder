@@ -23,7 +23,8 @@
                 android:id="@+id/ll_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
             </LinearLayout>
 
             <TextView
@@ -34,37 +35,76 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/light_black" />
+                android:background="@color/white" />
 
             <LinearLayout
                 android:id="@+id/ll_parent2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <include layout="@layout/block_actorrrrr" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <AutoCompleteTextView
-                        android:id="@+id/actv_director"
-                        android:layout_margin="10dp"
-                        android:layout_width="0dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="4"
-                        android:background="@drawable/rounded"
-                        android:paddingLeft="10dp" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="30dp"
-                        android:text="Add"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:background="@drawable/rounded"
-                        android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <AutoCompleteTextView
+                    android:id="@+id/actv_cast"
+                    android:layout_margin="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/rounded"
+                    android:paddingLeft="10dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:text="Add"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded"
+                    android:onClick="addCast"
+                    android:layout_weight="1"/>
 
-                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Singers:"
+                android:textSize="18sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+            <LinearLayout
+                android:id="@+id/ll_parent3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <AutoCompleteTextView
+                    android:id="@+id/actv_singer"
+                    android:layout_margin="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/rounded"
+                    android:paddingLeft="10dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="24dp"
+                    android:text="Add"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rounded"
+                    android:onClick="addSinger"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -73,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Save"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:onClick="onSubmit"/>
 
 
         </LinearLayout>

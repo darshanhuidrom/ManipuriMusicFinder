@@ -72,7 +72,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
             findViewById(R.id.llgv_cast).setVisibility(View.VISIBLE);
             tvCast.setText(music.getActor());
             makeTagLinks(addSpace(music.getActor()), tvCast);
-            dataList.add("Cast#" + music.getActor());
         }
 //////////////////////////////////
         if (music.getSingers().isEmpty() || music.getSingers() == null) {
@@ -81,7 +80,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
             findViewById(R.id.llgv_singer).setVisibility(View.VISIBLE);
             tvSinger.setText(music.getSingers());
             makeTagLinks(addSpace(music.getSingers()), tvSinger);
-            dataList.add("Singer#" + music.getSingers());
         }
 //////////////////////////////////////
         if (music.getDirector().isEmpty() || music.getDirector() == null) {
@@ -132,7 +130,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_year).setVisibility(View.VISIBLE);
             tvYear.setText("" + music.getYear());
-            dataList.add("Year#" + music.getYear());
         }
 
         //////////////////////////////////////////////
@@ -142,7 +139,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_upload_date).setVisibility(View.VISIBLE);
             tvUploadDate.setText(music.getUploadDate());
-            dataList.add("Upload Date#" + music.getUploadDate());
         }
         /////////////////////////////////////
         if (music.getUploadBy().isEmpty() || music.getUploadBy() == null) {
@@ -150,7 +146,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_upload_by).setVisibility(View.VISIBLE);
             tvUploadBy.setText(music.getUploadBy());
-            dataList.add("Upload By#" + music.getUploadBy());
         }
 
 
@@ -265,6 +260,10 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
         Intent intent = new Intent(this,EditMusicDetails.class);
         intent.putExtra("data",dataList);
+        intent.putExtra("actors",music.getActor());
+        intent.putExtra("singers",music.getSingers());
+        intent.putExtra("music",music);
+
         startActivity(intent);
 
     }
