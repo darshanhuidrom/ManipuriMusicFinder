@@ -220,4 +220,12 @@
         <item name="android:minWidth" type="dimen">600dp</item>
     </style>
 
+
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+
 </resources>

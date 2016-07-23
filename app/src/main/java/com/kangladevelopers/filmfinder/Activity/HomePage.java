@@ -1,8 +1,10 @@
 package com.kangladevelopers.filmfinder.Activity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -86,6 +88,7 @@ public class HomePage extends BaseDrawerActivity {
     private static final int CAMERA_REQUEST = 1888;
     private static int OPEN_GALLEY_REQUEST_CODE = 121;
     private static int SIGN_IN_REQUEST = 111;
+    private String[] displayData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,7 +187,7 @@ public class HomePage extends BaseDrawerActivity {
     private void initializeData() {
         musicRestAdapter = new MusicRestAdapter();
         singers = StringUtility.getSingerList();
-        String[] displayData = new String[singers.length];
+        displayData = new String[singers.length];
         for (int i = 0; i < singers.length; i++) {
             displayData[i] = StringUtility.getOnlyName(singers[i]);
             singerMap.put(displayData[i], singers[i]);
@@ -861,4 +864,41 @@ public class HomePage extends BaseDrawerActivity {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivityForResult(intent, SIGN_IN_REQUEST);
     }
+
+    public void openSingerList(View view){
+
+
+
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(HomePage.this,R.style.AlertDialogCustom);
+        builderSingle.setTitle("Select One Name:-");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                HomePage.this,
+                android.R.layout.select_dialog_singlechoice);
+        arrayAdapter.addAll(displayData);
+
+
+        builderSingle.setNegativeButton(
+                "cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        builderSingle.setAdapter(
+                arrayAdapter,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        addActorView(strName,Constants.SINGER_URL+strName+".jpg");
+                        Toast.makeText(getApplicationContext(),strName,Toast.LENGTH_SHORT).show();
+                    }
+                });
+        builderSingle.show();
+
+    }
+
 }
