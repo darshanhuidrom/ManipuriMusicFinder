@@ -37,6 +37,7 @@ import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
+import com.kangladevelopers.filmfinder.Utility.PopUpDialog;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
@@ -867,38 +868,13 @@ public class HomePage extends BaseDrawerActivity {
 
     public void openSingerList(View view){
 
-
-
-        AlertDialog.Builder builderSingle = new AlertDialog.Builder(HomePage.this,R.style.AlertDialogCustom);
-        builderSingle.setTitle("Select One Name:-");
-
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                HomePage.this,
-                android.R.layout.select_dialog_singlechoice);
-        arrayAdapter.addAll(displayData);
-
-
-        builderSingle.setNegativeButton(
-                "cancel",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-        builderSingle.setAdapter(
-                arrayAdapter,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String strName = arrayAdapter.getItem(which);
-                        addActorView(strName,Constants.SINGER_URL+strName+".jpg");
-                        Toast.makeText(getApplicationContext(),strName,Toast.LENGTH_SHORT).show();
-                    }
-                });
-        builderSingle.show();
-
+        new PopUpDialog(this, displayData) {
+            @Override
+            public void onItemClick(String s, int pos) {
+                addActorView(s,Constants.SINGER_URL+s.trim()+".jpg");
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+            }
+        }.show();
     }
 
 }
