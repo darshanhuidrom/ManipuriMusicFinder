@@ -2,6 +2,7 @@ package com.kangladevelopers.filmfinder.retrofit.adapter;
 
 import com.kangladevelopers.filmfinder.DataModel.MovieInfo2;
 import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
@@ -31,6 +32,10 @@ public class MusicRestAdapter {
 
     public  Call<SimpleResponse> putMusicDetails(Music music){
         return musicApi.PutMusicDetails(music);
+    }
+
+    public  Call<SimpleResponse> postCorrection(CorrectionModel correctionModel){
+        return musicApi.postCorrection(correctionModel);
     }
 
 }

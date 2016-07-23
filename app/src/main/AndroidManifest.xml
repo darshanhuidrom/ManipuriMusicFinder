@@ -65,6 +65,10 @@
             android:name=".Activity.SignInActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.EditMusicDetails"></activity>
+        <activity
+            android:name=".developers.ui.Correction"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

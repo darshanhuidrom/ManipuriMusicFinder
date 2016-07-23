@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.kangladevelopers.filmfinder.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,9 +20,13 @@ public class SimpleAdapter extends BaseAdapter {
 
     protected Context context;
    protected  List<String> list;
+    public HashMap<String,String> viewMap=new HashMap<>();
     public SimpleAdapter(Context context,List<String> list){
         this.context=context;
         this.list=list;
+        for (int i=0; i<list.size();i++){
+            viewMap.put(list.get(i),"#2e2d2d");
+        }
     }
     @Override
     public int getCount() {
@@ -42,6 +48,7 @@ public class SimpleAdapter extends BaseAdapter {
         convertView= LayoutInflater.from(context).inflate(R.layout.textview1,null);
         TextView txt= (TextView) convertView.findViewById(R.id.textView1);
         txt.setText(list.get(position));
+        convertView.setBackgroundColor(Color.parseColor(viewMap.get(list.get(position))));
         return convertView;
     }
 
