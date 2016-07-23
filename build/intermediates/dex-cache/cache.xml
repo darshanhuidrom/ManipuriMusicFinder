@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\gson-2.7_263312dfbf4ceaf0e5e5736e7f04c22fc6567514.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\retrofit-2.1.0_f67fa2893466430e9bc225f7cdb82b598a050d7e.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.0_a78628ea65f8f98b1b49d5a02ebbba6ff396bd68.jar" />
+    </item>
+    <item
+        jar="H:\01_AndroidSoft\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.0\support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.0_8c31aa626754a966a0c75f9038e42cf018db1275.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\libs\YouTubeAndroidPlayerApi.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3c4f96ff493456651cc7bdb0b47e10eb25545a16">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\YouTubeAndroidPlayerApi_10656ddc05ad8666344386fadfd407392884fa32.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.0_72e676c32e31ae7c30fda61bbac940e4ff61b37a.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="bc599eb9531da9d18bc58ec4eb0b1a1d895f6839">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.2.0_b51a78876b6768b9471d29df4b514039509f4fe1.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.nostra13.universalimageloader\universal-image-loader\1.9.5\442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375\universal-image-loader-1.9.5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.5_f80da6b146cabf29a86ebfd05250aaba9cbe7d7c.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.4.0\f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2\picasso-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\picasso-2.4.0_83463405ed18b40f562f5df07ffb578c1378092a.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="031e8b3ab2df4ab43b1017f84417d7e10dfbb8d2">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\de.hdodenhof-circleimageview-2.0.0_377c52d81c989163750273ae06404142f5e22b27.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\okhttp-3.3.0_184388a90628bf4ecbca450c09bdece501eecc0e.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.1.0\aa557d71ead91cbf26e0c316a0f593d168303309\converter-gson-2.1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\converter-gson-2.1.0_14bbd4e0a6ffd5d68bf4138c7cb63c4c2cb874e5.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp-urlconnection\1.6.0\375c2206eb7e52976955d0f8737be5e0ec9cf667\okhttp-urlconnection-1.6.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="375c2206eb7e52976955d0f8737be5e0ec9cf667">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-1.6.0_72bd015b051e162e3200331a68a09b55d234d33d.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.mikhaellopez\CircularImageView-Library\2.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d20548b686485eabe5d17b139f6b1b6510fe4ea1">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.mikhaellopez-CircularImageView-Library-2.0.1_f1d908c3aa7ef5de72fdc91fd6b88cf8b4a1b3b5.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\libs\internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.0_aae48a0e1e73e7a4a90cb0e4238edb64c86e177c.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\okio-1.8.0_b2c20c6476c8e753dd0b1080c66be615fa52d4e3.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.0_02f08aba1120c4de80e91fb01f5feb1e39298e11.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\design\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1aa5b025efe97f5006f5be16d6ca67c6c3c0c0d8">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.2.0_875c5836515bbe54c881f6ddbe43b06ebbb54956.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.4.0\40340c0748190fe897baf7bffbc1b282734294e5\okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\okhttp-2.4.0_f8455d4cf2ae80339910c57bdee9f85b008deea9.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.2.0_a8094a4b42f02eef44c08ef5c10780c775967558.jar" />
+    </item>
+    <item
+        jar="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="C:\Users\DELL PC\Desktop\ManipuriMusicFinder\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.0_55ffee0e4e589d5872560c43eb37219b66dc267c.jar" />
+    </item>
+
+</items>

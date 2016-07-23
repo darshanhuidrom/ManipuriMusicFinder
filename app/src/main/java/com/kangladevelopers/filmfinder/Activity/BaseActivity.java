@@ -17,6 +17,8 @@ public abstract class BaseActivity extends AppCompatActivity{
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     private ProgressDialog progressDialog;
 
+    //This is just a test
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
