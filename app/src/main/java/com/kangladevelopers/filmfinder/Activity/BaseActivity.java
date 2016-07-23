@@ -18,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity{
     private ProgressDialog progressDialog;
 
     //This is just a test
+    //This is just a secon Line i had coded
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

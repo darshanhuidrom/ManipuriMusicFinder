@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_FirstText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:onClick="btnClick"
+        android:text="APPLE"
+        android:textSize="21sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#1133aa" />
+
+    <TextView
+        android:id="@+id/tv_SecondText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:onClick="btnClick"
+        android:text="BANANANA"
+        android:textSize="21sp" />
+
+    <EditText
+        android:id="@+id/et_correctName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#acdcac"
+        android:hint="Correct Name"
+        android:textSize="21sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="2dp"
+        android:background="#1133aa" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="#acacda"
+        android:onClick="onSubmit"
+        android:text="Change"
+        android:textColor="#010101" />
+
+</LinearLayout>
