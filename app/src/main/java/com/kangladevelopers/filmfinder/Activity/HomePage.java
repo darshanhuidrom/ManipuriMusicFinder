@@ -90,6 +90,9 @@ public class HomePage extends BaseDrawerActivity {
     private static int OPEN_GALLEY_REQUEST_CODE = 121;
     private static int SIGN_IN_REQUEST = 111;
     private String[] displayData;
+    private String[] displayComposer;
+    private String[] displayDirector;
+    private String[] displayActor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +130,7 @@ public class HomePage extends BaseDrawerActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = Constants.SINGER_URL + actvSinger.getText().toString().trim() + ".jpg";
                 Log.d(">>>>>>", url);
-                addActorView(actvSinger.getText().toString(), url.replace(" ", ""));
+                addSingerView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(actvSinger.getWindowToken(), 0);
@@ -143,7 +146,7 @@ public class HomePage extends BaseDrawerActivity {
                 String url = Constants.SINGER_URL + actvComposer.getText().toString().trim() + ".jpg";
                 Log.d(">>>>>>", url);
                 if (viewComposerList.size() == 0) {
-                    addDirectorView(actvComposer.getText().toString(), url.replace(" ", ""));
+                    addComposerView(actvComposer.getText().toString(), url.replace(" ", ""));
                     actvComposer.setText("");
                     actvComposer.setVisibility(View.GONE);
                 }
@@ -160,7 +163,7 @@ public class HomePage extends BaseDrawerActivity {
                 String url = Constants.SINGER_URL + actvDirector.getText().toString().trim() + "_icon" + ".jpg";
                 Log.d(">>>>>>", url);
                 if (viewDirectorList.size() == 0) {
-                    addDirectorViewEXT(actvDirector.getText().toString(), url.replace(" ", ""));
+                    addDirectorView(actvDirector.getText().toString(), url.replace(" ", ""));
                     actvDirector.setText("");
                     actvDirector.setVisibility(View.GONE);
                 }
@@ -175,7 +178,7 @@ public class HomePage extends BaseDrawerActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = Constants.SINGER_URL + actvActor.getText().toString().trim() + ".jpg";
                 Log.d(">>>>>>", url);
-                addActorViewEXT(actvActor.getText().toString(), url.replace(" ", ""));
+                addActorView(actvActor.getText().toString(), url.replace(" ", ""));
                 actvActor.setText("");
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(actvActor.getWindowToken(), 0);
@@ -196,7 +199,7 @@ public class HomePage extends BaseDrawerActivity {
 
         ////////////////////////////////////////////////////////////////////////////
         composer = StringUtility.getComposer();
-        String[] displayComposer = new String[composer.length];
+        displayComposer = new String[composer.length];
         for (int i = 0; i < composer.length; i++) {
             displayComposer[i] = StringUtility.getOnlyName(composer[i]);
             composeMapMap.put(displayComposer[i], composer[i]);
@@ -204,7 +207,7 @@ public class HomePage extends BaseDrawerActivity {
 
         ///////////////////////////////////////////////////////////////////////////////
         directors = StringUtility.getDirectorList();
-        String[] displayDirector = new String[directors.length];
+        displayDirector = new String[directors.length];
         for (int i = 0; i < directors.length; i++) {
             displayDirector[i] = StringUtility.getOnlyName(directors[i]);
             directorMap.put(displayDirector[i], directors[i]);
@@ -212,7 +215,7 @@ public class HomePage extends BaseDrawerActivity {
 
         ////////////////////////////////////////////////////////////////////
         actor = StringUtility.getActorList();
-        String[] displayActor = new String[actor.length];
+        displayActor = new String[actor.length];
         for (int i = 0; i < actor.length; i++) {
             displayActor[i] = StringUtility.getOnlyName(actor[i]);
             actorMap.put(displayActor[i], actor[i]);
@@ -288,7 +291,7 @@ public class HomePage extends BaseDrawerActivity {
         int id = view.getId();
         switch (id) {
             case R.id.rl_cast:
-             //   Toast.makeText(getApplicationContext(), "filterConditionClick", Toast.LENGTH_LONG).show();
+                //   Toast.makeText(getApplicationContext(), "filterConditionClick", Toast.LENGTH_LONG).show();
                 hideOthers(R.id.ll_castCondition);
                 break;
             case R.id.rl_director:
@@ -304,7 +307,7 @@ public class HomePage extends BaseDrawerActivity {
                 hideOthers(R.id.ll_timeCondition);
                 break;
             default:
-              //  Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+                //  Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -335,7 +338,7 @@ public class HomePage extends BaseDrawerActivity {
         switch (id) {
             case R.id.iv_delete:
                 View viewTobeDeleted = null;
-               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewSingerList.size(); i++) {
                     ImageView deleteButton = (ImageView) viewSingerList.get(i).findViewById(R.id.iv_delete);
                     if (deleteButton.equals(view)) {
@@ -353,7 +356,7 @@ public class HomePage extends BaseDrawerActivity {
                 break;
             case R.id.iv_delete_director:
                 View viewTobeDeleted2 = null;
-               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewComposerList.size(); i++) {
                     ImageView deleteButton = (ImageView) viewComposerList.get(i).findViewById(R.id.iv_delete_director);
                     if (deleteButton.equals(view)) {
@@ -372,7 +375,7 @@ public class HomePage extends BaseDrawerActivity {
 
             case R.id.iv_delete_directorrr:
                 View viewTobeDeleted3 = null;
-               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewDirectorList.size(); i++) {
                     ImageView deleteButton = (ImageView) viewDirectorList.get(i).findViewById(R.id.iv_delete_directorrr);
                     if (deleteButton.equals(view)) {
@@ -391,7 +394,7 @@ public class HomePage extends BaseDrawerActivity {
 
             case R.id.iv_delete_actorrrr:
                 View viewTobeDeleted4 = null;
-               // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < viewActor.size(); i++) {
                     ImageView deleteButton = (ImageView) viewActor.get(i).findViewById(R.id.iv_delete_actorrrr);
                     if (deleteButton.equals(view)) {
@@ -463,7 +466,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
 
-    private void addActorView(String actorNamee, String imageUrl) {
+    private void addSingerView(String actorNamee, String imageUrl) {
         final View view = LayoutInflater.from(this).inflate(R.layout.block_actor, null);
         TextView actorName = (TextView) view.findViewById(R.id.tv_actor);
         ImageView actorImage = (ImageView) view.findViewById(R.id.iv_actor);
@@ -505,7 +508,7 @@ public class HomePage extends BaseDrawerActivity {
 
     }
 
-    private void addDirectorView(String DirectorNamee, String imageUrl) {
+    private void addComposerView(String DirectorNamee, String imageUrl) {
 
         final View view = LayoutInflater.from(this).inflate(R.layout.block_directer, null);
         TextView actorName = (TextView) view.findViewById(R.id.tv_director);
@@ -545,7 +548,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
 
-    private void addDirectorViewEXT(String DirectorNamee, String imageUrl) {
+    private void addDirectorView(String DirectorNamee, String imageUrl) {
         final View view = LayoutInflater.from(this).inflate(R.layout.block_directorrr, null);
         TextView actorName = (TextView) view.findViewById(R.id.tv_directorrrr);
         ImageView actorImage = (ImageView) view.findViewById(R.id.iv_directorrrr);
@@ -583,7 +586,7 @@ public class HomePage extends BaseDrawerActivity {
         }
     }
 
-    private void addActorViewEXT(String DirectorNamee, String imageUrl) {
+    private void addActorView(String DirectorNamee, String imageUrl) {
         final View view = LayoutInflater.from(this).inflate(R.layout.block_actorrrrr, null);
         TextView actorName = (TextView) view.findViewById(R.id.tv_actorrrrr);
         ImageView actorImage = (ImageView) view.findViewById(R.id.iv_actorrrr);
@@ -693,7 +696,7 @@ public class HomePage extends BaseDrawerActivity {
         startTime = btStartDate.getText().toString();
         endTime = btEndDate.getText().toString();
         String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
-     //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
+        //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
         Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
@@ -866,13 +869,55 @@ public class HomePage extends BaseDrawerActivity {
         startActivityForResult(intent, SIGN_IN_REQUEST);
     }
 
-    public void openSingerList(View view){
+    public void openSingerList(View view) {
+
+
+        int id = view.getId();
+        switch (id) {
+            //  case
+        }
 
         new PopUpDialog(this, displayData) {
             @Override
             public void onItemClick(String s, int pos) {
-                addActorView(s,Constants.SINGER_URL+s.trim()+".jpg");
-                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
+                addSingerView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+            }
+        }.show();
+    }
+
+
+    public void openComposerList(View view) {
+
+        new PopUpDialog(this, displayComposer) {
+            @Override
+            public void onItemClick(String s, int pos) {
+                addComposerView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+            }
+        }.show();
+    }
+
+    public void openDirectorList(View view) {
+
+
+        new PopUpDialog(this, displayDirector) {
+            @Override
+            public void onItemClick(String s, int pos) {
+                addDirectorView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+            }
+        }.show();
+    }
+
+
+    public void openActorList(View view) {
+
+        new PopUpDialog(this, displayActor) {
+            @Override
+            public void onItemClick(String s, int pos) {
+                addActorView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
         }.show();
     }
