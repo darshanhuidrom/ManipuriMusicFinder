@@ -23,9 +23,9 @@ public class Music implements Serializable {
     @SerializedName("movie")
     @Expose
     private String movie;
-    @SerializedName("producer")
+    @SerializedName("production")
     @Expose
-    private String producer;
+    private String production;
     @SerializedName("director")
     @Expose
     private String director;
@@ -156,19 +156,19 @@ public class Music implements Serializable {
     /**
      * 
      * @return
-     *     The producer
+     *     The production
      */
-    public String getProducer() {
-        return producer;
+    public String getProduction() {
+        return production;
     }
 
     /**
      * 
-     * @param producer
-     *     The producer
+     * @param production
+     *     The production
      */
-    public void setProducer(String producer) {
-        this.producer = producer;
+    public void setProduction(String production) {
+        this.production = production;
     }
 
     /**

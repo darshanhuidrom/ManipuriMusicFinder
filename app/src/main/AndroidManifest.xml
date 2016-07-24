@@ -20,6 +20,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -63,9 +64,11 @@
         <activity
             android:name=".Activity.SignInActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.EditMusicDetails"></activity>
+        <activity android:name=".Activity.EditMusicDetails" />
         <activity
             android:name=".developers.ui.Correction"
             android:screenOrientation="portrait" />
+        <activity android:name=".developers.ui.CorrectionActivity"></activity>
     </application>
+
 </manifest>

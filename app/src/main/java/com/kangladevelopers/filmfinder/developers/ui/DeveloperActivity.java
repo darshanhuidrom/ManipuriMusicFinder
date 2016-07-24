@@ -100,11 +100,6 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
 
     }
 
-    private ArrayList<Name> convertToNameList(String[] strArray) {
-
-        return null;
-    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -133,37 +128,6 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
 
     }
 
-    private class CustomComparator implements Comparator<Name> {// may be it would be Model
-
-        @Override
-        public int compare(Name obj1, Name obj2) {
-
-
-            return obj1.getFirstName().compareToIgnoreCase(obj2.getFirstName());
-        }
-    }
-
-    // darshan Huidrom Huidrom Darshan
-    private class Name {
-        private String firstName;
-        private String lastName;
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-    }
 
 
 }

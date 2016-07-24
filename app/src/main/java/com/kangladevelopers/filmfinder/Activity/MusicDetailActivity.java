@@ -89,11 +89,11 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
         try {
 
-            if (music.getProducer().isEmpty() || music.getProducer() == null) {
+            if (music.getProduction().isEmpty() || music.getProduction() == null) {
                 findViewById(R.id.llgv_production).setVisibility(View.GONE);
             } else {
                 findViewById(R.id.llgv_production).setVisibility(View.VISIBLE);
-                tvProducer.setText(music.getProducer());
+                tvProducer.setText(music.getProduction());
             }
 
         } catch (Exception e) {
@@ -118,7 +118,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         }
         //////////////////////////////////////////
 
-        if (music.getYear()==0 ) {
+        if (music.getYear() == 0) {
             findViewById(R.id.llgv_year).setVisibility(View.GONE);
         } else {
             findViewById(R.id.llgv_year).setVisibility(View.VISIBLE);
@@ -142,7 +142,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         }
 
 
-
         ImageLoader imageLoader = ImageLoader.getInstance();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.a3)
@@ -163,7 +162,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         tvCast = (TextView) findViewById(R.id.tv_cast);
         tvSinger = (TextView) findViewById(R.id.tv_singer);
         tvDirector = (TextView) findViewById(R.id.tv_director);
-        tvProducer = (TextView) findViewById(R.id.tv_producer);
+        tvProducer = (TextView) findViewById(R.id.tv_production);
         tvCompose = (TextView) findViewById(R.id.tv_composer);
         tvChoreographer = (TextView) findViewById(R.id.tv_choreographer);
         tvYear = (TextView) findViewById(R.id.tv_year);
@@ -198,36 +197,38 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         final List<String> items = Arrays.asList(text.split(","));
         int start = 0, end;
 
-        for ( String item : items) {
+        for (String item : items) {
             end = start + item.length();
             if (start < end) {
                 ss.setSpan(new MyClickableSpan(item), start, end, 0);
             }
-            start += item.length()+1;//comma and space in the original text ;)
+            start += item.length() + 1;//comma and space in the original text ;)
         }
         tv.setMovementMethod(LinkMovementMethod.getInstance());
         tv.setText(ss, TextView.BufferType.SPANNABLE);
 
     }
 
-    private String  addSpace(String string){
-        String ss = string.replaceAll(",",", ");
+    private String addSpace(String string) {
+        String ss = string.replaceAll(",", ", ");
 
-      return ss;
+        return ss;
 
     }
 
 
     private class MyClickableSpan extends ClickableSpan {
-        private  String mText;
+        private String mText;
+
         private MyClickableSpan(final String text) {
             mText = text;
         }
+
         @Override
         public void onClick(final View widget) {
             Toast.makeText(getApplicationContext(), mText, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MusicDetailActivity.this,BioDataActivity.class);
-            intent.putExtra("name",mText);
+            Intent intent = new Intent(MusicDetailActivity.this, BioDataActivity.class);
+            intent.putExtra("name", mText);
             startActivity(intent);
         }
 
@@ -240,7 +241,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
     }
 
 
-
     public void onPlay(View view) {
 
         youtubeView.setVisibility(View.VISIBLE);
@@ -248,14 +248,15 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         flThumbnail.setVisibility(View.GONE);
         youtubeView.initialize(youtubeCode, this);
     }
-    public void onBack(View view){
+
+    public void onBack(View view) {
         finish();
     }
 
-    public void onEditMusicDetails(View view){
+    public void onEditMusicDetails(View view) {
 
-        Intent intent = new Intent(this,EditMusicDetails.class);
-        intent.putExtra("music",music);
+        Intent intent = new Intent(this, EditMusicDetails.class);
+        intent.putExtra("music", music);
         startActivity(intent);
 
     }

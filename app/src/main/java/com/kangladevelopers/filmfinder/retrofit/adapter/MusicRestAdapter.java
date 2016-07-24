@@ -48,4 +48,10 @@ public class MusicRestAdapter {
     }
 
 
+    public Call<List<Music>> getIncompleteData(String id){
+        return musicApi.getIncompleteData(id);
+    }
+
+
+
 }
