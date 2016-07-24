@@ -21,7 +21,7 @@ public class MusicRestAdapter {
     private MusicAPI musicApi;
 
     public MusicRestAdapter() {
-        retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL2).addConverterFactory(GsonConverterFactory.create()).build();
+        retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         musicApi = retrofit.create(MusicAPI.class);
     }
 

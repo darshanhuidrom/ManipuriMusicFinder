@@ -94,7 +94,7 @@ public class EditMusicDetails extends AppCompatActivity {
         actvCast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvCast.getText().toString().trim() + ".jpg";
+                String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() +Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addCastView(actvCast.getText().toString());
                 actvCast.setText("");
@@ -115,7 +115,7 @@ public class EditMusicDetails extends AppCompatActivity {
         actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvCast.getText().toString().trim() + ".jpg";
+                String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() +Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addSingerView(actvSinger.getText().toString());
                 actvSinger.setText("");
@@ -191,25 +191,10 @@ public class EditMusicDetails extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addView(ArrayList<String> dataList) {
-
-        for (int i = 0; i < dataList.size(); i++) {
-            int pos = dataList.get(i).indexOf("#");
-            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.edit_music_details_block, null);
-            TextView tv = (TextView) view.findViewById(R.id.tv_field);
-            EditText et = (EditText) view.findViewById(R.id.et_field_value);
-            tv.setText(dataList.get(i).substring(0, pos) + ":");
-            et.setText(dataList.get(i).substring(pos + 1));
-            llParent.addView(view);
-
-
-        }
-
-    }
 
     private void addCastView(String data) {
-        //  String url = Constants.SINGER_URL + actvCast.getText().toString().trim() + ".jpg";
-        String url = Constants.SINGER_URL + "SorriSenjam" + ".jpg";
+        //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
+        String url = Constants.PERSON_ICON_PIC_URL +data.trim()+Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actorrrrr, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actorrrrr);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_actorrrr);
@@ -231,8 +216,8 @@ public class EditMusicDetails extends AppCompatActivity {
     }
 
     private void addSingerView(String data) {
-        //  String url = Constants.SINGER_URL + actvCast.getText().toString().trim() + ".jpg";
-        String url = Constants.SINGER_URL + "SorriSenjam" + ".jpg";
+        //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
+        String url = Constants.PERSON_ICON_PIC_URL + data.trim() +Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actor, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actor);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_actor);
@@ -255,10 +240,10 @@ public class EditMusicDetails extends AppCompatActivity {
 
     private void addSingerView() {
 
-        //  String url = Constants.SINGER_URL + actvCast.getText().toString().trim() + ".jpg";
+        //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
 
         singerViews = new ArrayList<>();
-        String url = Constants.SINGER_URL + "SorriSenjam" + ".jpg";
+        String url = Constants.PERSON_ICON_PIC_URL +actvSinger.getText().toString().trim() +Constants.IMAGE_FORMAT;
         String[] arrayData = singers.split(",");
         List<String> dataList = Arrays.asList(arrayData);
         for (int i = 0; i < dataList.size(); i++) {
@@ -269,10 +254,10 @@ public class EditMusicDetails extends AppCompatActivity {
 
     private void addCastView() {
 
-        //  String url = Constants.SINGER_URL + actvCast.getText().toString().trim() + ".jpg";
+        //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
 
         actorViews = new ArrayList<>();
-        String url = Constants.SINGER_URL + "SorriSenjam" + ".jpg";
+        String url = Constants.PERSON_ICON_PIC_URL +actvCast.getText().toString()+Constants.IMAGE_FORMAT;
         String[] arrayData = actors.split(",");
         List<String> dataList = Arrays.asList(arrayData);
         for (int i = 0; i < dataList.size(); i++) {

@@ -80,7 +80,7 @@ public class BioDataActivity extends AppCompatActivity {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        imageLoader.displayImage(Constants.SINGER_URL + name.trim() + ".JPG", iv, options);
+        imageLoader.displayImage(Constants.BIO_DATA__ICON_PIC_URL + name.trim() + ".JPG", iv, options);
     }
 
     private void setData() {

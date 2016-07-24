@@ -130,7 +130,7 @@ public class HomePage extends BaseDrawerActivity {
         actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvSinger.getText().toString().trim() + ".jpg";
+                String url = Constants.PERSON_ICON_PIC_URL + actvSinger.getText().toString().trim() +Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addSingerView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
@@ -145,7 +145,7 @@ public class HomePage extends BaseDrawerActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                String url = Constants.SINGER_URL + actvComposer.getText().toString().trim() + ".jpg";
+                String url = Constants.PERSON_ICON_PIC_URL + actvComposer.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 if (viewComposerList.size() == 0) {
                     addComposerView(actvComposer.getText().toString(), url.replace(" ", ""));
@@ -162,7 +162,7 @@ public class HomePage extends BaseDrawerActivity {
         actvDirector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvDirector.getText().toString().trim() + "_icon" + ".jpg";
+                String url = Constants.PERSON_ICON_PIC_URL + actvDirector.getText().toString().trim()+Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 if (viewDirectorList.size() == 0) {
                     addDirectorView(actvDirector.getText().toString(), url.replace(" ", ""));
@@ -178,7 +178,7 @@ public class HomePage extends BaseDrawerActivity {
         actvActor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.SINGER_URL + actvActor.getText().toString().trim() + ".jpg";
+                String url = Constants.PERSON_ICON_PIC_URL + actvActor.getText().toString().trim() +Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addActorView(actvActor.getText().toString(), url.replace(" ", ""));
                 actvActor.setText("");
@@ -884,7 +884,7 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayData) {
             @Override
             public void onItemClick(String s, int pos) {
-                addSingerView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                addSingerView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
         }.show();
@@ -896,7 +896,7 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayComposer) {
             @Override
             public void onItemClick(String s, int pos) {
-                addComposerView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                addComposerView(s, Constants.PERSON_ICON_PIC_URL + s.trim() +Constants.IMAGE_FORMAT);
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
         }.show();
@@ -908,7 +908,7 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayDirector) {
             @Override
             public void onItemClick(String s, int pos) {
-                addDirectorView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                addDirectorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() +Constants.IMAGE_FORMAT);
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
         }.show();
@@ -920,7 +920,7 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayActor) {
             @Override
             public void onItemClick(String s, int pos) {
-                addActorView(s, Constants.SINGER_URL + s.trim() + ".jpg");
+                addActorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() +Constants.IMAGE_FORMAT);
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
         }.show();
