@@ -16,6 +16,7 @@
         android:padding="10dp"
         android:text="New Text"
         android:textSize="14sp"
+        android:onClick="onSongClick"
 
         />
 

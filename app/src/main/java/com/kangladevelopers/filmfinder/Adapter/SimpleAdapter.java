@@ -47,7 +47,14 @@ public class SimpleAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView= LayoutInflater.from(context).inflate(R.layout.textview1,null);
         TextView txt= (TextView) convertView.findViewById(R.id.textView1);
-        txt.setText(list.get(position));
+        if(list.get(position).contains(":")){
+            int pos= list.get(position).indexOf(":");
+            txt.setText(list.get(position).substring(0,pos));
+        }
+        else {
+            txt.setText(list.get(position));
+        }
+
         convertView.setBackgroundColor(Color.parseColor(viewMap.get(list.get(position))));
         return convertView;
     }

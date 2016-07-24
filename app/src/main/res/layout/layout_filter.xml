@@ -205,6 +205,7 @@
                             android:orientation="vertical"></LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/ll_com_parent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -292,6 +293,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_dir_parent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">

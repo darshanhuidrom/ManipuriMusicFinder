@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.retrofit.interfaces;
 
 import com.kangladevelopers.filmfinder.DataModel.MovieInfo2;
+import com.kangladevelopers.filmfinder.pogo.BioData;
 import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
@@ -14,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 // https://futurestud.io/blog/retrofit-multiple-query-parameters-of-same-name
 
@@ -48,6 +50,9 @@ public interface MusicAPI {
     })
     @POST("dev/correction")
     Call<SimpleResponse> postCorrection(@Body CorrectionModel correctionModel);
+
+    @GET("data/bio_data/{name}")
+    Call<BioData> getBioData(@Path("name") String name);
 
 
 }

@@ -78,7 +78,14 @@ public class ListActivity extends AppCompatActivity  implements AdapterView.OnIt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        startActivity(new Intent(this,BioDataActivity.class));
+        String name = parent.getItemAtPosition(position).toString();
+        if(name.contains(":")){
+            int pos =name.indexOf(":");
+            name=name.substring(0,pos);
+        }
+        Intent intent= new Intent(this,BioDataActivity.class);
+        intent.putExtra("name",name);
+        startActivity(intent);
 
     }
 

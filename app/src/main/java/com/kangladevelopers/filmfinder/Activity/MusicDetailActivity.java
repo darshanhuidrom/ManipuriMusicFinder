@@ -233,6 +233,9 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         @Override
         public void onClick(final View widget) {
             Toast.makeText(getApplicationContext(), mText, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MusicDetailActivity.this,BioDataActivity.class);
+            intent.putExtra("name",mText);
+            startActivity(intent);
         }
 
         @Override

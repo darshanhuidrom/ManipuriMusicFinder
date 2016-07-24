@@ -93,6 +93,8 @@ public class HomePage extends BaseDrawerActivity {
     private String[] displayComposer;
     private String[] displayDirector;
     private String[] displayActor;
+    private LinearLayout llComParent;
+    private LinearLayout llDirParent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +150,7 @@ public class HomePage extends BaseDrawerActivity {
                 if (viewComposerList.size() == 0) {
                     addComposerView(actvComposer.getText().toString(), url.replace(" ", ""));
                     actvComposer.setText("");
-                    actvComposer.setVisibility(View.GONE);
+                    llComParent.setVisibility(View.GONE);
                 }
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(actvComposer.getWindowToken(), 0);
@@ -165,7 +167,7 @@ public class HomePage extends BaseDrawerActivity {
                 if (viewDirectorList.size() == 0) {
                     addDirectorView(actvDirector.getText().toString(), url.replace(" ", ""));
                     actvDirector.setText("");
-                    actvDirector.setVisibility(View.GONE);
+                    llDirParent.setVisibility(View.GONE);
                 }
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(actvDirector.getWindowToken(), 0);
@@ -273,6 +275,8 @@ public class HomePage extends BaseDrawerActivity {
         tvNoDataFound = (TextView) findViewById(R.id.tv_no_data_found);
         tvUserName = (TextView) findViewById(R.id.tv_user_name);
         ivProfileImage = (ImageView) findViewById(R.id.iv_profile_image);
+        llComParent=(LinearLayout) findViewById(R.id.ll_com_parent);
+        llDirParent=(LinearLayout) findViewById(R.id.ll_dir_parent);
 
     }
 
@@ -370,7 +374,7 @@ public class HomePage extends BaseDrawerActivity {
                 } else {
                     tvComposerCount.setVisibility(View.VISIBLE);
                 }
-                actvComposer.setVisibility(View.VISIBLE);
+                llComParent.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.iv_delete_directorrr:
@@ -389,7 +393,7 @@ public class HomePage extends BaseDrawerActivity {
                 } else {
                     tvDirectorCount.setVisibility(View.VISIBLE);
                 }
-                actvDirector.setVisibility(View.VISIBLE);
+                llDirParent.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.iv_delete_actorrrr:
@@ -409,7 +413,7 @@ public class HomePage extends BaseDrawerActivity {
                     tvActorCount.setVisibility(View.VISIBLE);
                 }
                 tvActorCount.setText("" + viewDirectorList.size());
-                actvDirector.setVisibility(View.VISIBLE);
+                llDirParent.setVisibility(View.VISIBLE);
                 break;
         }
     }
