@@ -58,7 +58,7 @@ public interface MusicAPI {
     Call<Music> getMusicDetails(@Path("id") String name);
 
     @GET("dev/getIncompleteData/{id}")
-    Call<List<Music>> getIncompleteData(@Path("name") String id);
+    Call<List<Music>> getIncompleteData(@Path("id") String id);
 
 
 }

@@ -39,10 +39,10 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_developer);
         mapWithXml();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Developers");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         dataType = getIntent().getStringExtra("name");
+        getSupportActionBar().setTitle(dataType);
         initializeData();
 
     }

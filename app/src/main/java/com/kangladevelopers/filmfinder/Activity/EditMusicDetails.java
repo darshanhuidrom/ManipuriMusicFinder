@@ -59,6 +59,9 @@ public class EditMusicDetails extends AppCompatActivity {
     private HashMap<String, String> singerMap = new HashMap<>();
     private Music music;
     MusicRestAdapter musicRestAdapter;
+    private boolean isFromDeveloper;
+    private EditText etType;
+    private EditText etLyrics;
 
 
     @Override
@@ -66,8 +69,9 @@ public class EditMusicDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_music_details);
         music = (Music) getIntent().getSerializableExtra("music");
-        actors=music.getActor();
-        singers=music.getSingers();
+        isFromDeveloper=getIntent().getBooleanExtra("is_from_developer",false);
+        actors = music.getActor();
+        singers = music.getSingers();
         mapWithXml();
         initializeData();
         setSupportActionBar(toolbar);
@@ -93,7 +97,7 @@ public class EditMusicDetails extends AppCompatActivity {
         actvCast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() +Constants.IMAGE_FORMAT;
+                String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addCastView(actvCast.getText().toString());
                 actvCast.setText("");
@@ -114,7 +118,7 @@ public class EditMusicDetails extends AppCompatActivity {
         actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() +Constants.IMAGE_FORMAT;
+                String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addSingerView(actvSinger.getText().toString());
                 actvSinger.setText("");
@@ -132,6 +136,10 @@ public class EditMusicDetails extends AppCompatActivity {
             findViewById(R.id.llgv_song_name).setVisibility(View.VISIBLE);
             etSongName.setText(music.getSongName());
         }
+        if(isFromDeveloper){
+            findViewById(R.id.llgv_song_name).setVisibility(View.VISIBLE);
+            etSongName.setText(music.getSongName());
+        }
 
         if (music.getMovie().isEmpty() || music.getMovie() == null) {
             findViewById(R.id.llgv_movie).setVisibility(View.GONE);
@@ -139,10 +147,20 @@ public class EditMusicDetails extends AppCompatActivity {
             findViewById(R.id.llgv_movie).setVisibility(View.VISIBLE);
             etMovie.setText(music.getMovie());
         }
+        if(isFromDeveloper){
+            findViewById(R.id.llgv_movie).setVisibility(View.VISIBLE);
+            etMovie.setText(music.getMovie());
+        }
+
 
         if (music.getDirector().isEmpty() || music.getDirector() == null) {
             findViewById(R.id.llgv_director).setVisibility(View.GONE);
         } else {
+            findViewById(R.id.llgv_director).setVisibility(View.VISIBLE);
+            etDirector.setText(music.getDirector());
+        }
+
+        if(isFromDeveloper){
             findViewById(R.id.llgv_director).setVisibility(View.VISIBLE);
             etDirector.setText(music.getDirector());
         }
@@ -155,11 +173,37 @@ public class EditMusicDetails extends AppCompatActivity {
             etComposer.setText(music.getComposer());
         }
 
+        if(isFromDeveloper){
+            findViewById(R.id.llgv_composer).setVisibility(View.VISIBLE);
+            etComposer.setText(music.getComposer());
+        }
+
         if (music.getChoreographer().isEmpty() || music.getChoreographer() == null) {
             findViewById(R.id.llgv_choreographer).setVisibility(View.GONE);
         } else {
             findViewById(R.id.llgv_choreographer).setVisibility(View.VISIBLE);
             etChereographer.setText(music.getChoreographer());
+        }
+        if(isFromDeveloper){
+            findViewById(R.id.llgv_choreographer).setVisibility(View.VISIBLE);
+            etChereographer.setText(music.getChoreographer());
+        }
+
+
+
+        if(isFromDeveloper){
+            findViewById(R.id.llgv_lyrics).setVisibility(View.VISIBLE);
+            etLyrics.setText(music.getLyrics());
+        }
+        else {
+            findViewById(R.id.llgv_lyrics).setVisibility(View.GONE);
+        }
+        if(isFromDeveloper){
+            findViewById(R.id.llgv_type).setVisibility(View.VISIBLE);
+            etType.setText(music.getType());
+        }
+        else {
+            findViewById(R.id.llgv_type).setVisibility(View.GONE);
         }
 
     }
@@ -171,6 +215,8 @@ public class EditMusicDetails extends AppCompatActivity {
         etDirector = (EditText) findViewById(R.id.et_director);
         etComposer = (EditText) findViewById(R.id.et_composer);
         etChereographer = (EditText) findViewById(R.id.et_choreographer);
+        etType = (EditText) findViewById(R.id.et_type);
+        etLyrics = (EditText) findViewById(R.id.et_lyrics);
         llParent = (LinearLayout) findViewById(R.id.ll_parent);
         llCastParent = (LinearLayout) findViewById(R.id.ll_parent2);
         llSingerParent = (LinearLayout) findViewById(R.id.ll_parent3);
@@ -193,7 +239,7 @@ public class EditMusicDetails extends AppCompatActivity {
 
     private void addCastView(String data) {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
-        String url = Constants.PERSON_ICON_PIC_URL +data.trim()+Constants.IMAGE_FORMAT;
+        String url = Constants.PERSON_ICON_PIC_URL + data.trim() + Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actorrrrr, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actorrrrr);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_actorrrr);
@@ -216,7 +262,7 @@ public class EditMusicDetails extends AppCompatActivity {
 
     private void addSingerView(String data) {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
-        String url = Constants.PERSON_ICON_PIC_URL + data.trim() +Constants.IMAGE_FORMAT;
+        String url = Constants.PERSON_ICON_PIC_URL + data.trim() + Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actor, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actor);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_actor);
@@ -242,7 +288,7 @@ public class EditMusicDetails extends AppCompatActivity {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
 
         singerViews = new ArrayList<>();
-        String url = Constants.PERSON_ICON_PIC_URL +actvSinger.getText().toString().trim() +Constants.IMAGE_FORMAT;
+        String url = Constants.PERSON_ICON_PIC_URL + actvSinger.getText().toString().trim() + Constants.IMAGE_FORMAT;
         String[] arrayData = singers.split(",");
         List<String> dataList = Arrays.asList(arrayData);
         for (int i = 0; i < dataList.size(); i++) {
@@ -256,7 +302,7 @@ public class EditMusicDetails extends AppCompatActivity {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
 
         actorViews = new ArrayList<>();
-        String url = Constants.PERSON_ICON_PIC_URL +actvCast.getText().toString()+Constants.IMAGE_FORMAT;
+        String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString() + Constants.IMAGE_FORMAT;
         String[] arrayData = actors.split(",");
         List<String> dataList = Arrays.asList(arrayData);
         for (int i = 0; i < dataList.size(); i++) {
@@ -350,7 +396,10 @@ public class EditMusicDetails extends AppCompatActivity {
         music.setSongName((etSongName.getText().toString().trim().isEmpty()) ? music.getSongName() : etSongName.getText().toString());
         music.setDirector((etDirector.getText().toString().trim().isEmpty()) ? music.getDirector() : etDirector.getText().toString());
         music.setComposer((etComposer.getText().toString().trim().isEmpty()) ? music.getComposer() : etDirector.getText().toString());
-
+        if(isFromDeveloper){
+            music.setLyrics((etLyrics.getText().toString().trim().isEmpty()) ? music.getLyrics() : etLyrics.getText().toString());
+            music.setType((etType.getText().toString().trim().isEmpty()) ? music.getType() : etType.getText().toString());
+        }
 
         Call<SimpleResponse> call = musicRestAdapter.putMusicDetails(music);
         call.enqueue(new Callback<SimpleResponse>() {

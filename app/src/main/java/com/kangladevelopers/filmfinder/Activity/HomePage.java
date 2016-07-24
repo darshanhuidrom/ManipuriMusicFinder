@@ -39,6 +39,7 @@ import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.Utility.PopUpDialog;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
+import com.kangladevelopers.filmfinder.developers.ui.CorrectionActivity;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
@@ -860,7 +861,7 @@ public class HomePage extends BaseDrawerActivity {
                 startActivity(intent);
                 return true;
             case R.id.developer2:
-                Intent intent2 = new Intent(this, ListAllActivity.class);
+                Intent intent2 = new Intent(this, CorrectionActivity.class);
                 intent2.putExtra("IS_FROM_DEVELOPER", true);
                 startActivity(intent2);
                 return true;

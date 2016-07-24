@@ -68,7 +68,8 @@
         <activity
             android:name=".developers.ui.Correction"
             android:screenOrientation="portrait" />
-        <activity android:name=".developers.ui.CorrectionActivity"></activity>
+        <activity android:name=".developers.ui.CorrectionActivity" />
+        <activity android:name=".developers.ui.MusicListActivity"></activity>
     </application>
 
 </manifest>

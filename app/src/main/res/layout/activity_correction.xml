@@ -16,6 +16,7 @@
         android:textColor="@color/white"
         android:background="@color/light_black"
         android:onClick="onTextClick"
+        android:layout_marginTop="20dp"
         android:tag="1"/>
     <VideoView
         android:layout_width="match_parent"
@@ -25,13 +26,84 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="No Url"
+        android:text="No Singer"
         android:textSize="20sp"
         android:gravity="center"
         android:textColor="@color/white"
         android:background="@color/light_black"
         android:onClick="onTextClick"
-        android:tag="1"/>
+        android:tag="2"/>
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="No Composer"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/light_black"
+        android:onClick="onTextClick"
+        android:tag="3"/>
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="No Writer"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/light_black"
+        android:onClick="onTextClick"
+        android:tag="4"/>
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="No Director"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/light_black"
+        android:onClick="onTextClick"
+        android:tag="5"/>
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="No Actor"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/light_black"
+        android:onClick="onTextClick"
+        android:tag="6"/>
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="No Type"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/light_black"
+        android:onClick="onTextClick"
+        android:tag="7"/>
     <VideoView
         android:layout_width="match_parent"
         android:layout_height="1dp"
