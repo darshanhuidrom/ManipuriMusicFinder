@@ -43,4 +43,9 @@ public class MusicRestAdapter {
         return musicApi.getBioData(name);
     }
 
+    public  Call<Music> getMusicDetails(String id){
+        return musicApi.getMusicDetails(id);
+    }
+
+
 }

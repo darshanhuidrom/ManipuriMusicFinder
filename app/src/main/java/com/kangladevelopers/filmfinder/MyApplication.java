@@ -3,6 +3,7 @@ package com.kangladevelopers.filmfinder;
 import android.app.Application;
 import android.content.Context;
 
+import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -14,6 +15,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 public class MyApplication extends Application{
 
     private static MyApplication sInstance;
+    private static MusicRestAdapter restAdapter;
 
     @Override
     public void onCreate() {
@@ -21,6 +23,10 @@ public class MyApplication extends Application{
 
         sInstance = this;
         initImageLoaderConfiguration(getApplicationContext());
+        restAdapter = new MusicRestAdapter();
+    }
+    public  static MusicRestAdapter getResAdapter(){
+        return restAdapter;
     }
 
     public static MyApplication getsInstance(){

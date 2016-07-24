@@ -65,10 +65,9 @@ public class EditMusicDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_music_details);
-        dataList = getIntent().getStringArrayListExtra("data");
-        actors = getIntent().getStringExtra("actors");
-        singers = getIntent().getStringExtra("singers");
         music = (Music) getIntent().getSerializableExtra("music");
+        actors=music.getActor();
+        singers=music.getSingers();
         mapWithXml();
         initializeData();
         setSupportActionBar(toolbar);

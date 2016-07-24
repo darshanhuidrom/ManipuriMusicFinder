@@ -1,5 +1,6 @@
 package com.kangladevelopers.filmfinder.Activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.pogo.BioData;
+import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SongList;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -121,6 +124,22 @@ public class BioDataActivity extends AppCompatActivity {
     public void onSongClick(View v) {
         TextView textView = (TextView) v;
         Toast.makeText(getApplicationContext(), "name:: " + textView.getText() + "id:: " + textView.getTag(), Toast.LENGTH_SHORT).show();
+
+        Call<Music> call = MyApplication.getResAdapter().getMusicDetails(textView.getTag().toString());
+        call.enqueue(new Callback<Music>() {
+            @Override
+            public void onResponse(Call<Music> call, Response<Music> response) {
+                Music music= response.body();
+                Intent intent = new Intent(BioDataActivity.this,MusicDetailActivity.class);
+                intent.putExtra("music",music);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Music> call, Throwable t) {
+
+            }
+        });
 
     }
 

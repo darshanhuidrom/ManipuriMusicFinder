@@ -16,6 +16,7 @@ import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
+import com.kangladevelopers.filmfinder.utils.StringUtility;
 
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,8 +42,9 @@ public class Correction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.correction);
         dataType = getIntent().getStringExtra("dataType");
-        firstName = getIntent().getStringExtra("firstName");
-        secondName = getIntent().getStringExtra("secondName");
+        firstName = StringUtility.removeSpaceFromFirst(getIntent().getStringExtra("firstName"));
+        secondName = StringUtility.removeSpaceFromFirst(getIntent().getStringExtra("secondName"));
+        String re=removeSpaceFromFirst(firstName);
 
         tvFirstText = (TextView) findViewById(R.id.tv_FirstText);
         tvSecondText = (TextView) findViewById(R.id.tv_SecondText);
@@ -64,6 +66,19 @@ public class Correction extends AppCompatActivity {
         }
 
         restAdapter = new MusicRestAdapter();
+    }
+
+    private String removeSpaceFromFirst(String name) {
+        boolean flag=true;
+        while (flag){
+            if(name.charAt(0)==' '){
+                name = name.substring(1);
+                flag=true;
+            }else {
+                flag=false;
+            }
+        }
+        return name;
     }
 
 

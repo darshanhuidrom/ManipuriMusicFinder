@@ -37,7 +37,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
     private String youtubeCode;
     private ImageView ivThumbnail;
     private FrameLayout flThumbnail;
-    private ArrayList<String> dataList= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_song_name).setVisibility(View.VISIBLE);
             tvSongName.setText(music.getSongName());
-            dataList.add("Song Name#"+music.getSongName());
         }
 ////////////////////////////////
         if (music.getMovie().isEmpty() || music.getMovie() == null) {
@@ -63,7 +61,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_movie).setVisibility(View.VISIBLE);
             tvAlbum.setText(music.getMovie());
-            dataList.add("Movie#" + music.getMovie());
         }
 //////////////////////////////////
         if (music.getActor().isEmpty() || music.getActor() == null) {
@@ -87,7 +84,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_director).setVisibility(View.VISIBLE);
             tvDirector.setText(music.getDirector());
-            dataList.add("Director#" + music.getDirector());
         }
         ///////////////////////////////////
 
@@ -98,7 +94,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
             } else {
                 findViewById(R.id.llgv_production).setVisibility(View.VISIBLE);
                 tvProducer.setText(music.getProducer());
-                dataList.add("Producer#" + music.getProducer());
             }
 
         } catch (Exception e) {
@@ -111,7 +106,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_composer).setVisibility(View.VISIBLE);
             tvCompose.setText(music.getComposer());
-            dataList.add("Composer#" + music.getComposer());
         }
         ////////////////////////////////////
 
@@ -121,7 +115,6 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_choreographer).setVisibility(View.VISIBLE);
             tvChoreographer.setText(music.getChoreographer());
-            dataList.add("Choreographer#" + music.getChoreographer());
         }
         //////////////////////////////////////////
 
@@ -262,11 +255,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
     public void onEditMusicDetails(View view){
 
         Intent intent = new Intent(this,EditMusicDetails.class);
-        intent.putExtra("data",dataList);
-        intent.putExtra("actors",music.getActor());
-        intent.putExtra("singers",music.getSingers());
         intent.putExtra("music",music);
-
         startActivity(intent);
 
     }

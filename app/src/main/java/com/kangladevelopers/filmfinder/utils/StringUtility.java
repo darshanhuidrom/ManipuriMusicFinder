@@ -91,4 +91,18 @@ public class StringUtility {
         return false;
 
     }
+
+
+    public static String removeSpaceFromFirst(String name) {
+        boolean flag=true;
+        while (flag){
+            if(name.charAt(0)==' '){
+                name = name.substring(1);
+                flag=true;
+            }else {
+                flag=false;
+            }
+        }
+        return name;
+    }
 }

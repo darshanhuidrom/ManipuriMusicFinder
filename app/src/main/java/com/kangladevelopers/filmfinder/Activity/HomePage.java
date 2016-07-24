@@ -100,7 +100,6 @@ public class HomePage extends BaseDrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_page);
-
         setWidget();
         if (isSignedIn()) {
             tvUserName.setText(AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.USER_NAME));
@@ -125,6 +124,8 @@ public class HomePage extends BaseDrawerActivity {
         mMM = calendar.get(Calendar.MONTH);
         mYY = calendar.get(Calendar.YEAR);
     }
+
+
 
     private void setListeners() {
         actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {

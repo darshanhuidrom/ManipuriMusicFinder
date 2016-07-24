@@ -54,5 +54,8 @@ public interface MusicAPI {
     @GET("data/bio_data/{name}")
     Call<BioData> getBioData(@Path("name") String name);
 
+    @GET("songs/{id}")
+    Call<Music> getMusicDetails(@Path("id") String name);
+
 
 }
