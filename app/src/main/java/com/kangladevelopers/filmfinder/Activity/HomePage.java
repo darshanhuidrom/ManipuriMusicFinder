@@ -756,7 +756,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, onDateSetListener, mYY, mMM, mDD);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme, onDateSetListener, mYY, mMM, mDD);
         datePickerDialog.show();
     }
 
