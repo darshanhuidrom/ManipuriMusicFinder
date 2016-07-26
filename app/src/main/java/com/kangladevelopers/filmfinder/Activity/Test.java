@@ -41,7 +41,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class Test extends AppCompatActivity implements ListView.OnItemClickListener {
+public class Test extends BaseActivity implements ListView.OnItemClickListener {
 
     String TAG = "TEST";
     // SHA1: 3B:7C:A1:B1:31:18:1B:8E:8D:D7:37:8B:06:64:BF:B5:F5:7A:9C:9F

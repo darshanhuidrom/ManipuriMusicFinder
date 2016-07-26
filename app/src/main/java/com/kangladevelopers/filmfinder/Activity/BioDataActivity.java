@@ -34,7 +34,7 @@ import retrofit2.Response;
 /**
  * Created by HUIDROM on 7/17/2016.
  */
-public class BioDataActivity extends AppCompatActivity {
+public class BioDataActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private LinearLayout llParent;

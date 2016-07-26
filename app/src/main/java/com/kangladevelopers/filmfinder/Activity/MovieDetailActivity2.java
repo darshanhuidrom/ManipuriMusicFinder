@@ -9,7 +9,7 @@ import com.kangladevelopers.filmfinder.pogo.Movie;
 /**
  * Created by HUIDROM on 6/19/2016.
  */
-public class MovieDetailActivity2 extends AppCompatActivity {
+public class MovieDetailActivity2 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

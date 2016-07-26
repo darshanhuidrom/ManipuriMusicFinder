@@ -14,7 +14,7 @@ import com.kangladevelopers.filmfinder.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieListActivity extends AppCompatActivity {
+public class MovieListActivity extends BaseActivity {
 
     private RvAdapterMoveInfo adapterMoveInfo;
     private RecyclerView rvMovieInfo;

@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.kangladevelopers.filmfinder.R;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfile extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

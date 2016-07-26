@@ -39,7 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Headers;
 
-public class EditMusicDetails extends AppCompatActivity {
+public class EditMusicDetails extends BaseActivity {
 
     private Toolbar toolbar;
     private ArrayList<String> dataList;

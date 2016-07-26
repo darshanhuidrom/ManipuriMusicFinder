@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.kangladevelopers.filmfinder.R;
 
-public class ShowBookDetailsActivity extends AppCompatActivity {
+public class ShowBookDetailsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
