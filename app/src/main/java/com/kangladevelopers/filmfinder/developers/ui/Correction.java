@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
@@ -35,7 +36,6 @@ public class Correction extends AppCompatActivity {
     final String typeChange="change",typeCorrection="correction";
     String type;
     int currentSelectionTv=0;//0 non selected 1 fist, 2 second...
-    MusicRestAdapter restAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,6 @@ public class Correction extends AppCompatActivity {
             etCorrectName.setVisibility(View.GONE);
         }
 
-        restAdapter = new MusicRestAdapter();
     }
 
     private String removeSpaceFromFirst(String name) {
@@ -141,7 +140,7 @@ public class Correction extends AppCompatActivity {
     private void sendCorrection(CorrectionModel cm){
         //PUT THE CODE FOR SENDING POST CALL
 
-        retrofit2.Call<SimpleResponse> call =restAdapter.postCorrection(cm);
+        retrofit2.Call<SimpleResponse> call = MyApplication.getResAdapter().postCorrection(cm);
         call.enqueue(new Callback<SimpleResponse>() {
             @Override
             public void onResponse(retrofit2.Call<SimpleResponse> call, Response<SimpleResponse> response) {

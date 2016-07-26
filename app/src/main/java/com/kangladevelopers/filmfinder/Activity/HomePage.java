@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
+import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -71,7 +72,6 @@ public class HomePage extends BaseDrawerActivity {
     ArrayList<View> viewDirectorList = new ArrayList<>();
     ArrayList<View> viewActor = new ArrayList<>();
     TextView tvSingerCount, tvComposerCount, tvDirectorCount, tvActorCount;
-    MusicRestAdapter musicRestAdapter;
     private Calendar calendar;
     RecyclerView rvMusic;
     int mDD, mMM, mYY;
@@ -196,7 +196,6 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void initializeData() {
-        musicRestAdapter = new MusicRestAdapter();
         singers = StringUtility.getSingerList();
         displayData = new String[singers.length];
         for (int i = 0; i < singers.length; i++) {
@@ -708,7 +707,7 @@ public class HomePage extends BaseDrawerActivity {
         //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
-        Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
+        Call<List<Music>> call = MyApplication.getResAdapter().getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
         call.enqueue(new Callback<List<Music>>() {
             @Override
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {

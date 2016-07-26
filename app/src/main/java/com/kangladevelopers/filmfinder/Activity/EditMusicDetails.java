@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
@@ -58,7 +59,6 @@ public class EditMusicDetails extends BaseActivity {
     HashMap<String, String> actorMap = new HashMap<>();
     private HashMap<String, String> singerMap = new HashMap<>();
     private Music music;
-    MusicRestAdapter musicRestAdapter;
     private boolean isFromDeveloper;
     private EditText etType;
     private EditText etLyrics;
@@ -79,7 +79,6 @@ public class EditMusicDetails extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         addCastView();
         addSingerView();
-        musicRestAdapter = new MusicRestAdapter();
 
     }
 
@@ -401,7 +400,7 @@ public class EditMusicDetails extends BaseActivity {
             music.setType((etType.getText().toString().trim().isEmpty()) ? music.getType() : etType.getText().toString());
         }
 
-        Call<SimpleResponse> call = musicRestAdapter.putMusicDetails(music);
+        Call<SimpleResponse> call = MyApplication.getResAdapter().putMusicDetails(music);
         call.enqueue(new Callback<SimpleResponse>() {
             @Override
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {

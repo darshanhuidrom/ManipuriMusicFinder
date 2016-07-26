@@ -38,7 +38,6 @@ public class BioDataActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private LinearLayout llParent;
-    private MusicRestAdapter restAdapter;
     private String name;
     private BioData bioData;
     private TextView tvName, tvAge, tvGender, tvOccupation, tvResidence, tvAbout;
@@ -54,8 +53,7 @@ public class BioDataActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = getIntent().getStringExtra("name");
 
-        restAdapter = new MusicRestAdapter();
-        Call<BioData> call = restAdapter.getBioData(name);
+        Call<BioData> call = MyApplication.getResAdapter().getBioData(name);
         ProgressBarConfig.showProgressBar(this, null);
         call.enqueue(new Callback<BioData>() {
             @Override
