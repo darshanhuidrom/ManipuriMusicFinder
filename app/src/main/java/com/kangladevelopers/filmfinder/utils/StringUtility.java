@@ -105,4 +105,39 @@ public class StringUtility {
         }
         return name;
     }
+
+    public static String removeSpaceFromEnd(String s) {
+
+        boolean b = true;
+        while (b) {
+            if (s.charAt(s.length()) == ' ') {
+                s = s.substring(0, s.length() - 1);
+                b = true;
+            } else {
+                b = false;
+            }
+        }
+        return s;
+    }
+
+
+    public static String removeSpaceFromFirstAndEnd(String name) {
+        return removeSpaceFromEnd(removeSpaceFromFirst(name));
+    }
+
+    public static int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    public static int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static int sp2px(Context context, float spValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
+    }
+
 }

@@ -13,7 +13,7 @@
             android:orientation="vertical">
 
             <include layout="@layout/toolbar_shadow_layout" />
-           <!-- <include layout="@layout/selection_layout" />-->
+            <include layout="@layout/filter" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_moveList"
@@ -23,6 +23,7 @@
                 android:visibility="gone">
 
             </android.support.v7.widget.RecyclerView>
+
             <TextView
                 android:id="@+id/tv_no_data_found"
                 android:layout_width="match_parent"

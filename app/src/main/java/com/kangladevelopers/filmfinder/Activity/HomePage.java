@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -96,6 +98,7 @@ public class HomePage extends BaseDrawerActivity {
     private String[] displayActor;
     private LinearLayout llComParent;
     private LinearLayout llDirParent;
+    private PopupWindow popup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -933,4 +936,29 @@ public class HomePage extends BaseDrawerActivity {
         }.show();
     }
 
+    public void showSortingPopUp(View view){
+
+
+        if(popup!=null){
+            popup.showAsDropDown(view);
+            return;
+        }
+        popup = new PopupWindow(this);
+        View layout = getLayoutInflater().inflate(R.layout.list_popup, null);
+        popup.setContentView(layout);
+        // Set content width and height
+        popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        popup.setWidth(StringUtility.dip2px(getApplicationContext(), 100));
+        // Closes the popup window when touch outside of it - when looses focus
+        popup.setOutsideTouchable(true);
+        popup.setFocusable(true);
+        // Show anchored to button
+        popup.showAsDropDown(view);
+    }
+
+    public void onSortClick(View view){
+        popup.dismiss();
+        TextView textView = (TextView) view;
+        Toast.makeText(getApplicationContext(),textView.getText()+"",Toast.LENGTH_SHORT).show();
+    }
 }
