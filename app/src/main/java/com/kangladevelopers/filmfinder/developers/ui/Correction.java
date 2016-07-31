@@ -50,11 +50,11 @@ public class Correction extends AppCompatActivity {
         tvSecondText = (TextView) findViewById(R.id.tv_SecondText);
         etCorrectName= (EditText) findViewById(R.id.et_correctName);
         toolbar= (Toolbar) findViewById(R.id.toolbar);
-        tvFirstText.setText(firstName);
-        tvSecondText.setText(secondName);
+        tvFirstText.setText("*"+firstName+"*");
+        tvSecondText.setText("*"+secondName+"*");
         submit = (Button) findViewById(R.id.btn_submit);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Details");
+        getSupportActionBar().setTitle("Correction");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if(firstName.equals(secondName)){
