@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.Network.HTTP;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.Utility.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +54,7 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
             @Override
             protected List<String> doInBackground(Void... params) {
 
-                String url = "http://192.168.1.3:8080/move_finder/webapi/dev/getList/" + dataType;
+                String url = Constants.BASE_URL+"dev/getList/" + dataType;
                 String data = HTTP.sendGET(url);
                 List<String> list = convertToList(data);
                 return list;

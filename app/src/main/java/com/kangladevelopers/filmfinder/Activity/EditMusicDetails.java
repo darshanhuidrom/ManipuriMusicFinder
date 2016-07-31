@@ -216,7 +216,7 @@ public class EditMusicDetails extends BaseActivity {
         etChereographer = (EditText) findViewById(R.id.et_choreographer);
         etType = (EditText) findViewById(R.id.et_type);
         etLyrics = (EditText) findViewById(R.id.et_lyrics);
-        llParent = (LinearLayout) findViewById(R.id.ll_parent);
+       // llParent = (LinearLayout) findViewById(R.id.ll_parent);
         llCastParent = (LinearLayout) findViewById(R.id.ll_parent2);
         llSingerParent = (LinearLayout) findViewById(R.id.ll_parent3);
         actvCast = (AutoCompleteTextView) findViewById(R.id.actv_cast);

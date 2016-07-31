@@ -967,12 +967,18 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     public void onSortClick(View view) {
+        if(musics==null||musics.isEmpty()){
+            popup.dismiss();
+            return;
+        }
         popup.dismiss();
         TextView textView = (TextView) view;
         String name = textView.getText() + "";
+        ProgressBarConfig.showProgressBar(this,null);
         Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
         switch (name) {
             case "Name":
+
                 Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE));
                 musicAdapter.setNotifyChange(musics);
                 break;
@@ -987,6 +993,7 @@ public class HomePage extends BaseDrawerActivity {
             default:
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
         }
+        ProgressBarConfig.dismissProgressBar();
 
     }
 }

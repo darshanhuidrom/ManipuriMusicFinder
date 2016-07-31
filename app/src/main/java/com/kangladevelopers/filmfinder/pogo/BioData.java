@@ -17,9 +17,21 @@ public class BioData {
     @SerializedName("data")
     @Expose
     private Data data;
-    @SerializedName("songList")
+    @SerializedName("actingSongList")
     @Expose
-    private List<SongList> songList = new ArrayList<SongList>();
+    private List<ActingSongList> actingSongList = new ArrayList<ActingSongList>();
+    @SerializedName("composingSongList")
+    @Expose
+    private List<ComposingSongList> composingSongList = new ArrayList<ComposingSongList>();
+    @SerializedName("dirctingSongList")
+    @Expose
+    private List<DirctingSongList> dirctingSongList = new ArrayList<DirctingSongList>();
+    @SerializedName("singingSongList")
+    @Expose
+    private List<SingingSongList> singingSongList = new ArrayList<SingingSongList>();
+    @SerializedName("writigSongList")
+    @Expose
+    private List<WritigSongList> writigSongList = new ArrayList<WritigSongList>();
 
     /**
      * 
@@ -78,19 +90,91 @@ public class BioData {
     /**
      * 
      * @return
-     *     The songList
+     *     The actingSongList
      */
-    public List<SongList> getSongList() {
-        return songList;
+    public List<ActingSongList> getActingSongList() {
+        return actingSongList;
     }
 
     /**
      * 
-     * @param songList
-     *     The songList
+     * @param actingSongList
+     *     The actingSongList
      */
-    public void setSongList(List<SongList> songList) {
-        this.songList = songList;
+    public void setActingSongList(List<ActingSongList> actingSongList) {
+        this.actingSongList = actingSongList;
+    }
+
+    /**
+     * 
+     * @return
+     *     The composingSongList
+     */
+    public List<ComposingSongList> getComposingSongList() {
+        return composingSongList;
+    }
+
+    /**
+     * 
+     * @param composingSongList
+     *     The composingSongList
+     */
+    public void setComposingSongList(List<ComposingSongList> composingSongList) {
+        this.composingSongList = composingSongList;
+    }
+
+    /**
+     * 
+     * @return
+     *     The dirctingSongList
+     */
+    public List<DirctingSongList> getDirctingSongList() {
+        return dirctingSongList;
+    }
+
+    /**
+     * 
+     * @param dirctingSongList
+     *     The dirctingSongList
+     */
+    public void setDirctingSongList(List<DirctingSongList> dirctingSongList) {
+        this.dirctingSongList = dirctingSongList;
+    }
+
+    /**
+     * 
+     * @return
+     *     The singingSongList
+     */
+    public List<SingingSongList> getSingingSongList() {
+        return singingSongList;
+    }
+
+    /**
+     * 
+     * @param singingSongList
+     *     The singingSongList
+     */
+    public void setSingingSongList(List<SingingSongList> singingSongList) {
+        this.singingSongList = singingSongList;
+    }
+
+    /**
+     * 
+     * @return
+     *     The writigSongList
+     */
+    public List<WritigSongList> getWritigSongList() {
+        return writigSongList;
+    }
+
+    /**
+     * 
+     * @param writigSongList
+     *     The writigSongList
+     */
+    public void setWritigSongList(List<WritigSongList> writigSongList) {
+        this.writigSongList = writigSongList;
     }
 
 }

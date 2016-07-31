@@ -5,7 +5,6 @@
     android:background="@color/light_black"
     android:orientation="vertical">
 
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -22,7 +21,6 @@
                 android:background="@drawable/a2"
                 android:orientation="vertical"
                 android:paddingTop="20dp">
-
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/iv_profile_image"
@@ -45,8 +43,6 @@
                     android:text="Mario"
                     android:textColor="#ffffff"
                     android:textSize="18sp" />
-
-
             </LinearLayout>
 
             <View
@@ -290,8 +286,6 @@
                         android:orientation="vertical"></LinearLayout>
 
 
-
-
                     <LinearLayout
                         android:id="@+id/ll_dir_parent"
                         android:layout_width="match_parent"
@@ -375,8 +369,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"></LinearLayout>
-
-
 
                     <LinearLayout
                         android:layout_width="match_parent"

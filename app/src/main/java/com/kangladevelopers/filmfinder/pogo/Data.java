@@ -30,6 +30,12 @@ public class Data {
     @SerializedName("about")
     @Expose
     private String about;
+    @SerializedName("rating")
+    @Expose
+    private Integer rating;
+    @SerializedName("varified")
+    @Expose
+    private Boolean varified;
 
     /**
      * 
@@ -173,6 +179,42 @@ public class Data {
      */
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    /**
+     * 
+     * @return
+     *     The rating
+     */
+    public Integer getRating() {
+        return rating;
+    }
+
+    /**
+     * 
+     * @param rating
+     *     The rating
+     */
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    /**
+     * 
+     * @return
+     *     The varified
+     */
+    public Boolean getVarified() {
+        return varified;
+    }
+
+    /**
+     * 
+     * @param varified
+     *     The varified
+     */
+    public void setVarified(Boolean varified) {
+        this.varified = varified;
     }
 
 }

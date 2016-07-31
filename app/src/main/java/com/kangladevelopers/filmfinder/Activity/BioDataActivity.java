@@ -3,7 +3,6 @@ package com.kangladevelopers.filmfinder.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,14 +16,16 @@ import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
+import com.kangladevelopers.filmfinder.pogo.ActingSongList;
 import com.kangladevelopers.filmfinder.pogo.BioData;
+import com.kangladevelopers.filmfinder.pogo.ComposingSongList;
+import com.kangladevelopers.filmfinder.pogo.DirctingSongList;
 import com.kangladevelopers.filmfinder.pogo.Music;
-import com.kangladevelopers.filmfinder.pogo.SongList;
-import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
+import com.kangladevelopers.filmfinder.pogo.SingingSongList;
+import com.kangladevelopers.filmfinder.pogo.WritigSongList;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,7 +38,7 @@ import retrofit2.Response;
 public class BioDataActivity extends BaseActivity {
 
     private Toolbar toolbar;
-    private LinearLayout llParent;
+    private LinearLayout llParentActing, llParentSinging, llParentDirecting, llParentComposing, llParentWriting;
     private String name;
     private BioData bioData;
     private TextView tvName, tvAge, tvGender, tvOccupation, tvResidence, tvAbout;
@@ -60,7 +61,39 @@ public class BioDataActivity extends BaseActivity {
             public void onResponse(Call<BioData> call, Response<BioData> response) {
                 bioData = response.body();
                 setData();
-                addView(bioData.getSongList());
+                if (bioData.getActingSongList() == null || bioData.getActingSongList().isEmpty()) {
+                    findViewById(R.id.vg_ll_acting_parent).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.vg_ll_acting_parent).setVisibility(View.VISIBLE);
+                    addActorView(bioData.getActingSongList());
+                }
+                if (bioData.getSingingSongList() == null || bioData.getSingingSongList().isEmpty()) {
+                    findViewById(R.id.vg_ll_singing_parent).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.vg_ll_singing_parent).setVisibility(View.VISIBLE);
+                    addSingerView(bioData.getSingingSongList());
+                }
+
+                if (bioData.getDirctingSongList() == null || bioData.getDirctingSongList().isEmpty()) {
+                    findViewById(R.id.vg_ll_directing_parent).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.vg_ll_directing_parent).setVisibility(View.VISIBLE);
+                    addDirectorView(bioData.getDirctingSongList());
+                }
+
+                if (bioData.getComposingSongList() == null || bioData.getComposingSongList().isEmpty()) {
+                    findViewById(R.id.vg_ll_composing_parent).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.vg_ll_composing_parent).setVisibility(View.VISIBLE);
+                    addComposerView(bioData.getComposingSongList());
+                }
+
+                if (bioData.getWritigSongList() == null || bioData.getWritigSongList().isEmpty()) {
+                    findViewById(R.id.vg_ll_writing_parent).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.vg_ll_writing_parent).setVisibility(View.VISIBLE);
+                    addWritingView(bioData.getWritigSongList());
+                }
                 ProgressBarConfig.dismissProgressBar();
             }
 
@@ -94,7 +127,11 @@ public class BioDataActivity extends BaseActivity {
     }
 
     private void mapWithXml() {
-        llParent = (LinearLayout) findViewById(R.id.ll_parent);
+        llParentActing = (LinearLayout) findViewById(R.id.ll_acting_parent);
+        llParentSinging = (LinearLayout) findViewById(R.id.ll_singing_parent);
+        llParentDirecting = (LinearLayout) findViewById(R.id.ll_directing_parent);
+        llParentComposing = (LinearLayout) findViewById(R.id.ll_composing_parent);
+        llParentWriting = (LinearLayout) findViewById(R.id.ll_writing_parent);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         iv = (ImageView) findViewById(R.id.iv);
         tvName = (TextView) findViewById(R.id.tv_name);
@@ -103,19 +140,57 @@ public class BioDataActivity extends BaseActivity {
         tvOccupation = (TextView) findViewById(R.id.tv_desgn);
         tvResidence = (TextView) findViewById(R.id.tv_residence);
         tvAbout = (TextView) findViewById(R.id.tv_about);
-        addView(new ArrayList<SongList>());
 
     }
 
-    public void addView(List<SongList> list) {
+    public void addActorView(List<ActingSongList> list) {
         for (int i = 0; i < list.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.textview2, null);
             TextView textView = (TextView) view.findViewById(R.id.textView1);
             textView.setText(list.get(i).getSongName());
             textView.setTag(list.get(i).getId());
-            llParent.addView(view);
+            llParentActing.addView(view);
         }
+    }
 
+    public void addSingerView(List<SingingSongList> list) {
+        for (int i = 0; i < list.size(); i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.textview2, null);
+            TextView textView = (TextView) view.findViewById(R.id.textView1);
+            textView.setText(list.get(i).getSongName());
+            textView.setTag(list.get(i).getId());
+            llParentSinging.addView(view);
+        }
+    }
+
+    public void addDirectorView(List<DirctingSongList> list) {
+        for (int i = 0; i < list.size(); i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.textview2, null);
+            TextView textView = (TextView) view.findViewById(R.id.textView1);
+            textView.setText(list.get(i).getSongName());
+            textView.setTag(list.get(i).getId());
+            llParentDirecting.addView(view);
+        }
+    }
+
+    public void addComposerView(List<ComposingSongList> list) {
+        for (int i = 0; i < list.size(); i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.textview2, null);
+            TextView textView = (TextView) view.findViewById(R.id.textView1);
+            textView.setText(list.get(i).getSongName());
+            textView.setTag(list.get(i).getId());
+            llParentComposing.addView(view);
+        }
+    }
+
+    public void addWritingView(List<WritigSongList> list) {
+        for (int i = 0; i < list.size(); i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.textview2, null);
+            TextView textView = (TextView) view.findViewById(R.id.textView1);
+            textView.setText(list.get(i).getSongName());
+            textView.setTag(list.get(i).getId());
+            llParentWriting.addView(view);
+        }
     }
 
 
@@ -127,9 +202,9 @@ public class BioDataActivity extends BaseActivity {
         call.enqueue(new Callback<Music>() {
             @Override
             public void onResponse(Call<Music> call, Response<Music> response) {
-                Music music= response.body();
-                Intent intent = new Intent(BioDataActivity.this,MusicDetailActivity.class);
-                intent.putExtra("music",music);
+                Music music = response.body();
+                Intent intent = new Intent(BioDataActivity.this, MusicDetailActivity.class);
+                intent.putExtra("music", music);
                 startActivity(intent);
             }
 
