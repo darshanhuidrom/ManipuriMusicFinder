@@ -1,167 +1,76 @@
-Pilot:M
-A. Sushmita:F
 Abenao:F
 Ahila:F
-Ajit RK:M
-Ajita Huidrom:M
-Anand Laishram:M
-Angangcha:M
-Angoubi Athokpam:F
-Anish:M
+Apsara:F
 Artina:F
-Arun Ac:M
-Arun Sarang:M
-Ashish:M
-Baby Daniel:M
+Asha:M
 Bala:F
-Bijeta:F
-Biju:F
-Bijurama:F
-Bikash Yumnam:M
-Bindiya Moirangthem:F
-Bishorita:F
-Bonny:M
-Bunty:F
-Canboy:M
-Chanbi Thongam:F
-Dara:M
-David:M
-Daya:M
-Deepa:F
-Deky:M
-Denny:M
-Devan:M
-Dolly:F //Dolly Gurumayum:
-Dunga:M
-Enrick:M
-Eshita:F
-Ethan:M
-Ethoi:F
-Gokul:M
-Gopi:M
-Govindas:M
-Guna:M
-Jackson:M
-Jamz Saikhom:M
-Jensy Maibam:M
-Jerish:M
-Jesper Namoijam:M
-Joyc:F
-Kabi:M
-Kaiku:M
-Kenedy:M
-Khumukcham Sandhya:F
-Kiranbala:F
-Kumarjit:M
-Lalitabi:F
-Lantoi Hanglem:F
-Lilabati:F
-Lilly Arambam:F
-Loya:F
-MC:F
-Maichou:M
-Mango Khumanthem:M
-Master Steven:M
-Medha Konhtoujam:F
-Mekychand:M
-Miki:M
-Momoco:F
-Monika:F
-Mukabala:M  
-N Taibunganba:M
-Narmada:F
-Nirmal Kangjam:M  
-Nivarani:F
-Nongthangnganbi:F
-Panthoi:F
-Prafullo:M
-Prafulo:M
-Prem Sharma:M
-Prem sharma:M
-Priyogopal:M
-Pushparani Chongtham:F
-Pushparani Goswami:F
-Rabina:F
-Rajesh:M
-Ratan Lai:M  
-Rekha:F
-Reshmi:F
-Rimash:F
-Rishi Salam:M
-Roji:F
-Ronita (Thoi Thoi):F
-Roshan:M
-Roshni:F
-Russel:M
-Samananda:M
-Shanti:F
-Soma:F
-Sonia:F
-Sukanya:F
-Suraj:M
-Suresh:M
-Surjit:M
-Sushitra:F
-Sushitra Wangkhem:F
-Sushmita:F
-Taibang:M
-Tanu:F
-Tekcham Raina:F
-Thaja:F
-Tonthoi:F
-Twinkle:F
-Universe:M
-Vid:F
-Wendy Gurumayum:F
-khonikar:F
-luxmi:F
-shyamcha:M
-Abenao:F
-Ajit Ningthouja:M
-Amal Maisnam:M
-Avi Khundrakpam:M
-Bala:F
-Ballonday:M
 Ballondy:M
 Bidyananda:M
 Biju:F
 Bonium:M
-Bony:M
-Calish:M
-Daya:M
+Bonny:M
+Deepa:F
 Dekey:M
-Derrick:M
 Devita Urikhinbam:F
-Dr.Rupen:M
-Edhou:M
-Ethoi:F
-Gems:M
-Gokul:M //Gokul Loitam
-Kabita:F
-Hei Sanjit:M
-Hemchandra:M
-Henrik Thokchom:M
-JSTAR Malemnganba:M
-Jesper Namoijam:M
-Johny Nongmaithem:M
-Joy Thokchom:M
+Eshita:F
+Ethoi Oinam:F
+Gokul Athokpam:M
+Gokul Loitam:M
+J STAR MALEMNGANBA:M
+Jack:M
+James:M
+Jena:F
+Jenifer:F
+JoyC Sinam:M
+Kabi:M
 Kaiku:M
+Kamala:F
+Kebi:M
+Kenedy Khuman:M
 Khaba:M
+Loya:M
 Mahesh:M
-Max:M
-Michael:M
-Monika:M
-N. Chingkheinganba:M
+Manda:F
+Medha Konthoujam:F
+Mekychan:M
+Merina:F
+Momoko:F
+Monika:F
+Mukabala:M
+Naoba:M
+Narmada:F
+Nirmal Kangjam:M
+Olen:M
+Pakhangba:M
+Pilot Prince:M
+Pingchong Kuman:F
+Prafulo:M
+Priya:F
+Purnanda:M
 Rahul:M
-Reddy:M
-Robert Leishangthem:M
-Romio:M
-Ronita (ThoiThoi):F
+Rakesh:M
+Ratan Lai:M
+Redy Yumnam:M
+Reshmi:F
+Rohit Elangbam:M
 Roshan Chongtham:M
-Siber:M
-Suraj:M
-Suraj Lairembi:M
-Suresh Koijam:M
-Tonthoi:F
-Wanda:F
+Sadananda:M
+Samanda:M
+Sanathoi:F
+Sangeeta:F
+Sofia Mayengbam:F
+Soma Laishram:F
+Sonia Yengkhom:F 
+Sonia Hijam:F
 Sonia Wanglembam:F
+Sukanya:M
+Suraj Sharma:M
+Suraj Lairembi:M
+Suresh:M
+Sushitra Wangkhem:F
+Sushmita:F
+Sweety Wahengbam:F
+Thadoi:F
+Thoiba:M
+Tonthoi:F
+Universe:M
