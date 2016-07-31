@@ -1,22 +1,16 @@
 package com.kangladevelopers.filmfinder.Activity;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.R;
-import com.kangladevelopers.filmfinder.utils.Config;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
-/**
- * Created by HUIDROM on 7/10/2016.
- */
+
+
 public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
 

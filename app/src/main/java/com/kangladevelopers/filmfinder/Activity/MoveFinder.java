@@ -11,7 +11,7 @@ import com.kangladevelopers.filmfinder.R;
 /**
  * Created by BURNI on 2/9/2016.
  */
-public class MoveFinder extends AppCompatActivity implements View.OnClickListener{
+public class MoveFinder extends BaseActivity implements View.OnClickListener{
 
     LinearLayout castHolder,directorHolder,typeHolder,timeHolder,extraHolder;
     LinearLayout castFilter,directorFilter,typeFilter,timeFilter,extraFilter;

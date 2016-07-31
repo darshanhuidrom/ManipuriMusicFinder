@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,11 +29,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
+import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -69,7 +72,6 @@ public class HomePage extends BaseDrawerActivity {
     ArrayList<View> viewDirectorList = new ArrayList<>();
     ArrayList<View> viewActor = new ArrayList<>();
     TextView tvSingerCount, tvComposerCount, tvDirectorCount, tvActorCount;
-    MusicRestAdapter musicRestAdapter;
     private Calendar calendar;
     RecyclerView rvMusic;
     int mDD, mMM, mYY;
@@ -96,6 +98,7 @@ public class HomePage extends BaseDrawerActivity {
     private String[] displayActor;
     private LinearLayout llComParent;
     private LinearLayout llDirParent;
+    private PopupWindow popup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,7 +196,6 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void initializeData() {
-        musicRestAdapter = new MusicRestAdapter();
         singers = StringUtility.getSingerList();
         displayData = new String[singers.length];
         for (int i = 0; i < singers.length; i++) {
@@ -705,7 +707,7 @@ public class HomePage extends BaseDrawerActivity {
         //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
-        Call<List<Music>> call = musicRestAdapter.getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
+        Call<List<Music>> call = MyApplication.getResAdapter().getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
         call.enqueue(new Callback<List<Music>>() {
             @Override
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
@@ -753,7 +755,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, onDateSetListener, mYY, mMM, mDD);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme, onDateSetListener, mYY, mMM, mDD);
         datePickerDialog.show();
     }
 
@@ -933,4 +935,29 @@ public class HomePage extends BaseDrawerActivity {
         }.show();
     }
 
+    public void showSortingPopUp(View view){
+
+
+        if(popup!=null){
+            popup.showAsDropDown(view);
+            return;
+        }
+        popup = new PopupWindow(this);
+        View layout = getLayoutInflater().inflate(R.layout.list_popup, null);
+        popup.setContentView(layout);
+        // Set content width and height
+        popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        popup.setWidth(StringUtility.dip2px(getApplicationContext(), 100));
+        // Closes the popup window when touch outside of it - when looses focus
+        popup.setOutsideTouchable(true);
+        popup.setFocusable(true);
+        // Show anchored to button
+        popup.showAsDropDown(view);
+    }
+
+    public void onSortClick(View view){
+        popup.dismiss();
+        TextView textView = (TextView) view;
+        Toast.makeText(getApplicationContext(),textView.getText()+"",Toast.LENGTH_SHORT).show();
+    }
 }

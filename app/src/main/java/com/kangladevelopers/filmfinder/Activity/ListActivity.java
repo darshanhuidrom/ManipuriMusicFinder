@@ -17,7 +17,7 @@ import com.kangladevelopers.filmfinder.utils.StringUtility;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ListActivity extends AppCompatActivity  implements AdapterView.OnItemClickListener{
+public class ListActivity extends BaseActivity  implements AdapterView.OnItemClickListener{
 
     private Toolbar toolbar;
     private ListView lvListAll;

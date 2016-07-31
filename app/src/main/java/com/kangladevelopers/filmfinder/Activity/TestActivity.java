@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.kangladevelopers.filmfinder.R;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

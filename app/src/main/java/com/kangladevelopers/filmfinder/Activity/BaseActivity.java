@@ -16,7 +16,6 @@ public abstract class BaseActivity extends AppCompatActivity{
     Activity activity;
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     private ProgressDialog progressDialog;
-
     //This is just a test
     //This is just a secon Line i had coded
 
