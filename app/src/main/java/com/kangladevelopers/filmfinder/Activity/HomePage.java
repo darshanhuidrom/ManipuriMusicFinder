@@ -119,6 +119,8 @@ public class HomePage extends BaseDrawerActivity {
         setListeners();
         setDrawer();
         setCurrentDate();
+      //  btStartDate.setText("01/01/2000");
+    //    btEndDate.setText("" + mDD + "/" +(mMM +1)+ "/" + mYY);
         getDelegate().getSupportActionBar().setTitle("Move Finder");
     }
 
