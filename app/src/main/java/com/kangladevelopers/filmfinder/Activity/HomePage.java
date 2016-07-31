@@ -42,6 +42,7 @@ import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.Utility.PopUpDialog;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
+import com.kangladevelopers.filmfinder.Utility.SortUtil;
 import com.kangladevelopers.filmfinder.developers.ui.CorrectionActivity;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
@@ -53,6 +54,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -99,6 +101,7 @@ public class HomePage extends BaseDrawerActivity {
     private LinearLayout llComParent;
     private LinearLayout llDirParent;
     private PopupWindow popup;
+    private List<Music> musics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,8 +122,8 @@ public class HomePage extends BaseDrawerActivity {
         setListeners();
         setDrawer();
         setCurrentDate();
-      //  btStartDate.setText("01/01/2000");
-    //    btEndDate.setText("" + mDD + "/" +(mMM +1)+ "/" + mYY);
+        btStartDate.setText("01/01/2000");
+        btEndDate.setText("" + mDD + "/" + (mMM + 1) + "/" + mYY);
         getDelegate().getSupportActionBar().setTitle("Move Finder");
     }
 
@@ -132,12 +135,11 @@ public class HomePage extends BaseDrawerActivity {
     }
 
 
-
     private void setListeners() {
         actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.PERSON_ICON_PIC_URL + actvSinger.getText().toString().trim() +Constants.IMAGE_FORMAT;
+                String url = Constants.PERSON_ICON_PIC_URL + actvSinger.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addSingerView(actvSinger.getText().toString(), url.replace(" ", ""));
                 actvSinger.setText("");
@@ -169,7 +171,7 @@ public class HomePage extends BaseDrawerActivity {
         actvDirector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.PERSON_ICON_PIC_URL + actvDirector.getText().toString().trim()+Constants.IMAGE_FORMAT;
+                String url = Constants.PERSON_ICON_PIC_URL + actvDirector.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 if (viewDirectorList.size() == 0) {
                     addDirectorView(actvDirector.getText().toString(), url.replace(" ", ""));
@@ -185,7 +187,7 @@ public class HomePage extends BaseDrawerActivity {
         actvActor.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String url = Constants.PERSON_ICON_PIC_URL + actvActor.getText().toString().trim() +Constants.IMAGE_FORMAT;
+                String url = Constants.PERSON_ICON_PIC_URL + actvActor.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
                 addActorView(actvActor.getText().toString(), url.replace(" ", ""));
                 actvActor.setText("");
@@ -281,8 +283,8 @@ public class HomePage extends BaseDrawerActivity {
         tvNoDataFound = (TextView) findViewById(R.id.tv_no_data_found);
         tvUserName = (TextView) findViewById(R.id.tv_user_name);
         ivProfileImage = (ImageView) findViewById(R.id.iv_profile_image);
-        llComParent=(LinearLayout) findViewById(R.id.ll_com_parent);
-        llDirParent=(LinearLayout) findViewById(R.id.ll_dir_parent);
+        llComParent = (LinearLayout) findViewById(R.id.ll_com_parent);
+        llDirParent = (LinearLayout) findViewById(R.id.ll_dir_parent);
 
     }
 
@@ -418,7 +420,7 @@ public class HomePage extends BaseDrawerActivity {
                 } else {
                     tvActorCount.setVisibility(View.VISIBLE);
                 }
-                tvActorCount.setText("" + viewDirectorList.size());
+                tvActorCount.setText("" + viewActor.size());
                 llDirParent.setVisibility(View.VISIBLE);
                 break;
         }
@@ -714,7 +716,7 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
                 ProgressBarConfig.dismissProgressBar();
-                List<Music> musics = response.body();
+                musics = response.body();
                 if (musics == null || musics.isEmpty()) {
                     unHideNoDataFound();
                     return;
@@ -757,7 +759,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.DialogTheme, onDateSetListener, mYY, mMM, mDD);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme, onDateSetListener, mYY, mMM, mDD);
         datePickerDialog.show();
     }
 
@@ -907,8 +909,11 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayComposer) {
             @Override
             public void onItemClick(String s, int pos) {
-                addComposerView(s, Constants.PERSON_ICON_PIC_URL + s.trim() +Constants.IMAGE_FORMAT);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                if (viewComposerList.size() == 0) {
+                    addComposerView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
+                    actvComposer.setText("");
+                    llComParent.setVisibility(View.GONE);
+                }
             }
         }.show();
     }
@@ -919,8 +924,12 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayDirector) {
             @Override
             public void onItemClick(String s, int pos) {
-                addDirectorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() +Constants.IMAGE_FORMAT);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                if (viewDirectorList.size() == 0) {
+                    addDirectorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
+                    actvDirector.setText("");
+                    llDirParent.setVisibility(View.GONE);
+                }
+
             }
         }.show();
     }
@@ -931,16 +940,16 @@ public class HomePage extends BaseDrawerActivity {
         new PopUpDialog(this, displayActor) {
             @Override
             public void onItemClick(String s, int pos) {
-                addActorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() +Constants.IMAGE_FORMAT);
+                addActorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
             }
         }.show();
     }
 
-    public void showSortingPopUp(View view){
+    public void showSortingPopUp(View view) {
 
 
-        if(popup!=null){
+        if (popup != null) {
             popup.showAsDropDown(view);
             return;
         }
@@ -957,9 +966,27 @@ public class HomePage extends BaseDrawerActivity {
         popup.showAsDropDown(view);
     }
 
-    public void onSortClick(View view){
+    public void onSortClick(View view) {
         popup.dismiss();
         TextView textView = (TextView) view;
-        Toast.makeText(getApplicationContext(),textView.getText()+"",Toast.LENGTH_SHORT).show();
+        String name = textView.getText() + "";
+        Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+        switch (name) {
+            case "Name":
+                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE));
+                musicAdapter.setNotifyChange(musics);
+                break;
+            case "Release":
+                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
+                musicAdapter.setNotifyChange(musics);
+                break;
+            case "Ratings":
+                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_RATING));
+                musicAdapter.setNotifyChange(musics);
+                break;
+            default:
+                Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

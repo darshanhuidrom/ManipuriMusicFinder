@@ -59,6 +59,7 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
         holder.tvComposer.setText(music.getComposer());
         holder.tvDirector.setText(music.getDirector());
         holder.tv_name.setText(music.getSongName());
+        holder.tv_rating.setText(music.getQuality()+"");
         holder.tvPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +105,7 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
         private ImageView moveIcon;
         private TextView tvDirector;
         private TextView tv_name;
+        private TextView tv_rating;
 
         public CustomViewHolder(View view) {
             super(view);
@@ -114,6 +116,8 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
             tvComposer = (TextView) view.findViewById(R.id.tv_composerD);
             tvPlay = (LinearLayout) view.findViewById(R.id.tv_play);
             tv_name= (TextView) view.findViewById(R.id.tv_name);
+            tv_rating= (TextView) view.findViewById(R.id.tv_rating);
+
             cv = (CardView) view;
             cv.setOnClickListener(this);
         }

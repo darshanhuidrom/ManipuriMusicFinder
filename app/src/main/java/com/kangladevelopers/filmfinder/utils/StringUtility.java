@@ -4,13 +4,17 @@ import android.content.Context;
 
 import com.kangladevelopers.filmfinder.Activity.BaseActivity;
 import com.kangladevelopers.filmfinder.MyApplication;
+import com.kangladevelopers.filmfinder.Utility.DateFormatString;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -139,5 +143,39 @@ public class StringUtility {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
+
+
+    public static String parseDateByFormatToString(Date date, String stringFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(stringFormat);
+        String dateString = format.format(date);
+        return dateString;
+    }
+
+    public static String parseDateByFormatToString(Date date) {
+        return parseDateByFormatToString(date, DateFormatString.COMMON_FORMAT);
+    }
+
+    public static Date convertStringToDate(String dateString) {
+        SimpleDateFormat format = new SimpleDateFormat(DateFormatString.COMMON_FORMAT);
+        Date date = null;
+        try {
+            date = format.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static Date convertStringToDate(String dateString, String stringFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(stringFormat);
+        Date date = null;
+        try {
+            date = format.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
 
 }

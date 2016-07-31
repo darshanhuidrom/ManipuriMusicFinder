@@ -7,8 +7,8 @@ public class Constants {
     public static final String USER_NAME = "email_address";
     public static final String PASSWORD = "password";
     public static final String IMAGE_FORMAT = ".JPG";
-    public static final String DEV_SERVER_URL = "http://192.168.1.3:8080/";
-    public static final String DEV_SERVER_URL2="http://192.168.1.3/";
+    public static final String DEV_SERVER_URL = "http://192.168.1.9:8080/";
+    public static final String DEV_SERVER_URL2="http://192.168.1.9/";
     public static final String PERSON_ICON_PIC_URL = DEV_SERVER_URL2 + "leichal/person_icon/";
     public static final String BIO_DATA__ICON_PIC_URL = DEV_SERVER_URL2 + "leichal/bio_data_pic/";
     public static final String YOUTUBE_IMAGE_URL = "http://img.youtube.com/vi/";
