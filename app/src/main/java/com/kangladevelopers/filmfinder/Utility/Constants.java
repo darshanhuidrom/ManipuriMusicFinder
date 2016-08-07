@@ -17,6 +17,11 @@ public class Constants {
     public static final String USER_NAME = "email_address";
     public static final String PASSWORD = "password";
     public static final String IMAGE_FORMAT = ".JPG";
+    public static final String PLAYSTORE_MARKET_LINK="https://play.google.com/store/apps/details?id=";
+    public static final String YOUTUBE_PACKAGE_NAME="com.google.android.youtube&hl=en";
+    public static final String YOUTUBE_DOWDLOADER_LINK=PLAYSTORE_MARKET_LINK+YOUTUBE_PACKAGE_NAME;
+
+
 
 
 

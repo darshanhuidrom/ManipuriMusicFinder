@@ -887,6 +887,9 @@ public class HomePage extends BaseDrawerActivity {
             case R.id.menu_item_share:
                 mShareActionProvider.setShareIntent(doShare());
                 return true;
+            case R.id.help:
+               openPlayStore();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -895,8 +898,17 @@ public class HomePage extends BaseDrawerActivity {
         // populate the share intent with data
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "This will be applink");
+        intent.putExtra(Intent.EXTRA_TEXT,Constants.YOUTUBE_DOWDLOADER_LINK);
         return intent;
+    }
+
+    public void openPlayStore(){
+        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" +Constants.YOUTUBE_PACKAGE_NAME)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAYSTORE_MARKET_LINK+Constants.YOUTUBE_PACKAGE_NAME)));
+        }
     }
 
     public boolean isSignedIn() {
