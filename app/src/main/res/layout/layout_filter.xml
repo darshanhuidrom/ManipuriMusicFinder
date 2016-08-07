@@ -28,9 +28,8 @@
                     android:layout_height="96dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
-                    android:onClick="onImageClick"
                     android:padding="5dp"
-                    android:src="@drawable/sori"
+                    android:src="@drawable/profile2"
                     app:civ_border_width="2dp" />
 
                 <TextView
@@ -42,7 +41,9 @@
                     android:onClick="onUserClick"
                     android:text="Mario"
                     android:textColor="#ffffff"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:visibility="invisible"/>
+                <!--will make invisible the name for time being-->
             </LinearLayout>
 
             <View

@@ -15,4 +15,7 @@
     <color name="dirty_yellow">#f1b513</color>
     <color name="black">#000000</color>
     <color name="light_black">#2e2d2d</color>
+
+    <color name="test1">#2e2d2d</color>
+    <color name="test2">#2e2d2d</color>
 </resources>

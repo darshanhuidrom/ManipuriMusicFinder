@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -102,6 +104,8 @@ public class HomePage extends BaseDrawerActivity {
     private LinearLayout llDirParent;
     private PopupWindow popup;
     private List<Music> musics;
+
+    private ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -793,6 +797,7 @@ public class HomePage extends BaseDrawerActivity {
 
     public void onImageClick(View view) {
 
+
         CustomDialogBox dialogBox = new CustomDialogBox(this, new CustomDialogBox.Listeners() {
             @Override
             public void onGalleryClick() {
@@ -846,6 +851,9 @@ public class HomePage extends BaseDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
         return true;
     }
 
@@ -871,8 +879,19 @@ public class HomePage extends BaseDrawerActivity {
                 intent2.putExtra("IS_FROM_DEVELOPER", true);
                 startActivity(intent2);
                 return true;
+            case R.id.menu_item_share:
+                mShareActionProvider.setShareIntent(doShare());
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public Intent doShare() {
+        // populate the share intent with data
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "This will be applink");
+        return intent;
     }
 
     public boolean isSignedIn() {
