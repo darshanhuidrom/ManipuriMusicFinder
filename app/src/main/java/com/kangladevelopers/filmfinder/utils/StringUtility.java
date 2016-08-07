@@ -1,6 +1,8 @@
 package com.kangladevelopers.filmfinder.utils;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 import com.kangladevelopers.filmfinder.Activity.BaseActivity;
 import com.kangladevelopers.filmfinder.MyApplication;
@@ -175,6 +177,36 @@ public class StringUtility {
             e.printStackTrace();
         }
         return date;
+    }
+
+
+    public static String getVersionName(){
+        PackageInfo pInfo = null;
+        String version;
+        try {
+            pInfo = MyApplication.getAppContext().getPackageManager().
+                    getPackageInfo(MyApplication.getAppContext().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            version="NA";
+
+        }
+        version = pInfo.versionName;
+        return  version;
+    }
+
+    public static int  getVersionCode(){
+        PackageInfo pInfo = null;
+        int version;
+        try {
+            pInfo = MyApplication.getAppContext().getPackageManager().
+                    getPackageInfo(MyApplication.getAppContext().getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            version=0;
+        }
+        version = pInfo.versionCode;
+        return  version;
     }
 
 

@@ -7,6 +7,7 @@ import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
+import com.kangladevelopers.filmfinder.pogo.VersionInfo;
 import com.kangladevelopers.filmfinder.retrofit.interfaces.MusicAPI;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class MusicRestAdapter {
 
 
     public Call<List<Music>> getMusicDetails(String singer,String composer,String director,String actor,String fixSinger,String startTime,String endTime) {
-        return musicApi.getMusicDetails(singer, composer, director,actor,fixSinger,startTime,endTime);
+        return musicApi.getMusicDetails(singer, composer, director, actor, fixSinger, startTime, endTime);
     }
 
     public  Call<SimpleResponse> putMusicDetails(Music music){
@@ -51,6 +52,13 @@ public class MusicRestAdapter {
     public Call<List<Music>> getIncompleteData(String id){
         return musicApi.getIncompleteData(id);
     }
+
+
+    public Call<VersionInfo> getVersionInfo(){
+        return musicApi.getVersionInfo();
+    }
+
+
 
 
 

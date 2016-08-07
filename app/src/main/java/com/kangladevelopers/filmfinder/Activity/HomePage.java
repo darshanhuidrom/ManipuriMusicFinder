@@ -2,6 +2,7 @@ package com.kangladevelopers.filmfinder.Activity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,6 +42,7 @@ import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.Utility.DialogBox;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.Utility.PopUpDialog;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
@@ -48,6 +50,7 @@ import com.kangladevelopers.filmfinder.Utility.SortUtil;
 import com.kangladevelopers.filmfinder.developers.ui.CorrectionActivity;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
+import com.kangladevelopers.filmfinder.pogo.VersionInfo;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.kangladevelopers.filmfinder.storage.LocalStore;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
@@ -129,6 +132,8 @@ public class HomePage extends BaseDrawerActivity {
         btStartDate.setText("01/01/2000");
         btEndDate.setText("" + mDD + "/" + (mMM + 1) + "/" + mYY);
         getDelegate().getSupportActionBar().setTitle("Move Finder");
+
+        checkForUpdates();
     }
 
     private void setCurrentDate() {
@@ -993,7 +998,7 @@ public class HomePage extends BaseDrawerActivity {
         popup.dismiss();
         TextView textView = (TextView) view;
         String name = textView.getText() + "";
-        ProgressBarConfig.showProgressBar(this,null);
+        ProgressBarConfig.showProgressBar(this, null);
         Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
         switch (name) {
             case "Name":
@@ -1015,4 +1020,38 @@ public class HomePage extends BaseDrawerActivity {
         ProgressBarConfig.dismissProgressBar();
 
     }
+    public void checkForUpdates(){
+        Call<VersionInfo> call =MyApplication.getResAdapter().getVersionInfo();
+        call.enqueue(new Callback<VersionInfo>() {
+            @Override
+            public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
+                VersionInfo res = response.body();
+                int verCode =Integer.parseInt(res.getCurrentAppVersionCode());
+                int sysVerCode= StringUtility.getVersionCode();
+                if(verCode>sysVerCode){
+                    new DialogBox(HomePage.this){
+
+                        @Override
+                        public void onPositive(DialogInterface dialog) {
+                            dialog.dismiss();
+                        }
+
+                        @Override
+                        public void onNegative(DialogInterface dialog) {
+
+                        }
+                    }.setValues("Update",res.getMessage()+"\nLatest available version is "+res.getCurrentAppVersionName());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<VersionInfo> call, Throwable t) {
+
+                String t2=t.getMessage();
+
+            }
+        });
+    }
+
 }

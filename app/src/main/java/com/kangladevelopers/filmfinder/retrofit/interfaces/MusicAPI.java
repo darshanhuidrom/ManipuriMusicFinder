@@ -6,6 +6,7 @@ import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
+import com.kangladevelopers.filmfinder.pogo.VersionInfo;
 
 import java.util.List;
 
@@ -59,6 +60,9 @@ public interface MusicAPI {
 
     @GET("dev/getIncompleteData/{id}")
     Call<List<Music>> getIncompleteData(@Path("id") String id);
+
+    @GET("doc/app")
+    Call<VersionInfo> getVersionInfo();
 
 
 }
