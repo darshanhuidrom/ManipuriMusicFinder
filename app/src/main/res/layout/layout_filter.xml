@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_black"
@@ -22,13 +23,9 @@
                 android:orientation="vertical"
                 android:paddingTop="20dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profile_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
+                    style="@style/homepage_drawer_circleView"
                     android:src="@drawable/profile2"
                     app:civ_border_width="2dp" />
 
@@ -42,7 +39,7 @@
                     android:text="Mario"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
                 <!--will make invisible the name for time being-->
             </LinearLayout>
 
@@ -105,6 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/tv_actors_count"
+                        android:checked="false"
                         android:text="Exclusive"
                         android:textColor="@color/white" />
                 </RelativeLayout>
@@ -203,26 +201,15 @@
 
                         <LinearLayout
                             android:id="@+id/ll_com_parent"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            style="@style/ll_entryGroup">
 
                             <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:onClick="openComposerList"
-                                android:src="@drawable/who" />
+                                style="@style/who_person"
+                                android:onClick="openComposerList" />
 
                             <AutoCompleteTextView
                                 android:id="@+id/actv_director"
-                                android:layout_width="0dp"
-                                android:layout_height="24dp"
-                                android:layout_margin="10dp"
-                                android:layout_weight="8"
-                                android:background="@drawable/rounded"
-                                android:paddingLeft="10dp" />
+                                style="@style/et_autoCompleteName"/>
 
                         </LinearLayout>
                     </LinearLayout>
@@ -289,26 +276,15 @@
 
                     <LinearLayout
                         android:id="@+id/ll_dir_parent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        style="@style/ll_entryGroup">
 
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:onClick="openDirectorList"
-                            android:src="@drawable/who" />
+                            style="@style/who_person"
+                            android:onClick="openDirectorList" />
 
                         <AutoCompleteTextView
                             android:id="@+id/actv_directorrrr"
-                            android:layout_width="0dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="8"
-                            android:background="@drawable/rounded"
-                            android:paddingLeft="10dp" />
+                            style="@style/et_autoCompleteName" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -372,26 +348,15 @@
                         android:orientation="vertical"></LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        style="@style/ll_entryGroup">
 
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:onClick="openActorList"
-                            android:src="@drawable/who" />
+                            style="@style/who_person"
+                            android:onClick="openActorList" />
 
                         <AutoCompleteTextView
                             android:id="@+id/actv_actorrr"
-                            android:layout_width="0dp"
-                            android:layout_height="24dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="8"
-                            android:background="@drawable/rounded"
-                            android:paddingLeft="10dp" />
+                            style="@style/et_autoCompleteName" />
 
                     </LinearLayout>
 

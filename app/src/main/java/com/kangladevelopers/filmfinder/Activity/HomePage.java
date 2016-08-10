@@ -488,7 +488,7 @@ public class HomePage extends BaseDrawerActivity {
 
 
     private void addSingerView(String actorNamee, String imageUrl) {
-        final View view = LayoutInflater.from(this).inflate(R.layout.block_actor, null);
+        final View view = LayoutInflater.from(this).inflate(R.layout.block_dp_name, null);  //BLOCK CHANGE
         TextView actorName = (TextView) view.findViewById(R.id.tv_actor);
         ImageView actorImage = (ImageView) view.findViewById(R.id.iv_actor);
         viewSingerList.add(view);

@@ -13,6 +13,7 @@
             android:orientation="vertical">
 
             <include layout="@layout/toolbar_shadow_layout" />
+
             <include layout="@layout/filter" />
 
             <android.support.v7.widget.RecyclerView
