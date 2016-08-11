@@ -1,15 +1,13 @@
 package com.kangladevelopers.filmfinder.Activity;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,10 +46,8 @@ import com.kangladevelopers.filmfinder.Utility.PopUpDialog;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.Utility.SortUtil;
 import com.kangladevelopers.filmfinder.developers.ui.CorrectionActivity;
-import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.VersionInfo;
-import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.kangladevelopers.filmfinder.storage.LocalStore;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -110,6 +106,8 @@ public class HomePage extends BaseDrawerActivity {
 
     private ShareActionProvider mShareActionProvider;
 
+    CrossHandler crossHandler = new CrossHandler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,9 +129,10 @@ public class HomePage extends BaseDrawerActivity {
         setCurrentDate();
         btStartDate.setText("01/01/2000");
         btEndDate.setText("" + mDD + "/" + (mMM + 1) + "/" + mYY);
-        getDelegate().getSupportActionBar().setTitle("Move Finder");
+        getDelegate().getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 
         checkForUpdates();
+        setFont();
     }
 
     private void setCurrentDate() {
@@ -143,6 +142,26 @@ public class HomePage extends BaseDrawerActivity {
         mYY = calendar.get(Calendar.YEAR);
     }
 
+
+    private void setFont(){
+
+        TextView tvHdSinger = (TextView) findViewById(R.id.tv_hd_singer);
+        TextView tvHdComposer = (TextView) findViewById(R.id.tv_hd_composer);
+        TextView tvHdDirector = (TextView) findViewById(R.id.tv_hd_director);
+        TextView tvHdActor = (TextView) findViewById(R.id.tv_hd_actor);
+        TextView tvHdReleased = (TextView) findViewById(R.id.tv_hd_released);
+
+        Typeface splashFont = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Bold.ttf");
+        Typeface splashFont1 = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Light.ttf");
+        Typeface splashFont2 = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Medium.ttf");
+        Typeface splashFont3 = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Regular.ttf");
+
+        tvHdSinger.setTypeface(splashFont3);
+        tvHdComposer.setTypeface(splashFont3);
+        tvHdDirector.setTypeface(splashFont3);
+        tvHdActor.setTypeface(splashFont3);
+        tvHdReleased.setTypeface(splashFont3);
+    }
 
     private void setListeners() {
         actvSinger.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -354,86 +373,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
 
-    public void onDeleteClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.iv_delete:
-                View viewTobeDeleted = null;
-                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
-                for (int i = 0; i < viewSingerList.size(); i++) {
-                    ImageView deleteButton = (ImageView) viewSingerList.get(i).findViewById(R.id.iv_delete);
-                    if (deleteButton.equals(view)) {
-                        viewTobeDeleted = viewSingerList.get(i);
-                        llSingerParentLayout.removeView(viewSingerList.get(i));
-                    }
-                }
-                viewSingerList.remove(viewTobeDeleted);
-                if (viewSingerList.size() == 0) {
-                    tvSingerCount.setVisibility(View.INVISIBLE);
-                } else {
-                    tvSingerCount.setVisibility(View.VISIBLE);
-                }
-                tvSingerCount.setText("" + viewSingerList.size());
-                break;
-            case R.id.iv_delete_director:
-                View viewTobeDeleted2 = null;
-                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
-                for (int i = 0; i < viewComposerList.size(); i++) {
-                    ImageView deleteButton = (ImageView) viewComposerList.get(i).findViewById(R.id.iv_delete_director);
-                    if (deleteButton.equals(view)) {
-                        viewTobeDeleted2 = viewComposerList.get(i);
-                        llComposerParentLayout.removeView(viewComposerList.get(i));
-                    }
-                }
-                viewComposerList.remove(viewTobeDeleted2);
-                if (viewComposerList.size() == 0) {
-                    tvComposerCount.setVisibility(View.GONE);
-                } else {
-                    tvComposerCount.setVisibility(View.VISIBLE);
-                }
-                llComParent.setVisibility(View.VISIBLE);
-                break;
 
-            case R.id.iv_delete_directorrr:
-                View viewTobeDeleted3 = null;
-                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
-                for (int i = 0; i < viewDirectorList.size(); i++) {
-                    ImageView deleteButton = (ImageView) viewDirectorList.get(i).findViewById(R.id.iv_delete_directorrr);
-                    if (deleteButton.equals(view)) {
-                        viewTobeDeleted3 = viewDirectorList.get(i);
-                        llDirectorParentLayout.removeView(viewDirectorList.get(i));
-                    }
-                }
-                viewDirectorList.remove(viewTobeDeleted3);
-                if (viewDirectorList.size() == 0) {
-                    tvDirectorCount.setVisibility(View.GONE);
-                } else {
-                    tvDirectorCount.setVisibility(View.VISIBLE);
-                }
-                llDirParent.setVisibility(View.VISIBLE);
-                break;
-
-            case R.id.iv_delete_actorrrr:
-                View viewTobeDeleted4 = null;
-                // Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
-                for (int i = 0; i < viewActor.size(); i++) {
-                    ImageView deleteButton = (ImageView) viewActor.get(i).findViewById(R.id.iv_delete_actorrrr);
-                    if (deleteButton.equals(view)) {
-                        viewTobeDeleted4 = viewActor.get(i);
-                        llActorParentLayout.removeView(viewActor.get(i));
-                    }
-                }
-                viewActor.remove(viewTobeDeleted4);
-                if (viewActor.size() == 0) {
-                    tvActorCount.setVisibility(View.GONE);
-                } else {
-                    tvActorCount.setVisibility(View.VISIBLE);
-                }
-                tvActorCount.setText("" + viewActor.size());
-                llDirParent.setVisibility(View.VISIBLE);
-                break;
-        }
-    }
 
     private void hideAndUnhideActor() {
         if (llSingerCondition.getVisibility() == View.GONE)
@@ -489,8 +429,12 @@ public class HomePage extends BaseDrawerActivity {
 
     private void addSingerView(String actorNamee, String imageUrl) {
         final View view = LayoutInflater.from(this).inflate(R.layout.block_dp_name, null);  //BLOCK CHANGE
-        TextView actorName = (TextView) view.findViewById(R.id.tv_actor);
-        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_actor);
+        TextView actorName = (TextView) view.findViewById(R.id.tv_name);
+        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_dp);
+        ImageView ivDelete = (ImageView) view.findViewById(R.id.iv_delete);
+        ivDelete.setTag("crossSinger");
+        ivDelete.setOnClickListener(crossHandler);
+
         viewSingerList.add(view);
         llSingerParentLayout.addView(view);
 
@@ -529,11 +473,17 @@ public class HomePage extends BaseDrawerActivity {
 
     }
 
-    private void addComposerView(String DirectorNamee, String imageUrl) {
+    private void addComposerView(String directorName, String imageUrl) {
 
-        final View view = LayoutInflater.from(this).inflate(R.layout.block_directer, null);
-        TextView actorName = (TextView) view.findViewById(R.id.tv_director);
-        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_director);
+        final View view = LayoutInflater.from(this).inflate(R.layout.block_dp_name, null);  //BLOCK CHANGE
+        TextView actorName = (TextView) view.findViewById(R.id.tv_name);
+        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_dp);
+        ImageView ivDelete = (ImageView) view.findViewById(R.id.iv_delete);
+        ivDelete.setTag("crossComposer");
+        ivDelete.setOnClickListener(crossHandler);
+
+
+
         viewComposerList.add(view);
         llComposerParentLayout.addView(view);
         if (viewComposerList.size() == 0) {
@@ -541,9 +491,9 @@ public class HomePage extends BaseDrawerActivity {
         } else {
             tvComposerCount.setVisibility(View.VISIBLE);
         }
-        actorName.setText(DirectorNamee);
+        actorName.setText(directorName);
         ImageLoader imageLoader = ImageLoader.getInstance();
-        if (StringUtility.isMale(composeMapMap.get(DirectorNamee))) {
+        if (StringUtility.isMale(composeMapMap.get(directorName))) {
             DisplayImageOptions options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.mipmap.m)
                     .showImageForEmptyUri(R.mipmap.m)
@@ -569,10 +519,17 @@ public class HomePage extends BaseDrawerActivity {
     }
 
 
+
+
     private void addDirectorView(String DirectorNamee, String imageUrl) {
-        final View view = LayoutInflater.from(this).inflate(R.layout.block_directorrr, null);
-        TextView actorName = (TextView) view.findViewById(R.id.tv_directorrrr);
-        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_directorrrr);
+        final View view = LayoutInflater.from(this).inflate(R.layout.block_dp_name, null);  //BLOCK CHANGE
+        TextView actorName = (TextView) view.findViewById(R.id.tv_name);
+        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_dp);
+        ImageView ivDelete = (ImageView) view.findViewById(R.id.iv_delete);
+        ivDelete.setTag("crossDirector");
+        ivDelete.setOnClickListener(crossHandler);
+
+
         viewDirectorList.add(view);
         llDirectorParentLayout.addView(view);
         if (viewDirectorList.size() == 0) {
@@ -608,9 +565,13 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void addActorView(String DirectorNamee, String imageUrl) {
-        final View view = LayoutInflater.from(this).inflate(R.layout.block_actorrrrr, null);
-        TextView actorName = (TextView) view.findViewById(R.id.tv_actorrrrr);
-        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_actorrrr);
+        final View view = LayoutInflater.from(this).inflate(R.layout.block_dp_name, null);
+        TextView actorName = (TextView) view.findViewById(R.id.tv_name);
+        ImageView actorImage = (ImageView) view.findViewById(R.id.iv_dp);
+        ImageView ivDelete = (ImageView) view.findViewById(R.id.iv_delete);
+        ivDelete.setTag("crossActor");
+        ivDelete.setOnClickListener(crossHandler);
+
         viewActor.add(view);
         llActorParentLayout.addView(view);
         if (viewActor.size() == 0) {
@@ -659,7 +620,7 @@ public class HomePage extends BaseDrawerActivity {
 
         for (int i = 0; i < viewSingerList.size(); i++) {
             View view = viewSingerList.get(i);
-            TextView tvActor = (TextView) view.findViewById(R.id.tv_actor);
+            TextView tvActor = (TextView) view.findViewById(R.id.tv_name);
             if (singerList == null) {
                 singerList = tvActor.getText().toString();
             } else {
@@ -672,7 +633,7 @@ public class HomePage extends BaseDrawerActivity {
 
         for (int i = 0; i < viewComposerList.size(); i++) {
             View view = viewComposerList.get(i);
-            TextView tvDirector = (TextView) view.findViewById(R.id.tv_director);
+            TextView tvDirector = (TextView) view.findViewById(R.id.tv_name);
             if (composerList == null) {
                 composerList = tvDirector.getText().toString();
             } else {
@@ -685,7 +646,7 @@ public class HomePage extends BaseDrawerActivity {
 
         for (int i = 0; i < viewDirectorList.size(); i++) {
             View view = viewDirectorList.get(i);
-            TextView tvDirector = (TextView) view.findViewById(R.id.tv_directorrrr);
+            TextView tvDirector = (TextView) view.findViewById(R.id.tv_name);
             if (directorList == null) {
                 directorList = tvDirector.getText().toString();
             } else {
@@ -698,7 +659,7 @@ public class HomePage extends BaseDrawerActivity {
 
         for (int i = 0; i < viewActor.size(); i++) {
             View view = viewActor.get(i);
-            TextView tvActor = (TextView) view.findViewById(R.id.tv_actorrrrr);
+            TextView tvActor = (TextView) view.findViewById(R.id.tv_name);
             if (actorList == null) {
                 actorList = tvActor.getText().toString();
             } else {
@@ -1064,6 +1025,97 @@ public class HomePage extends BaseDrawerActivity {
 
             }
         });
+    }
+
+
+    //----------------
+
+    private class CrossHandler implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            String type = view.getTag().toString();
+
+            //---------------------------- CANCEL SINGER ----------------------------
+            if(type.equals("crossSinger")){
+                Log.i("BURN","crossSinger");
+                 View viewTobeDeleted = null;
+                for (int i = 0; i < viewSingerList.size(); i++) {
+                    ImageView deleteButton = (ImageView) viewSingerList.get(i).findViewById(R.id.iv_delete);
+                    if (deleteButton.equals(view)) {
+                        viewTobeDeleted = viewSingerList.get(i);
+                        llSingerParentLayout.removeView(viewSingerList.get(i));
+                    }
+                }
+                viewSingerList.remove(viewTobeDeleted);
+                if (viewSingerList.size() == 0) {
+                    tvSingerCount.setVisibility(View.INVISIBLE);
+                } else {
+                    tvSingerCount.setVisibility(View.VISIBLE);
+                }
+                tvSingerCount.setText("" + viewSingerList.size());
+
+
+            //---------------------------- CANCEL ACTOR ----------------------------
+            }else if(type.equals("crossActor")){
+                Log.i("BURN","crossActor");
+                View viewTobeDeleted4 = null;
+                for (int i = 0; i < viewActor.size(); i++) {
+                    ImageView deleteButton = (ImageView) viewActor.get(i).findViewById(R.id.iv_delete);
+                    if (deleteButton.equals(view)) {
+                        viewTobeDeleted4 = viewActor.get(i);
+                        llActorParentLayout.removeView(viewActor.get(i));
+                    }
+                }
+                viewActor.remove(viewTobeDeleted4);
+                if (viewActor.size() == 0) {
+                    tvActorCount.setVisibility(View.GONE);
+                } else {
+                    tvActorCount.setVisibility(View.VISIBLE);
+                }
+                tvActorCount.setText("" + viewActor.size());
+                llDirParent.setVisibility(View.VISIBLE);
+
+            //---------------------------- CANCEL COMPOSER ----------------------------
+            }else if(type.equals("crossComposer")){
+                Log.i("BURN","crossComposer");
+                View viewTobeDeleted2 = null;
+                for (int i = 0; i < viewComposerList.size(); i++) {
+                    ImageView deleteButton = (ImageView) viewComposerList.get(i).findViewById(R.id.iv_delete);
+                    if (deleteButton.equals(view)) {
+                        viewTobeDeleted2 = viewComposerList.get(i);
+                        llComposerParentLayout.removeView(viewComposerList.get(i));
+                    }
+                }
+                viewComposerList.remove(viewTobeDeleted2);
+                if (viewComposerList.size() == 0) {
+                    tvComposerCount.setVisibility(View.GONE);
+                } else {
+                    tvComposerCount.setVisibility(View.VISIBLE);
+                }
+                llComParent.setVisibility(View.VISIBLE);
+
+            //---------------------------- CANCEL DIRECTOR ----------------------------
+            }else if(type.equals("crossDirector")){
+                Log.i("BURN","crossDirector");
+                View viewTobeDeleted3 = null;
+                for (int i = 0; i < viewDirectorList.size(); i++) {
+                    ImageView deleteButton = (ImageView) viewDirectorList.get(i).findViewById(R.id.iv_delete);
+                    if (deleteButton.equals(view)) {
+                        viewTobeDeleted3 = viewDirectorList.get(i);
+                        llDirectorParentLayout.removeView(viewDirectorList.get(i));
+                    }
+                }
+                viewDirectorList.remove(viewTobeDeleted3);
+                if (viewDirectorList.size() == 0) {
+                    tvDirectorCount.setVisibility(View.GONE);
+                } else {
+                    tvDirectorCount.setVisibility(View.VISIBLE);
+                }
+                llDirParent.setVisibility(View.VISIBLE);
+
+            }
+        }
     }
 
 }

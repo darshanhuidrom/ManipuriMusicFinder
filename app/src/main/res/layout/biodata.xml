@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/block_color"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_shadow_layout" />
@@ -100,7 +101,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.2">
+                    android:layout_weight="2.8">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -110,7 +111,7 @@
                         <ImageView
                             android:id="@+id/iv"
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="160dp"
                             android:scaleType="centerCrop"
                             android:src="@mipmap/m" />
 
@@ -149,29 +150,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_black"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Acting List"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    style="@style/tv_bioData_heading_group"
+                    android:text="Acting List" />
 
                 <LinearLayout
-
                     android:id="@+id/ll_acting_parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_horizontal" />
+                    style="@style/ll_songListHolder" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -180,28 +167,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_black"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Singing List"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    style="@style/tv_bioData_heading_group"
+                    android:text="Singing List" />
 
                 <LinearLayout
-
                     android:id="@+id/ll_singing_parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_horizontal" />
+                    style="@style/ll_songListHolder" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -209,29 +181,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_black"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Directing List"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    style="@style/tv_bioData_heading_group"
+                    android:text="Directing List" />
 
                 <LinearLayout
 
                     android:id="@+id/ll_directing_parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_horizontal" />
+                    style="@style/ll_songListHolder" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -240,28 +199,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_black"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Composing List"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    style="@style/tv_bioData_heading_group"
+                    android:text="Composing List" />
 
                 <LinearLayout
 
                     android:id="@+id/ll_composing_parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_horizontal" />
+                    style="@style/ll_songListHolder" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -270,28 +215,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_black"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Writing List"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    style="@style/tv_bioData_heading_group"
+                    android:text="Writing List" />
 
                 <LinearLayout
 
                     android:id="@+id/ll_writing_parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center_horizontal" />
+                    style="@style/ll_songListHolder" />
+
             </LinearLayout>
 
         </LinearLayout>

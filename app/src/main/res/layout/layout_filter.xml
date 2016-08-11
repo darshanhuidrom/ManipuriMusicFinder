@@ -70,7 +70,7 @@
 
                     <TextView
 
-                        android:id="@+id/tv_starr"
+                        android:id="@+id/tv_hd_singer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -83,17 +83,10 @@
 
                     <TextView
                         android:id="@+id/tv_actors_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/countView"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/rounded_red"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="1dp"
-                        android:textColor="#ffffff"
                         android:visibility="invisible" />
 
                     <Switch
@@ -131,6 +124,8 @@
                             android:orientation="vertical"></LinearLayout>
 
                         <include layout="@layout/layout_auto_complete_text" />
+
+                        <View style="@style/input_area_line" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -148,8 +143,7 @@
                         android:src="@drawable/composer" />
 
                     <TextView
-
-                        android:id="@+id/tv_director"
+                        android:id="@+id/tv_hd_composer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -162,18 +156,10 @@
 
                     <TextView
                         android:id="@+id/tv_director_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/countView"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/rounded_red"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="1dp"
-                        android:textColor="#ffffff"
-                        android:visibility="gone" />
+                        android:layout_centerVertical="true" />
                 </RelativeLayout>
 
                 <View
@@ -209,9 +195,12 @@
 
                             <AutoCompleteTextView
                                 android:id="@+id/actv_director"
-                                style="@style/et_autoCompleteName"/>
+                                style="@style/et_autoCompleteName" />
 
                         </LinearLayout>
+
+                        <View style="@style/input_area_line" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -228,8 +217,7 @@
                         android:src="@drawable/director" />
 
                     <TextView
-
-                        android:id="@+id/tv_type"
+                        android:id="@+id/tv_hd_director"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -242,18 +230,11 @@
 
                     <TextView
                         android:id="@+id/tv_director_counttt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/countView"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/rounded_red"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="1dp"
-                        android:textColor="#ffffff"
-                        android:visibility="gone" />
+                        android:layout_centerVertical="true" />
+
                 </RelativeLayout>
 
                 <View
@@ -287,6 +268,8 @@
                             style="@style/et_autoCompleteName" />
 
                     </LinearLayout>
+
+                    <View style="@style/input_area_line" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -299,11 +282,10 @@
                         style="@style/drawer_icon"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/actotor2" />
+                        android:src="@drawable/actor" />
 
                     <TextView
-
-                        android:id="@+id/tv_other"
+                        android:id="@+id/tv_hd_actor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -316,18 +298,10 @@
 
                     <TextView
                         android:id="@+id/tv_actor_counttt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/countView"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/rounded_red"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="1dp"
-                        android:textColor="#ffffff"
-                        android:visibility="gone" />
+                        android:layout_centerVertical="true" />
                 </RelativeLayout>
 
                 <View
@@ -347,8 +321,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"></LinearLayout>
 
-                    <LinearLayout
-                        style="@style/ll_entryGroup">
+                    <LinearLayout style="@style/ll_entryGroup">
 
                         <ImageView
                             style="@style/who_person"
@@ -360,6 +333,7 @@
 
                     </LinearLayout>
 
+                    <View style="@style/input_area_line" />
 
                 </LinearLayout>
 
@@ -376,8 +350,7 @@
                         android:src="@drawable/time" />
 
                     <TextView
-
-                        android:id="@+id/tv_year"
+                        android:id="@+id/tv_hd_released"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -390,18 +363,10 @@
 
                     <TextView
                         android:id="@+id/tv_year_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/countView"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/rounded_red"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="1dp"
-                        android:textColor="#ffffff"
-                        android:visibility="gone" />
+                        android:layout_centerVertical="true" />
                 </RelativeLayout>
 
                 <View
@@ -418,6 +383,10 @@
                     android:orientation="vertical">
 
                     <include layout="@layout/block_date_picker" />
+
+                    <View style="@style/input_area_line" />
+
+
                 </LinearLayout>
 
 
@@ -449,6 +418,7 @@
                         android:layout_toRightOf="@+id/imageView2"
                         android:text="This is ads view"
                         android:textSize="18sp"
+                        android:visibility="gone"
                         android:textStyle="bold" />
                 </LinearLayout>
 

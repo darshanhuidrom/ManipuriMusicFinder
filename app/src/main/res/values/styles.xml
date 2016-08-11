@@ -102,15 +102,18 @@
     <style name="drawer_icon">
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
-
+        <item name="android:padding">2dp</item>
     </style>
 
     <style name="song_block_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#030401</item>
+        <item name="android:textColor">#a3a3a3</item>
         <item name="android:singleLine">true</item>
+    </style>
 
+    <style name="song_block_text_heading" parent="song_block_text">
+        <item name="android:textColor">#7fa806</item>
     </style>
 
     <style name="song_detail_block">
@@ -273,19 +276,58 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
-
     <style name="countView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:background">@drawable/rounded_red</item>
         <item name="android:paddingBottom">1dp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingRight">7dp</item>
         <item name="android:paddingTop">1dp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:visibility">gone</item>
-
     </style>
+
+    <style name="countView2" parent="countView">
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    <style name="tv_bioData_heading_group">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/light_black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+
+    <style name="ll_songListHolder">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="input_area_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/dirty_yellow</item>
+    </style>
+
+
 
 </resources>

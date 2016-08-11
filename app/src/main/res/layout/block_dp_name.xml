@@ -12,17 +12,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="7dp">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_actor"
+                android:id="@+id/iv_dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ts_1" />
+                android:src="@drawable/ts_2" />
 
             <TextView
-                android:id="@+id/tv_actor"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -40,17 +40,16 @@
             android:padding="4dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="8dp"
-            android:onClick="onDeleteClick"
             android:src="@android:drawable/ic_delete" />
 
     </FrameLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="3dp"
+        android:visibility="invisible"
         android:background="#cdcdcd" />
 
 

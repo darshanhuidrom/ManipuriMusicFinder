@@ -3,62 +3,68 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#955051a4"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/tvCaption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sort by:"
-        android:padding="15dp"
         android:gravity="center"
+        android:padding="15dp"
+        android:text="Sort by:"
+        android:visibility="gone"
         android:textColor="#ffffff" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
 
     <TextView
         android:id="@+id/field_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:onClick="onSortClick"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="#ffffff"
-        android:onClick="onSortClick"/>
+        android:text="Name"
+        android:textColor="#ffffff" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
+
     <TextView
         android:id="@+id/field_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Release"
+        android:onClick="onSortClick"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="#ffffff"
-        android:onClick="onSortClick"/>
+        android:text="Release"
+        android:textColor="#ffffff" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
+
     <TextView
         android:id="@+id/field_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ratings"
+        android:onClick="onSortClick"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="#ffffff"
-        android:onClick="onSortClick"
-        />
+        android:text="Ratings"
+        android:textColor="#ffffff" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffffff"/>
+        android:background="#ffffff" />
 </LinearLayout>

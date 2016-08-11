@@ -48,7 +48,9 @@ public class BioDataActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.biodata);
+
         mapWithXml();
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -100,7 +102,6 @@ public class BioDataActivity extends BaseActivity {
             @Override
             public void onFailure(Call<BioData> call, Throwable t) {
                 Toast.makeText(BioDataActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
                 ProgressBarConfig.dismissProgressBar();
             }
         });
@@ -118,7 +119,12 @@ public class BioDataActivity extends BaseActivity {
     }
 
     private void setData() {
-        tvName.setText(bioData.getData().getFullName() + "");
+        //tvName.setText("APPLE");
+        String fullName="NA";
+        if(bioData.getData().getFullName()!=null){
+            fullName = bioData.getData().getFullName();
+        }
+        tvName.setText( fullName + "");
         tvAge.setText(bioData.getData().getDYear() + "");
         tvGender.setText(bioData.getData().getGender() + "");
         tvOccupation.setText(bioData.getData().getType() + "");

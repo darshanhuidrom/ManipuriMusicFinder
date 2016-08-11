@@ -16,7 +16,11 @@
     <color name="black">#000000</color>
     <color name="light_black">#2e2d2d</color>
     <color name="b_gray">#969696</color>
+    <color name="movie_name_color">#12afdc</color>
+    <color name="dote_color">#80b023</color>
+    <color name="block_color">#1b1b1b</color>
 
     <color name="test1">#2e2d2d</color>
     <color name="test2">#2e2d2d</color>
+
 </resources>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/blk"
+    android:padding="8dp"
+    android:layout_marginBottom="18dp"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eigi Thamoi"
+                android:textColor="#3d81c6"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="4dp"
+                android:background="#a47219" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="#000">
+
+                <ImageView
+                    android:id="@+id/iv_moveIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/a3" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_singerH"
+                        style="@style/song_block_text_heading"
+                        android:text="Singer: " />
+
+                    <TextView
+                        android:id="@+id/tv_singerD"
+                        style="@style/song_block_text"
+                        android:text="Pusparani" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_composerH"
+                        style="@style/song_block_text_heading"
+                        android:text="Composer: " />
+
+                    <TextView
+                        android:id="@+id/tv_composerD"
+                        style="@style/song_block_text"
+                        android:text="Sorri Senjam " />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_directorH"
+                        style="@style/song_block_text_heading"
+                        android:text="Director: " />
+
+                    <TextView
+                        android:id="@+id/tv_directorD"
+                        style="@style/song_block_text"
+                        android:text="Ajit Ningthouja " />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/song_block_text"
+                        android:text="Rating: " />
+
+                    <TextView
+                        android:id="@+id/tv_rating"
+                        style="@style/song_block_text" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+
+                    android:layout_marginTop="6dp"
+                    android:background="#a47219" />
+
+                <LinearLayout
+                    android:id="@+id/tv_play"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ef203070">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="14dp"
+                        android:textColor="#cacaca"
+                        android:layout_weight="6"
+                        android:gravity="center"
+                        android:text="Play Video"
+                        android:textStyle="italic"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="4"
+                        android:padding="6dp"
+                        android:src="@drawable/y_play" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+</LinearLayout>

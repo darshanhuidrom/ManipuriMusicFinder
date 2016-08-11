@@ -3,7 +3,7 @@ package com.kangladevelopers.filmfinder.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.widget.CardView;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +16,7 @@ import android.widget.Toast;
 import com.kangladevelopers.filmfinder.Activity.Player;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
-import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
-import com.kangladevelopers.filmfinder.utils.Config;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -47,8 +45,12 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
     }
     @Override
     public RvMusicAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.song_block2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.song_block1, parent, false);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
+        //SETTING FONT-----------
+        Typeface splashFont1 = Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Light.ttf");
+        Typeface splashFont2 = Typeface.createFromAsset(context.getAssets(),"fonts/Roboto-Regular.ttf");
+        viewHolder.tv_name.setTypeface(splashFont2);
         return viewHolder;
     }
 
@@ -83,10 +85,10 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
         imageLoader.displayImage(Constants.YOUTUBE_IMAGE_URL+ StringUtility.extractYouTubeCode(music.getUrl())+"/0.jpg", holder.moveIcon, options);
 
         if(music.getType().equals("movie")){
-            holder.tv_name.setTextColor(context.getResources().getColor(R.color.dirty_yellow));
+            holder.tv_name.setTextColor(context.getResources().getColor(R.color.movie_name_color));
         }
         else{
-            holder.tv_name.setTextColor(context.getResources().getColor(R.color.black));
+            holder.tv_name.setTextColor(context.getResources().getColor(R.color.dirty_yellow));
         }
     }
 
@@ -101,7 +103,7 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
         private TextView tvSinger;
         private TextView tvComposer;
         private LinearLayout tvPlay;
-        private CardView cv;
+        private LinearLayout cv;
         private ImageView moveIcon;
         private TextView tvDirector;
         private TextView tv_name;
@@ -109,7 +111,7 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
 
         public CustomViewHolder(View view) {
             super(view);
-            cv = (CardView) view.findViewById(R.id.cardView);
+
             moveIcon = (ImageView) view.findViewById(R.id.iv_moveIcon);
             tvSinger = (TextView) view.findViewById(R.id.tv_singerD);
             tvDirector = (TextView) view.findViewById(R.id.tv_directorD);
@@ -118,7 +120,7 @@ public class RvMusicAdapter extends RecyclerView.Adapter<RvMusicAdapter.CustomVi
             tv_name= (TextView) view.findViewById(R.id.tv_name);
             tv_rating= (TextView) view.findViewById(R.id.tv_rating);
 
-            cv = (CardView) view;
+            cv = (LinearLayout) view;
             cv.setOnClickListener(this);
         }
 

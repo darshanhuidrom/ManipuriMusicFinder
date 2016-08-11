@@ -1,28 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-        android:text="01/06/2012"
-        android:onClick="onStartClick"
-        android:padding="5dp"
-        android:background="@drawable/rounded"
-        android:textColor="@color/black"
-        android:id="@+id/bt_start_date" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="01/06/2016"
-        android:id="@+id/bt_end_date"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/rounded"
-        android:textColor="@color/black"
-        android:padding="5dp"
-        android:onClick="onEndClick"/>
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:onClick="onStartClick"
+                android:padding="5dp"
+                android:text="FROM: "
+                android:textStyle="bold"
+                android:textColor="@color/blue" />
+
+
+            <TextView
+                android:id="@+id/bt_start_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded"
+                android:onClick="onStartClick"
+                android:padding="5dp"
+                android:text="01/06/2012"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:onClick="onStartClick"
+                android:padding="5dp"
+                android:text="TO: "
+                android:textStyle="bold"
+                android:textColor="@color/dirty_yellow" />
+
+            <TextView
+                android:id="@+id/bt_end_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded"
+                android:onClick="onEndClick"
+                android:padding="5dp"
+                android:text="01/06/2016"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
