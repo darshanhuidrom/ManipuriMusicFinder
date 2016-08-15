@@ -16,7 +16,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="6dp"
             android:layout_weight="7"
-            android:text="35 Results"
+            android:text="0 Result"
             android:textColor="#fff" />
 
         <View

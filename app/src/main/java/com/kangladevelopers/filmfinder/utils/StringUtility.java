@@ -1,12 +1,20 @@
 package com.kangladevelopers.filmfinder.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 
 import com.kangladevelopers.filmfinder.Activity.BaseActivity;
 import com.kangladevelopers.filmfinder.MyApplication;
+import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.DateFormatString;
+import com.kangladevelopers.filmfinder.storage.LocalStore;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +31,10 @@ import java.util.List;
  * Created by HUIDROM on 3/8/2016.
  */
 public class StringUtility {
+
+    private static  boolean isFromInternel =true;
+    private static String NAME="name";
+    private static String GENDER="gender";
 
     public  static String readAsStringFromAsset(String fileName){
         StringBuilder buf=new StringBuilder();
@@ -47,23 +59,43 @@ public class StringUtility {
     }
 
     public static  String[] getSingerList(){
+        if(isFromInternel){
+
+            return getFromJSON(LocalStore.SINGER_LIST);
+
+        }
         String data = readAsStringFromAsset("singers.txt");
         String[] array =data.split("\n");
         return array;
     }
 
     public static  String[] getDirectorList(){
+        if(isFromInternel){
+
+            return getFromJSON(LocalStore.DIRECTOR_LIST);
+
+        }
         String data = readAsStringFromAsset("directors.txt");
         String[] array =data.split("\n");
         return array;
     }
     public static  String[] getActorList(){
+        if(isFromInternel){
+
+            return getFromJSON(LocalStore.ACTOR_LIST);
+
+        }
         String data = readAsStringFromAsset("actors.txt");
         String[] array =data.split("\n");
         return array;
     }
 
     public static  String[] getComposer(){
+        if(isFromInternel){
+
+            return getFromJSON(LocalStore.COMPOSER_LIST);
+
+        }
         String data = readAsStringFromAsset("composer.txt");
         String[] array =data.split("\n");
         return array;
@@ -208,6 +240,36 @@ public class StringUtility {
         version = pInfo.versionCode;
         return  version;
     }
+
+
+    public static String[] getFromJSON(String fileNameWithExtension){
+        String data = LocalStore.readToFile(fileNameWithExtension);
+        String[] strings =null;
+        JSONArray jsonArray;
+        try {
+            jsonArray = new JSONArray(data);
+            strings = new String[jsonArray.length()];
+            for (int i=0;i<jsonArray.length();i++){
+                strings[i]=jsonArray.getJSONObject(i).getString(NAME)+":"+jsonArray.getJSONObject(i).getString(GENDER);
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return strings;
+    }
+
+
+    public static void openPlayStore(Activity activity){
+        final String appPackageName = activity.getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.YOUTUBE_PACKAGE_NAME)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAYSTORE_MARKET_LINK + Constants.YOUTUBE_PACKAGE_NAME)));
+        }
+    }
+
 
 
 }

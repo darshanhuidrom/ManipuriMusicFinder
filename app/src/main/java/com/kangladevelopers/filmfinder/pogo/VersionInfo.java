@@ -11,7 +11,7 @@ public class VersionInfo {
     private String appName;
     @SerializedName("currentAppVersionCode")
     @Expose
-    private String currentAppVersionCode;
+    private Integer currentAppVersionCode;
     @SerializedName("currentAppVersionName")
     @Expose
     private String currentAppVersionName;
@@ -21,6 +21,12 @@ public class VersionInfo {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("dataInfo")
+    @Expose
+    private DataInfo dataInfo;
+    @SerializedName("ads")
+    @Expose
+    private Ads ads;
 
     /**
      * 
@@ -45,7 +51,7 @@ public class VersionInfo {
      * @return
      *     The currentAppVersionCode
      */
-    public String getCurrentAppVersionCode() {
+    public Integer getCurrentAppVersionCode() {
         return currentAppVersionCode;
     }
 
@@ -54,7 +60,7 @@ public class VersionInfo {
      * @param currentAppVersionCode
      *     The currentAppVersionCode
      */
-    public void setCurrentAppVersionCode(String currentAppVersionCode) {
+    public void setCurrentAppVersionCode(Integer currentAppVersionCode) {
         this.currentAppVersionCode = currentAppVersionCode;
     }
 
@@ -110,6 +116,42 @@ public class VersionInfo {
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    /**
+     * 
+     * @return
+     *     The dataInfo
+     */
+    public DataInfo getDataInfo() {
+        return dataInfo;
+    }
+
+    /**
+     * 
+     * @param dataInfo
+     *     The dataInfo
+     */
+    public void setDataInfo(DataInfo dataInfo) {
+        this.dataInfo = dataInfo;
+    }
+
+    /**
+     * 
+     * @return
+     *     The ads
+     */
+    public Ads getAds() {
+        return ads;
+    }
+
+    /**
+     * 
+     * @param ads
+     *     The ads
+     */
+    public void setAds(Ads ads) {
+        this.ads = ads;
     }
 
 }

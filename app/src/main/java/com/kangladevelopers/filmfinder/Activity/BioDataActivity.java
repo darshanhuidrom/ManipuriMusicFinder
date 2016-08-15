@@ -23,6 +23,7 @@ import com.kangladevelopers.filmfinder.pogo.DirctingSongList;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SingingSongList;
 import com.kangladevelopers.filmfinder.pogo.WritigSongList;
+import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -56,12 +57,18 @@ public class BioDataActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = getIntent().getStringExtra("name");
 
-        Call<BioData> call = MyApplication.getResAdapter().getBioData(name);
+        Call<BioData> call = MyApplication.getResAdapter().getBioData(StringUtility.removeSpaceFromFirst(name));
         ProgressBarConfig.showProgressBar(this, null);
         call.enqueue(new Callback<BioData>() {
             @Override
             public void onResponse(Call<BioData> call, Response<BioData> response) {
                 bioData = response.body();
+                if (bioData.getStatus().equalsIgnoreCase("Error")) {
+                    int pos = bioData.getMessage().indexOf(":");
+                    Toast.makeText(getApplicationContext(), bioData.getMessage().substring(pos + 1), Toast.LENGTH_SHORT).show();
+                    ProgressBarConfig.dismissProgressBar();
+                    return;
+                }
                 setData();
                 if (bioData.getActingSongList() == null || bioData.getActingSongList().isEmpty()) {
                     findViewById(R.id.vg_ll_acting_parent).setVisibility(View.GONE);
@@ -122,7 +129,13 @@ public class BioDataActivity extends BaseActivity {
         //tvName.setText("APPLE");
         String fullName="NA";
         if(bioData.getData().getFullName()!=null){
-            fullName = bioData.getData().getFullName();
+            if(bioData.getData().getFullName().trim().isEmpty()){
+                fullName = bioData.getData().getName();
+            }
+            else {
+                fullName = bioData.getData().getFullName();
+            }
+
         }
         tvName.setText( fullName + "");
         tvAge.setText(bioData.getData().getDYear() + "");

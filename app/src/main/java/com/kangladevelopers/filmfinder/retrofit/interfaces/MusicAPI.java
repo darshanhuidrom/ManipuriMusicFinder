@@ -5,6 +5,8 @@ import com.kangladevelopers.filmfinder.pogo.BioData;
 import com.kangladevelopers.filmfinder.pogo.CorrectionModel;
 import com.kangladevelopers.filmfinder.pogo.Movie;
 import com.kangladevelopers.filmfinder.pogo.Music;
+import com.kangladevelopers.filmfinder.pogo.Person;
+import com.kangladevelopers.filmfinder.pogo.Person1;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
 import com.kangladevelopers.filmfinder.pogo.VersionInfo;
 
@@ -64,5 +66,16 @@ public interface MusicAPI {
     @GET("doc/app")
     Call<VersionInfo> getVersionInfo();
 
+    @GET("dataInfo/{name}")
+    Call<String> getList(@Path("name") String name);
+
+
+    @GET("get/{name}")
+    Call<List<Person>> getTestFromJsonGenerator(@Path("name") String name);
+
+    @GET("get/{name}")
+    Call<String> getTestFromJsonGenerator1(@Path("name") String name);
+
+//http://beta.json-generator.com/api/json/get/VJXwImvFZ
 
 }

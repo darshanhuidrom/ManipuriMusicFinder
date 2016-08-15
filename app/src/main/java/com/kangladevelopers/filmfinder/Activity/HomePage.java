@@ -1,5 +1,6 @@
 package com.kangladevelopers.filmfinder.Activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +38,7 @@ import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.MyApplication;
+import com.kangladevelopers.filmfinder.Network.FileLoaderTask;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -103,6 +105,7 @@ public class HomePage extends BaseDrawerActivity {
     private LinearLayout llDirParent;
     private PopupWindow popup;
     private List<Music> musics;
+    private TextView tvResultNoDisplay;
 
     private ShareActionProvider mShareActionProvider;
 
@@ -313,6 +316,7 @@ public class HomePage extends BaseDrawerActivity {
         ivProfileImage = (ImageView) findViewById(R.id.iv_profile_image);
         llComParent = (LinearLayout) findViewById(R.id.ll_com_parent);
         llDirParent = (LinearLayout) findViewById(R.id.ll_dir_parent);
+        tvResultNoDisplay = (TextView) findViewById(R.id.tv_resultNoDisplay);
 
     }
 
@@ -687,6 +691,12 @@ public class HomePage extends BaseDrawerActivity {
             public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
                 ProgressBarConfig.dismissProgressBar();
                 musics = response.body();
+                if(musics!=null ||musics.isEmpty()){
+                    tvResultNoDisplay.setText(musics.size()+" Results");
+                }
+                else {
+                    tvResultNoDisplay.setText(" 0 Result");
+                }
                 if (musics == null || musics.isEmpty()) {
                     unHideNoDataFound();
                     return;
@@ -719,6 +729,7 @@ public class HomePage extends BaseDrawerActivity {
                 //     Log.d(">>>>>>", aa);
                 unHideNoDataFound();
                 ProgressBarConfig.dismissProgressBar();
+                tvResultNoDisplay.setText(" 0 Result");
             }
         });
         mDrawerLayout.closeDrawers();
@@ -849,7 +860,7 @@ public class HomePage extends BaseDrawerActivity {
                 mShareActionProvider.setShareIntent(doShare());
                 return true;
             case R.id.help:
-               openPlayStore();
+               StringUtility.openPlayStore(HomePage.this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -863,14 +874,7 @@ public class HomePage extends BaseDrawerActivity {
         return intent;
     }
 
-    public void openPlayStore(){
-        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" +Constants.YOUTUBE_PACKAGE_NAME)));
-        } catch (android.content.ActivityNotFoundException anfe) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAYSTORE_MARKET_LINK+Constants.YOUTUBE_PACKAGE_NAME)));
-        }
-    }
+  
 
     public boolean isSignedIn() {
         return (boolean) AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.IS_SIGNED_IN, AppPreference.MODE_BOOLEAN);
@@ -999,10 +1003,49 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
                 VersionInfo res = response.body();
-                int verCode =Integer.parseInt(res.getCurrentAppVersionCode());
-                int sysVerCode= StringUtility.getVersionCode();
-                if(verCode>sysVerCode){
-                    new DialogBox(HomePage.this){
+                int verCode = res.getCurrentAppVersionCode();
+                int sysVerCode = StringUtility.getVersionCode();
+
+                boolean actorChange = res.getDataInfo().getActorFileChange();
+                boolean singerChange = res.getDataInfo().getSingerFileChange();
+                boolean composerChange = res.getDataInfo().getComposerFileChange();
+                boolean directorChange = res.getDataInfo().getDirectorFileChange();
+
+                if(actorChange){
+                    new FileLoaderTask(HomePage.this, Constants.ACTOR__LIST_URL, LocalStore.ACTOR_LIST) {
+                        @Override
+                        public void postAction(String a) {
+
+                        }
+                    }.execute();
+                }
+                if (singerChange){
+                    new FileLoaderTask(HomePage.this, Constants.SINGER_LIST_URL, LocalStore.SINGER_LIST) {
+                        @Override
+                        public void postAction(String a) {
+
+                        }
+                    }.execute();
+                }
+                if(composerChange){
+                    new FileLoaderTask(HomePage.this, Constants.COMPOSER_LIST_URL, LocalStore.COMPOSER_LIST) {
+                        @Override
+                        public void postAction(String a) {
+
+                        }
+                    }.execute();
+                }
+                if(directorChange){
+                    new FileLoaderTask(HomePage.this, Constants.DIRECTOR_LIST_URL, LocalStore.DIRECTOR_LIST) {
+                        @Override
+                        public void postAction(String a) {
+
+                        }
+                    }.execute();
+                }
+
+                if (verCode > sysVerCode) {
+                    new DialogBox(HomePage.this) {
 
                         @Override
                         public void onPositive(DialogInterface dialog) {
@@ -1013,7 +1056,7 @@ public class HomePage extends BaseDrawerActivity {
                         public void onNegative(DialogInterface dialog) {
 
                         }
-                    }.setValues("Update",res.getMessage()+"\nLatest available version is "+res.getCurrentAppVersionName());
+                    }.setValues("Update", res.getMessage() + "\nLatest available version is " + res.getCurrentAppVersionName());
                 }
 
             }
@@ -1021,7 +1064,7 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onFailure(Call<VersionInfo> call, Throwable t) {
 
-                String t2=t.getMessage();
+                String t2 = t.getMessage();
 
             }
         });
@@ -1118,4 +1161,21 @@ public class HomePage extends BaseDrawerActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+        new DialogBox(HomePage.this) {
+            @Override
+            public void onPositive(DialogInterface dialog) {
+                dialog.dismiss();
+                finish();
+            }
+
+            @Override
+            public void onNegative(DialogInterface dialog) {
+
+                dialog.dismiss();
+            }
+        }.setValues("OK","CANCEL","Do you want exit app?");
+    }
 }
