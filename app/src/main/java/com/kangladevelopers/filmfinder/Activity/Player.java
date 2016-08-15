@@ -8,7 +8,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
-
+import com.kangladevelopers.filmfinder.utils.Utility;
 
 
 public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
@@ -17,24 +17,24 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
     private YouTubePlayerView youtubeView;
     private String youtubeCode;
     private String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_player);
-        youtubeView= (YouTubePlayerView) findViewById(R.id.youtube_view);
-        url =getIntent().getStringExtra("url");
-        youtubeCode= StringUtility.extractYouTubeCode(url);
-       youtubeView.initialize(youtubeCode, Player.this);
-
+        youtubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        url = getIntent().getStringExtra("url");
+        youtubeCode = StringUtility.extractYouTubeCode(url);
+        youtubeView.initialize(youtubeCode, Player.this);
 
 
     }
 
     private String[] getArray(String s) {
-        String jdkl ="add,  ad, saa,scdk";
+        String jdkl = "add,  ad, saa,scdk";
         String[] array;
         int pos = jdkl.indexOf(",");
-        while (jdkl.isEmpty()){
+        while (jdkl.isEmpty()) {
         }
         return null;
     }
@@ -56,7 +56,6 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-
-        StringUtility.openPlayStore(Player.this);
+        Utility.openPlayStore(Player.this);
     }
 }

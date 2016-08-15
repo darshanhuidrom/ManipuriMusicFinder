@@ -76,6 +76,9 @@ public interface MusicAPI {
     @GET("get/{name}")
     Call<String> getTestFromJsonGenerator1(@Path("name") String name);
 
+    @GET("first_call")
+    Call<List<Music>> getFirstCall(@Query("current_time")String time);
+
 //http://beta.json-generator.com/api/json/get/VJXwImvFZ
 
 }

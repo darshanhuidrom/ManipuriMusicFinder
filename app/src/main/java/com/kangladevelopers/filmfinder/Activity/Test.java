@@ -30,6 +30,7 @@ import com.kangladevelopers.filmfinder.pogo.Actor;
 import com.kangladevelopers.filmfinder.pogo.Director;
 import com.kangladevelopers.filmfinder.retrofit.adapter.ActorRestAdapter;
 import com.kangladevelopers.filmfinder.retrofit.adapter.DirectorRestAdapter;
+import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -73,8 +74,8 @@ public class Test extends BaseActivity implements ListView.OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_move_finder);
         mapWithXml();
-        String[] actors = StringUtility.getActorList();
-        String[] directors = StringUtility.getDirectorList();
+        String[] actors = FileFetcher.getActorList();
+        String[] directors = FileFetcher.getDirectorList();
         stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, actors);
         ArrayAdapter<String> dirArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, directors);
         actvActor.setAdapter(stringArrayAdapter);
@@ -364,7 +365,7 @@ public class Test extends BaseActivity implements ListView.OnItemClickListener {
                 });
             }
         });
-        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, StringUtility.getActorList());
+        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, FileFetcher.getActorList());
         completeTextView.setAdapter(Adapter);
         llCastCondition.addView(view1);
         actorViewList.add(view1);
@@ -414,7 +415,7 @@ public class Test extends BaseActivity implements ListView.OnItemClickListener {
 
             }
         });
-        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, StringUtility.getDirectorList());
+        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, FileFetcher.getDirectorList());
         completeTextView.setAdapter(Adapter);
         llDirectorCondition.addView(view1);
         directorViewList.add(view1);

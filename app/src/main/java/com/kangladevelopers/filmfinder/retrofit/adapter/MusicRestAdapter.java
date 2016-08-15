@@ -16,6 +16,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public class MusicRestAdapter {
     protected final String TAG = getClass().getSimpleName();
@@ -62,6 +63,13 @@ public class MusicRestAdapter {
     public Call<String> getList(String name){
         return musicApi.getList(name);
     }
+
+    public Call<List<Music>> getFirstCall(String time){
+
+        return musicApi.getFirstCall(time);
+    }
+
+
 
 
 
