@@ -15,6 +15,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Path;
 
 public class MusicRestAdapter {
     protected final String TAG = getClass().getSimpleName();
@@ -57,6 +58,14 @@ public class MusicRestAdapter {
     public Call<VersionInfo> getVersionInfo(){
         return musicApi.getVersionInfo();
     }
+
+    public Call<String> getList(String name){
+        return musicApi.getList(name);
+    }
+
+
+
+
 
 
 

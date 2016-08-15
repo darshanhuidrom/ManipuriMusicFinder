@@ -47,4 +47,7 @@ public class AppPreference {
         return null;
     }
 
+    public static boolean isInstalledFirst(Context context) {
+        return context.getSharedPreferences(APP_PREFERENCE, Context.MODE_PRIVATE).getBoolean(Constants.IS_INSTALLED_FIRST, true);
+    }
 }
