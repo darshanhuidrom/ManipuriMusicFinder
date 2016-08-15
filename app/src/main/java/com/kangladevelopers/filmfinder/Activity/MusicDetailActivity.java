@@ -23,6 +23,7 @@ import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
+import com.kangladevelopers.filmfinder.utils.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -187,7 +188,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         Log.d("MusicDetailActivity >>>>>>","onInitializationFailure");
-        StringUtility.openPlayStore(MusicDetailActivity.this);
+        Utility.openPlayStore(MusicDetailActivity.this);
 
 
     }

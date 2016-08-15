@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.kangladevelopers.filmfinder.Adapter.RvListAdapter;
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 
 import java.util.ArrayList;
@@ -53,16 +54,16 @@ public class ListActivity extends BaseActivity  implements AdapterView.OnItemCli
         String[] dataList=null;
         switch (name) {
             case "Singer":
-                dataList = StringUtility.getSingerList();
+                dataList = FileFetcher.getSingerList();
                 break;
             case "Composer":
-                dataList=StringUtility.getComposer();
+                dataList=FileFetcher.getComposer();
                 break;
             case "Director":
-                dataList=StringUtility.getDirectorList();
+                dataList=FileFetcher.getDirectorList();
                 break;
             case "Actor":
-                dataList=StringUtility.getActorList();
+                dataList=FileFetcher.getActorList();
                 break;
             case "Lyric":
                 break;

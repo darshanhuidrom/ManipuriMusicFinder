@@ -26,6 +26,7 @@ import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
+import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -85,7 +86,7 @@ public class EditMusicDetails extends BaseActivity {
     private void initializeData() {
 
 
-        actorListFromDb = StringUtility.getActorList();
+        actorListFromDb = FileFetcher.getActorList();
         String[] displayActor = new String[actorListFromDb.length];
         for (int i = 0; i < actorListFromDb.length; i++) {
             displayActor[i] = StringUtility.getOnlyName(actorListFromDb[i]);
@@ -106,7 +107,7 @@ public class EditMusicDetails extends BaseActivity {
         });
 
 /// related to singers
-        singerListFromDb = StringUtility.getSingerList();
+        singerListFromDb = FileFetcher.getSingerList();
         String[] displaySinger = new String[singerListFromDb.length];
         for (int i = 0; i < singerListFromDb.length; i++) {
             displaySinger[i] = StringUtility.getOnlyName(singerListFromDb[i]);

@@ -43,7 +43,6 @@ public abstract class FileLoaderTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        ProgressBarConfig.showProgressBar(activity, null);
     }
 
     @Override
@@ -67,7 +66,6 @@ public abstract class FileLoaderTask extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         postAction(s);
-        ProgressBarConfig.dismissProgressBar();
     }
 
     abstract public void postAction(String a);

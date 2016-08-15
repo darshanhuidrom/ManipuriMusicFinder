@@ -51,7 +51,9 @@ import com.kangladevelopers.filmfinder.developers.ui.CorrectionActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.VersionInfo;
 import com.kangladevelopers.filmfinder.storage.LocalStore;
+import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
+import com.kangladevelopers.filmfinder.utils.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -116,16 +118,6 @@ public class HomePage extends BaseDrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home_page);
         setWidget();
-        if (isSignedIn()) {
-            tvUserName.setText(AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.USER_NAME));
-        } else {
-            tvUserName.setText("Sign In");
-        }
-        try {
-            LocalStore.loadImageFromStorage(ivProfileImage);
-        } catch (Exception e) {
-
-        }
         initializeData();
         setListeners();
         setDrawer();
@@ -136,6 +128,17 @@ public class HomePage extends BaseDrawerActivity {
 
         checkForUpdates();
         setFont();
+        musics = (List<Music>) getIntent().getSerializableExtra("musics");
+        if(musics!=null&&!musics.isEmpty()){
+            if(musicAdapter==null){
+                hideNoDataFound();
+                musicAdapter= new RvMusicAdapter(this,musics);
+                rvMusic.setLayoutManager(new LinearLayoutManager(this));
+                rvMusic.setAdapter(musicAdapter);
+                tvResultNoDisplay.setText(musics.size()+" Results");
+
+            }
+        }
     }
 
     private void setCurrentDate() {
@@ -145,6 +148,20 @@ public class HomePage extends BaseDrawerActivity {
         mYY = calendar.get(Calendar.YEAR);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isSignedIn()) {
+            tvUserName.setText(AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.USER_NAME));
+        } else {
+            tvUserName.setText("Sign In");
+        }
+        try {
+            LocalStore.loadImageFromStorage(ivProfileImage);
+        } catch (Exception e) {
+
+        }
+    }
 
     private void setFont(){
 
@@ -231,7 +248,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     private void initializeData() {
-        singers = StringUtility.getSingerList();
+        singers = FileFetcher.getSingerList();
         displayData = new String[singers.length];
         for (int i = 0; i < singers.length; i++) {
             displayData[i] = StringUtility.getOnlyName(singers[i]);
@@ -239,7 +256,7 @@ public class HomePage extends BaseDrawerActivity {
         }
 
         ////////////////////////////////////////////////////////////////////////////
-        composer = StringUtility.getComposer();
+        composer = FileFetcher.getComposer();
         displayComposer = new String[composer.length];
         for (int i = 0; i < composer.length; i++) {
             displayComposer[i] = StringUtility.getOnlyName(composer[i]);
@@ -247,7 +264,7 @@ public class HomePage extends BaseDrawerActivity {
         }
 
         ///////////////////////////////////////////////////////////////////////////////
-        directors = StringUtility.getDirectorList();
+        directors = FileFetcher.getDirectorList();
         displayDirector = new String[directors.length];
         for (int i = 0; i < directors.length; i++) {
             displayDirector[i] = StringUtility.getOnlyName(directors[i]);
@@ -255,7 +272,7 @@ public class HomePage extends BaseDrawerActivity {
         }
 
         ////////////////////////////////////////////////////////////////////
-        actor = StringUtility.getActorList();
+        actor = FileFetcher.getActorList();
         displayActor = new String[actor.length];
         for (int i = 0; i < actor.length; i++) {
             displayActor[i] = StringUtility.getOnlyName(actor[i]);
@@ -820,7 +837,6 @@ public class HomePage extends BaseDrawerActivity {
 
 
         } else if (requestCode == SIGN_IN_REQUEST && resultCode == RESULT_OK) {
-            tvUserName.setText(AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.USER_NAME));
         }
     }
 
@@ -860,7 +876,7 @@ public class HomePage extends BaseDrawerActivity {
                 mShareActionProvider.setShareIntent(doShare());
                 return true;
             case R.id.help:
-               StringUtility.openPlayStore(HomePage.this);
+               startActivity(new Intent(this,HelpActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -1004,14 +1020,14 @@ public class HomePage extends BaseDrawerActivity {
             public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
                 VersionInfo res = response.body();
                 int verCode = res.getCurrentAppVersionCode();
-                int sysVerCode = StringUtility.getVersionCode();
+                int sysVerCode = Utility.getVersionCode();
 
                 boolean actorChange = res.getDataInfo().getActorFileChange();
                 boolean singerChange = res.getDataInfo().getSingerFileChange();
                 boolean composerChange = res.getDataInfo().getComposerFileChange();
                 boolean directorChange = res.getDataInfo().getDirectorFileChange();
 
-                if(actorChange){
+                if (actorChange) {
                     new FileLoaderTask(HomePage.this, Constants.ACTOR__LIST_URL, LocalStore.ACTOR_LIST) {
                         @Override
                         public void postAction(String a) {
@@ -1019,7 +1035,7 @@ public class HomePage extends BaseDrawerActivity {
                         }
                     }.execute();
                 }
-                if (singerChange){
+                if (singerChange) {
                     new FileLoaderTask(HomePage.this, Constants.SINGER_LIST_URL, LocalStore.SINGER_LIST) {
                         @Override
                         public void postAction(String a) {
@@ -1027,7 +1043,7 @@ public class HomePage extends BaseDrawerActivity {
                         }
                     }.execute();
                 }
-                if(composerChange){
+                if (composerChange) {
                     new FileLoaderTask(HomePage.this, Constants.COMPOSER_LIST_URL, LocalStore.COMPOSER_LIST) {
                         @Override
                         public void postAction(String a) {
@@ -1035,7 +1051,7 @@ public class HomePage extends BaseDrawerActivity {
                         }
                     }.execute();
                 }
-                if(directorChange){
+                if (directorChange) {
                     new FileLoaderTask(HomePage.this, Constants.DIRECTOR_LIST_URL, LocalStore.DIRECTOR_LIST) {
                         @Override
                         public void postAction(String a) {

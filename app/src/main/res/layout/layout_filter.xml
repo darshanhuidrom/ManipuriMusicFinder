@@ -39,7 +39,7 @@
                     android:text="Mario"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
-                    android:visibility="invisible" />
+                    android:visibility="gone"/>
                 <!--will make invisible the name for time being-->
             </LinearLayout>
 
@@ -418,8 +418,8 @@
                         android:layout_toRightOf="@+id/imageView2"
                         android:text="This is ads view"
                         android:textSize="18sp"
-                        android:visibility="gone"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </LinearLayout>
