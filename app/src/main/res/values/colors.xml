@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- unused 004d40-->
     <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#004d40</color>
+    <color name="colorPrimaryDark">#008080</color>
+    <color name="backgroundColor">#008080</color>
     <color name="colorAccent">#FF4081</color>
     <color name="b_green">#00b33c</color>
     <color name="b_green_dark">#001a00</color>

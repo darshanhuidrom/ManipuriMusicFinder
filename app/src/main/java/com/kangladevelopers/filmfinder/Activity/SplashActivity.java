@@ -117,18 +117,18 @@ public class SplashActivity extends BaseActivity {
                 fcRead + "R" +fcEnd+
                 fcPurple + "I" +fcEnd;*/
 
-        String hd1 = fcRead + "S" + fcEnd +
+        String hd1 = fcRead + "M" + fcEnd +
                 fcOrange + "A" + fcEnd +
-                fcYellow + "N" + fcEnd +
-                fcPurple + "G" + fcEnd +
-                fcOrange + "A" + fcEnd +
-                fcPurple + "I" + fcEnd;
+                fcGreen + "N" + fcEnd +
+                fcPurple + "I" + fcEnd +
+                fcOrange + "P" + fcEnd +
+                fcPurple + "U" + fcEnd+
+                fcYellow + "R" + fcEnd;
 
         String hd2 = fcRead + "M" + fcEnd +
-                fcGreen + "U" + fcEnd +
-                fcYellow + "S" + fcEnd +
-                fcPurple + "I" + fcEnd +
-                fcOrange + "C" + fcEnd;
+                fcOrange + "A" + fcEnd +
+                fcYellow + "M" + fcEnd +
+                fcPurple + "I" + fcEnd;
 
         h1.setText(Html.fromHtml(hd1));
         h2.setText(Html.fromHtml(hd2));

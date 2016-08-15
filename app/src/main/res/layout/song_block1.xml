@@ -140,7 +140,7 @@
                     android:id="@+id/tv_play"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ef203070">
+                    android:background="#003D80">
 
                     <TextView
                         android:layout_width="0dp"
