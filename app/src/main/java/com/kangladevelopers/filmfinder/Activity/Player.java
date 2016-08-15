@@ -57,5 +57,6 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
 
+        StringUtility.openPlayStore(Player.this);
     }
 }

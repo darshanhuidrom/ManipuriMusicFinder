@@ -8,6 +8,7 @@ import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -185,6 +186,9 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        Log.d("MusicDetailActivity >>>>>>","onInitializationFailure");
+        StringUtility.openPlayStore(MusicDetailActivity.this);
+
 
     }
 

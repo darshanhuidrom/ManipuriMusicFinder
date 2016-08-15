@@ -1,5 +1,6 @@
 package com.kangladevelopers.filmfinder.Activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -859,7 +860,7 @@ public class HomePage extends BaseDrawerActivity {
                 mShareActionProvider.setShareIntent(doShare());
                 return true;
             case R.id.help:
-               openPlayStore();
+               StringUtility.openPlayStore(HomePage.this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -873,14 +874,7 @@ public class HomePage extends BaseDrawerActivity {
         return intent;
     }
 
-    public void openPlayStore(){
-        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
-        try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" +Constants.YOUTUBE_PACKAGE_NAME)));
-        } catch (android.content.ActivityNotFoundException anfe) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAYSTORE_MARKET_LINK+Constants.YOUTUBE_PACKAGE_NAME)));
-        }
-    }
+  
 
     public boolean isSignedIn() {
         return (boolean) AppPreference.getDataFromAppPreference(getApplicationContext(), Constants.IS_SIGNED_IN, AppPreference.MODE_BOOLEAN);

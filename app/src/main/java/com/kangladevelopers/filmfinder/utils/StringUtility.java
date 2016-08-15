@@ -1,11 +1,15 @@
 package com.kangladevelopers.filmfinder.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 
 import com.kangladevelopers.filmfinder.Activity.BaseActivity;
 import com.kangladevelopers.filmfinder.MyApplication;
+import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.DateFormatString;
 import com.kangladevelopers.filmfinder.storage.LocalStore;
 
@@ -254,6 +258,16 @@ public class StringUtility {
             e.printStackTrace();
         }
         return strings;
+    }
+
+
+    public static void openPlayStore(Activity activity){
+        final String appPackageName = activity.getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.YOUTUBE_PACKAGE_NAME)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAYSTORE_MARKET_LINK + Constants.YOUTUBE_PACKAGE_NAME)));
+        }
     }
 
 
