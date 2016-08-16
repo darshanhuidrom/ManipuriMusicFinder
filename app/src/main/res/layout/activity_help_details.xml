@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.kangladevelopers.filmfinder.Activity.HelpDetailsActivity">
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_shadow_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_displayText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="About:
+Manipur Mami is the most comprehensive and appealing app for viewing Manipuri music videos and movie songs. Manipur Mami has the feature that let you explore and search videos of your favourite actors, actress, singer, song composer, director etc.
+
+*Please note that this app lets you stream videos from YouTube. So you need to install YouTube player in your phone.
+** Become a contributor: This is a beta version. Become a contributor by logging in from your Facebook account.  Help us improve the app by providing more detailed information of new videos. Your contribution would be acknowledged in the app
+Why use Manipur Mami?
+
+    Explore and view music videos based on your favourite actors, actress, singer, song composer, director
+    Get detail video info about casts, singer, director, production, composers, choreographer, uploader info
+    More than 70+ profiles to browse by
+    Over 500+ collection of Manipuri Videos
+    Stream music videos from YouTube
+    The only Manipuri music browsing app in the market" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -50,4 +50,13 @@
     <string name="facebook_app_id">1807362952817019</string>
 
 
+
+
+    <string name="faq">Help:
+Q1. How to search videos for a particular singer/actor/composer/director?
+A->  Step 1: Open the navigation drawer from the left pane
+Step 2: Choose the particular category (Singer/Composer/Director/Actor/Released Date) you want to search. You may select multiple categories.
+Step 3: After choosing a category, press the "?" button to see a list of characters to choose from. Also, you may type a name directly and use the auto complete feature.
+*For the singer category, you may use the exclusive mode on to search for songs sung alone by a particular singer.</string>
+
 </resources>
