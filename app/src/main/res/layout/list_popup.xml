@@ -28,9 +28,10 @@
         style="@style/sort_layout"
         android:visibility="visible">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/iv_sortName"
-            style="@style/sort_image" />
+            style="@style/sort_image"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/field_1"
@@ -49,7 +50,7 @@
         style="@style/sort_layout"
         android:visibility="visible">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/iv_sortRelease"
             style="@style/sort_image" />
 
@@ -70,7 +71,7 @@
         style="@style/sort_layout"
         android:visibility="visible">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/iv_sortRating"
             style="@style/sort_image" />
 
