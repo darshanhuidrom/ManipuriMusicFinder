@@ -152,6 +152,22 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
                 VersionInfo res = response.body();
+                if(res==null){
+                    Call<List<Music>> call2 = MyApplication.getResAdapter().getFirstCall(Utility.getCurrentDate());
+                    call2.enqueue(new Callback<List<Music>>() {
+                        @Override
+                        public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
+                            musicList = (ArrayList<Music>) response.body();
+                            startHomeActivity(0);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Music>> call, Throwable t) {
+                            startHomeActivity(0);
+                        }
+                    });
+                    return;
+                }
                 final int verCode = res.getCurrentAppVersionCode();
                 int sysVerCode = Utility.getVersionCode();
 

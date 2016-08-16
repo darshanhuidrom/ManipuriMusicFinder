@@ -7,16 +7,19 @@ public class Constants {
 
     // http://192.168.1.3/leichal/appInfo.json
 
-    public static final String PRODUCTION_URL="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com:8080/leichal_v1/webapi/";
+    public static final String PRODUCTION_URL="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com:8080/leichal/webapi/";
+ //   public static final String  PRODUCTION_URL_2="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com/leichal/webapi/";
+    public static final String  PRODUCTION_URL_BASE="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com/";
+
     public static final String DEV_SERVER_URL = "http://192.168.1.3:8080/";
     public static final String DEV_SERVER_URL2="http://192.168.1.3/";
-    public static final String PERSON_ICON_PIC_URL = DEV_SERVER_URL2 + "leichal/person_icon/";
-    public static final String BIO_DATA__ICON_PIC_URL = DEV_SERVER_URL2 + "leichal/bio_data_pic/";
+    public static final String PERSON_ICON_PIC_URL = PRODUCTION_URL_BASE + "leichal/person_icon/";
+    public static final String BIO_DATA__ICON_PIC_URL = PRODUCTION_URL_BASE + "leichal/bio_data_pic/";
     public static final String YOUTUBE_IMAGE_URL = "http://img.youtube.com/vi/";
-    public static final String BASE_URL_LOCAL= DEV_SERVER_URL + "move_finder/webapi/";
-    public static final String BASE_URL =BASE_URL_LOCAL ;
+    public static final String BASE_URL_LOCAL= PRODUCTION_URL + "move_finder/webapi/";
+    public static final String BASE_URL =PRODUCTION_URL ;
 
-    public static final String VERSION_URL=DEV_SERVER_URL2;
+    public static final String VERSION_URL=PRODUCTION_URL_BASE;
 
 
     public static final String IS_INSTALLED_FIRST="is_installed_first";
@@ -36,10 +39,10 @@ public class Constants {
     public static final String ACTOR__LIST_URL=BASE_URL+"dataInfo/"+"actorList";
 
     // Related to Help
-    public static final String ABOUT_URL=DEV_SERVER_URL2+"leichal/about.html";
-    public static final String FAQ_URL=DEV_SERVER_URL2+"leichal/faq.html";
-    public static final String TERMS_PRIVACY_URL=DEV_SERVER_URL2+"leichal/tnc.html";
-    public static final String CONTACT_US_URL=DEV_SERVER_URL2+"leichal/contact_us.html";
+    public static final String ABOUT_URL=PRODUCTION_URL_BASE+"leichal/ManipurMami/about.html";
+    public static final String FAQ_URL=PRODUCTION_URL_BASE+"leichal/ManipurMami/faq.html";
+    public static final String TERMS_PRIVACY_URL=PRODUCTION_URL_BASE+"leichal/ManipurMami/tnc.html";
+    public static final String CONTACT_US_URL=PRODUCTION_URL_BASE+"leichal/ManipurMami/contact_us.html";
 
 
 

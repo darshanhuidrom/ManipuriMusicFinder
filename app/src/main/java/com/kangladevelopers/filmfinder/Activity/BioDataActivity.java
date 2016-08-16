@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +65,8 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
     private YouTubePlayerView youtubeView;
     private RelativeLayout rlVideoView;
     private LinearLayout ll_dob;
+    private ScrollView scrollView3;
+    private TextView tvNoData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,8 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
                     Toast.makeText(getApplicationContext(), bioData.getMessage().substring(pos + 1), Toast.LENGTH_SHORT).show();
                     ProgressBarConfig.dismissProgressBar();
                     rlVideoView.setVisibility(View.GONE);
+                    scrollView3.setVisibility(View.GONE);
+                    tvNoData.setVisibility(View.VISIBLE);
                     return;
                 }
                 setData();
@@ -229,6 +234,8 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
         rlVideoView = (RelativeLayout) findViewById(R.id.rl_video_view);
         tvDob= (TextView) findViewById(R.id.tv_dob);
         ll_dob= (LinearLayout) findViewById(R.id.ll_dob);
+        scrollView3= (ScrollView) findViewById(R.id.scrollView3);
+        tvNoData= (TextView) findViewById(R.id.tv_no_data);
 
     }
 

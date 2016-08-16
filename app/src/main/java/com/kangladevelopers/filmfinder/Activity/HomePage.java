@@ -856,8 +856,8 @@ public class HomePage extends BaseDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
-        MenuItem item = menu.findItem(R.id.menu_item_share);
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+       /* MenuItem item = menu.findItem(R.id.menu_item_share);
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);*/
 
         return true;
     }
@@ -874,7 +874,7 @@ public class HomePage extends BaseDrawerActivity {
             case R.id.lists:
                 startActivity(new Intent(this, ListAllActivity.class));
                 return true;
-            case R.id.developer:
+          /*  case R.id.developer:
                 Intent intent = new Intent(this, ListAllActivity.class);
                 intent.putExtra("IS_FROM_DEVELOPER", true);
                 startActivity(intent);
@@ -886,7 +886,7 @@ public class HomePage extends BaseDrawerActivity {
                 return true;
             case R.id.menu_item_share:
                 mShareActionProvider.setShareIntent(doShare());
-                return true;
+                return true;*/
             case R.id.help:
                startActivity(new Intent(this,HelpActivity.class));
                 return true;
