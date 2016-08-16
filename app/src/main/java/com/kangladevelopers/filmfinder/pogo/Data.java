@@ -35,7 +35,19 @@ public class Data {
     private Integer rating;
     @SerializedName("varified")
     @Expose
+
     private Boolean varified;
+
+    @SerializedName("db_nick")
+    @Expose
+    private String dbNick;
+
+    public String getDbNick(){
+        return dbNick;
+    }
+    public void setDbNick(String dbNick){
+        this.dbNick=dbNick;
+    }
 
     /**
      * 

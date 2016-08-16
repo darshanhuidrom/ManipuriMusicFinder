@@ -5,7 +5,6 @@
     android:background="@color/block_color"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_shadow_layout" />
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -144,6 +143,44 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="NA" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.youtube.player.YouTubePlayerView
+                    android:id="@+id/youtube_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="30dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/iv_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="30dp"
+                    android:visibility="visible"
+                    android:scaleType="fitXY"/>
+
+                <FrameLayout
+                    android:id="@+id/fl_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="10dp"
+
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/bt_thumbnail"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/youtube_icon"
+                        android:onClick="onPlay"/>
+                </FrameLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/vg_ll_acting_parent"
