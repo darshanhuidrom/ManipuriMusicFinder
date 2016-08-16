@@ -129,7 +129,8 @@ public class SplashActivity extends BaseActivity {
                 fcPurple + "I" + fcEnd +
                 fcOrange + "P" + fcEnd +
                 fcPurple + "U" + fcEnd+
-                fcYellow + "R" + fcEnd;
+                fcYellow + "R" + fcEnd+
+                fcYellow + " " + fcEnd;
 
         String hd2 = fcRead + "M" + fcEnd +
                 fcOrange + "A" + fcEnd +

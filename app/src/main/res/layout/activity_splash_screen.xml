@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="SANGAI"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
             android:textColor="#ffffff"
             android:textSize="55sp" />
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="MUSIC"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:textColor="#ffffff"
             android:textSize="55sp" />
     </LinearLayout>

@@ -39,7 +39,7 @@
                     android:text="Mario"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
                 <!--will make invisible the name for time being-->
             </LinearLayout>
 
@@ -96,7 +96,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/tv_actors_count"
                         android:checked="false"
-                        android:text="Exclusive"
+                        android:text="Ex "
                         android:textColor="@color/white" />
                 </RelativeLayout>
 

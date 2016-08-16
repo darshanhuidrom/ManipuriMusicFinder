@@ -46,6 +46,7 @@ import com.kangladevelopers.filmfinder.Utility.DialogBox;
 import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.Utility.PopUpDialog;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
+import com.kangladevelopers.filmfinder.Utility.SortStatus;
 import com.kangladevelopers.filmfinder.Utility.SortUtil;
 import com.kangladevelopers.filmfinder.developers.ui.CorrectionActivity;
 import com.kangladevelopers.filmfinder.pogo.Music;
@@ -112,6 +113,8 @@ public class HomePage extends BaseDrawerActivity {
     private ShareActionProvider mShareActionProvider;
 
     CrossHandler crossHandler = new CrossHandler();
+
+    SortStatus sortStatus = new SortStatus(); // FOR SORTING ***
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -761,6 +764,7 @@ public class HomePage extends BaseDrawerActivity {
     }
 
     public void onSubmit(View view) {
+        sortStatus.reset();
         searchMovies();
     }
 
@@ -990,9 +994,9 @@ public class HomePage extends BaseDrawerActivity {
         popup.showAsDropDown(view);
     }
 
-    boolean sorted=false;
-    int selectedSortType=0;
-    boolean ascending=true;
+
+
+
 
     public void onSortClick(View blockView) {
         if(musics==null||musics.isEmpty()){
@@ -1011,112 +1015,27 @@ public class HomePage extends BaseDrawerActivity {
 
         switch (blockView.getId()) {
             case R.id.ll_byName:
-                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE));
-                musicAdapter.setNotifyChange(musics);
-                ivSortName.setVisibility(View.VISIBLE);
-                selectedSortType = SortUtil.CustomComparator.SORT_BY_TITLE;
+                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE,
+                        sortStatus.getSETsortType(SortStatus.SORT_BY_TITLE,ivSortName)));
                 break;
+
             case R.id.ll_byRelease:
-                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
-                musicAdapter.setNotifyChange(musics);
-                ivSortRelease.setVisibility(View.VISIBLE);
-                selectedSortType = SortUtil.CustomComparator.SORT_BY_DATE;
+                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE,
+                        sortStatus.getSETsortType(SortStatus.SORT_BY_DATE,ivSortRelease)));
                 break;
+
             case R.id.ll_byRating:
-                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_RATING));
-                musicAdapter.setNotifyChange(musics);
-                ivSortRating.setVisibility(View.VISIBLE);
-                selectedSortType = SortUtil.CustomComparator.SORT_BY_RATING;
+                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_RATING,
+                        sortStatus.getSETsortType(SortStatus.SORT_BY_RATING,ivSortRating)));
                 break;
             default:
                 Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
         }
 
-
-/*        if(sorted==false){
-
-            sorted=true;
-
-            switch (blockView.getId()) {
-                case R.id.ll_byName:
-                    Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE));
-                    musicAdapter.setNotifyChange(musics);
-                    ivSortName.setVisibility(View.VISIBLE);
-
-                    selectedSortType = SortUtil.CustomComparator.SORT_BY_TITLE;
-                    break;
-                case R.id.ll_byRelease:
-                    Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
-                    musicAdapter.setNotifyChange(musics);
-                    ivSortRelease.setVisibility(View.VISIBLE);
-
-                    selectedSortType = SortUtil.CustomComparator.SORT_BY_DATE;
-                    break;
-                case R.id.ll_byRating:
-                    Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_RATING));
-                    musicAdapter.setNotifyChange(musics);
-                    ivSortRating.setVisibility(View.VISIBLE);
-
-                    selectedSortType = SortUtil.CustomComparator.SORT_BY_RATING;
-                    break;
-                default:
-                    Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
-            }
-        }else{
-
-            // A SORTING IS ALREADY DONE
-                switch (blockView.getId()) {
-                    case R.id.ll_byName:
-                        if(selectedSortType==SortUtil.CustomComparator.SORT_BY_TITLE){
-                            Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE,false));
-                            musicAdapter.setNotifyChange(musics);
-                            ascending=false;
-                        }else{
-                            Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE));
-                            musicAdapter.setNotifyChange(musics);
-                        }
-
-
-                        break;
-                    case R.id.ll_byRelease:
-                        Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
-                        musicAdapter.setNotifyChange(musics);
-                        break;
-                    case R.id.ll_byRating:
-                        Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_RATING));
-                        musicAdapter.setNotifyChange(musics);
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
-                }
-        }*/
-
-
-
-
-
-
-
-        /*switch (name) {
-            case "Name":
-                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_TITLE));
-                musicAdapter.setNotifyChange(musics);
-
-                break;
-            case "Release":
-                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
-                musicAdapter.setNotifyChange(musics);
-                break;
-            case "Ratings":
-                Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_RATING));
-                musicAdapter.setNotifyChange(musics);
-                break;
-            default:
-                Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
-        }*/
-        //ProgressBarConfig.dismissProgressBar();
-
+        musicAdapter.setNotifyChange(musics);
     }
+
+
     public void checkForUpdates(){
         Call<VersionInfo> call =MyApplication.getResAdapter().getVersionInfo();
         call.enqueue(new Callback<VersionInfo>() {
