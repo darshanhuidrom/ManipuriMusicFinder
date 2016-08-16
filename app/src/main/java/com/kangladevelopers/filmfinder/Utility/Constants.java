@@ -18,6 +18,7 @@ public class Constants {
 
     public static final String VERSION_URL=DEV_SERVER_URL2;
 
+
     public static final String IS_INSTALLED_FIRST="is_installed_first";
     public static final String USER_NAME = "email_address";
     public static final String PASSWORD = "password";
@@ -33,6 +34,14 @@ public class Constants {
     public static final String COMPOSER_LIST_URL=BASE_URL+"dataInfo/"+"composerList";
     public static final String DIRECTOR_LIST_URL=BASE_URL+"dataInfo/"+"directorList";
     public static final String ACTOR__LIST_URL=BASE_URL+"dataInfo/"+"actorList";
+
+    // Related to Help
+    public static final String ABOUT_URL=DEV_SERVER_URL2+"leichal/about.html";
+    public static final String FAQ_URL=DEV_SERVER_URL2+"leichal/faq.html";
+    public static final String TERMS_PRIVACY_URL=DEV_SERVER_URL2+"leichal/tnc.html";
+    public static final String CONTACT_US_URL=DEV_SERVER_URL2+"leichal/contact_us.html";
+
+
 
 
 

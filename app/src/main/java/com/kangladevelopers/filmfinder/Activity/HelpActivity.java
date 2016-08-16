@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.kangladevelopers.filmfinder.Adapter.HelpAdapter;
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.Utility.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,6 @@ public class HelpActivity extends AppCompatActivity implements AdapterView.OnIte
         fields = new ArrayList<>();
         fields.add("About");
         fields.add("FAQ");
-        fields.add("Terms and Privacy");
         fields.add("Contact us");
         adapter = new HelpAdapter(getApplicationContext(),fields);
         lvHelp.setAdapter(adapter);
@@ -51,19 +51,22 @@ public class HelpActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String field= (String) parent.getItemAtPosition(position);
+        String url = null;
         switch (field){
             case "About":
+                url= Constants.ABOUT_URL;
                 break;
             case "FAQ":
-                break;
-            case "Terms and Privacy":
+                url=Constants.FAQ_URL;
                 break;
             case "Contact us":
+                url=Constants.CONTACT_US_URL;
                 break;
 
         }
-        Toast.makeText(getApplicationContext(),field,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(HelpActivity.this,HelpDetailsActivity.class);
+        intent.putExtra("url",url);
+        intent.putExtra("name",field);
         startActivity(intent);
     }
 
