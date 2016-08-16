@@ -99,7 +99,9 @@ public class EditMusicDetails extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url = Constants.PERSON_ICON_PIC_URL + actvCast.getText().toString().trim() + Constants.IMAGE_FORMAT;
                 Log.d(">>>>>>", url);
-                addCastView(actvCast.getText().toString());
+                String s =actvCast.getText().toString();
+                s=s.replaceAll(" ","");
+                addCastView(s);
                 actvCast.setText("");
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(actvCast.getWindowToken(), 0);
@@ -239,7 +241,8 @@ public class EditMusicDetails extends BaseActivity {
 
     private void addCastView(String data) {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
-        String url = Constants.PERSON_ICON_PIC_URL + data.trim() + Constants.IMAGE_FORMAT;
+       String  data1= data.replaceAll(" ","");
+        String url = Constants.PERSON_ICON_PIC_URL + data1.trim() + Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actorrrrr, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actorrrrr);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_actorrrr);
@@ -262,7 +265,8 @@ public class EditMusicDetails extends BaseActivity {
 
     private void addSingerView(String data) {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
-        String url = Constants.PERSON_ICON_PIC_URL + data.trim() + Constants.IMAGE_FORMAT;
+        String  data1= data.replaceAll(" ","");
+        String url = Constants.PERSON_ICON_PIC_URL + data1.trim() + Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actor, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actor);
         ImageView iv = (ImageView) view.findViewById(R.id.iv_actor);

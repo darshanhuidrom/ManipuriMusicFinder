@@ -39,7 +39,7 @@
                     android:text="Mario"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
                 <!--will make invisible the name for time being-->
             </LinearLayout>
 

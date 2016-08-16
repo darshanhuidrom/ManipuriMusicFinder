@@ -126,13 +126,21 @@ public class HomePage extends BaseDrawerActivity {
         btEndDate.setText("" + mDD + "/" + (mMM + 1) + "/" + mYY);
         getDelegate().getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 
-        checkForUpdates();
+    //    checkForUpdates();
         setFont();
         musics = (List<Music>) getIntent().getSerializableExtra("musics");
         if(musics!=null&&!musics.isEmpty()){
             if(musicAdapter==null){
                 hideNoDataFound();
                 musicAdapter= new RvMusicAdapter(this,musics);
+                musicAdapter.setRvAdapterClickLIstener(new RvMusicAdapter.RvAdapterClickListener() {
+                    @Override
+                    public void onItemClick(int i, View v) {
+                        Intent intent = new Intent(HomePage.this, MusicDetailActivity.class);
+                        intent.putExtra("music", musicAdapter.getData().get(i));
+                        startActivity(intent);
+                    }
+                });
                 rvMusic.setLayoutManager(new LinearLayoutManager(this));
                 rvMusic.setAdapter(musicAdapter);
                 tvResultNoDisplay.setText(musics.size()+" Results");
@@ -1022,12 +1030,12 @@ public class HomePage extends BaseDrawerActivity {
                 int verCode = res.getCurrentAppVersionCode();
                 int sysVerCode = Utility.getVersionCode();
 
-                boolean actorChange = res.getDataInfo().getActorFileChange();
+                /*boolean actorChange = res.getDataInfo().getActorFileChange();
                 boolean singerChange = res.getDataInfo().getSingerFileChange();
                 boolean composerChange = res.getDataInfo().getComposerFileChange();
-                boolean directorChange = res.getDataInfo().getDirectorFileChange();
+                boolean directorChange = res.getDataInfo().getDirectorFileChange();*/
 
-                if (actorChange) {
+              /*  if (actorChange) {
                     new FileLoaderTask(HomePage.this, Constants.ACTOR__LIST_URL, LocalStore.ACTOR_LIST) {
                         @Override
                         public void postAction(String a) {
@@ -1058,7 +1066,7 @@ public class HomePage extends BaseDrawerActivity {
 
                         }
                     }.execute();
-                }
+                }*/
 
                 if (verCode > sysVerCode) {
                     new DialogBox(HomePage.this) {

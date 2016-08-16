@@ -20,6 +20,7 @@ import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.DialogBox;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.VersionInfo;
+import com.kangladevelopers.filmfinder.retrofit.adapter.TestResAdapter;
 import com.kangladevelopers.filmfinder.storage.LocalStore;
 import com.kangladevelopers.filmfinder.utils.Utility;
 
@@ -82,21 +83,6 @@ public class SplashActivity extends BaseActivity {
             }.setValues("OK","This App works only on Online Mode"); ;
             return;
         }
-      /*  if(ConnectionDetector.isNetworkAvailable(getApplicationContext())){
-            new DialogBox(this) {
-                @Override
-                public void onPositive(DialogInterface dialog) {
-                    dialog.dismiss();
-                    finish();
-                }
-
-                @Override
-                public void onNegative(DialogInterface dialog) {
-
-                }
-            }.setValues("OK","This App works only on Online Mode"); ;
-            return;
-        }*/
         if (AppPreference.isInstalledFirst(getApplicationContext())) {
             FileLoaderTask fileLoaderTask = new FileLoaderTask(SplashActivity.this) {
                 @Override
@@ -122,39 +108,7 @@ public class SplashActivity extends BaseActivity {
         } else {
 
             checkForUpdates();
-            /*new Handler().postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    Intent i = new Intent(SplashActivity.this, HomePage.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
-                }
-            }, SPLASH_TIME_OUT);*/
         }
-
-        // activity = this;
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
-        }*/
-       /* new Handler().postDelayed(new Runnable() {
-
-            *//*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             *//*
-
-            @Override
-            public void run() {
-                Intent i = new Intent(SplashActivity.this,HomePage.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-            }
-        }, SPLASH_TIME_OUT);*/
-
     }
 
 
@@ -192,7 +146,7 @@ public class SplashActivity extends BaseActivity {
 
 
     public void checkForUpdates(){
-        Call<VersionInfo> call =MyApplication.getResAdapter().getVersionInfo();
+        Call<VersionInfo> call = new TestResAdapter().getVersionInfo();
         call.enqueue(new Callback<VersionInfo>() {
             @Override
             public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
@@ -200,43 +154,70 @@ public class SplashActivity extends BaseActivity {
                 final int verCode = res.getCurrentAppVersionCode();
                 int sysVerCode = Utility.getVersionCode();
 
-                boolean actorChange = res.getDataInfo().getActorFileChange();
-                boolean singerChange = res.getDataInfo().getSingerFileChange();
-                boolean composerChange = res.getDataInfo().getComposerFileChange();
-                boolean directorChange = res.getDataInfo().getDirectorFileChange();
+                // some changes come due to some reason
+                final int actorFileVersion = res.getDataInfo().getActorFileVersion();
+                final int singerFileVersion =  res.getDataInfo().getSingerFileVersion();
+                final int composerFileVersion =  res.getDataInfo().getComposerFileVersion();
+                final int directorFileVersion =  res.getDataInfo().getDirectorFileVersion();
 
-                if (actorChange) {
+                /// do some saving
+                int actFileVerFromLocal= (int) AppPreference.getDataFromAppPreference(MyApplication.getAppContext(),Constants.CURRENT_ACTOR_FILE_VERSION,AppPreference.MODE_INT );
+                int singFileVerFromLocal= (int) AppPreference.getDataFromAppPreference(MyApplication.getAppContext(),
+                        Constants.CURRENT_SINGER_FILE_VERSION,AppPreference.MODE_INT);
+                int compFileVerFromLocal= (int) AppPreference.getDataFromAppPreference(MyApplication.getAppContext(),
+                        Constants.CURRENT_COMPOSER_FILE_VERSION,AppPreference.MODE_INT);
+                int dirFileVerFromLocal= (int) AppPreference.getDataFromAppPreference(MyApplication.getAppContext(),
+                        Constants.CURRENT_DIRECTOR_FILE_VERSION,AppPreference.MODE_INT);
+                if(actFileVerFromLocal<actorFileVersion){
                     new FileLoaderTask(SplashActivity.this, Constants.ACTOR__LIST_URL, LocalStore.ACTOR_LIST) {
                         @Override
                         public void postAction(String a) {
 
+                            if(a.equals("success")){
+                                AppPreference.saveToAppPreference(getApplicationContext(),Constants.CURRENT_ACTOR_FILE_VERSION,actorFileVersion);
+                            }
                         }
                     }.execute();
-                }
-                if (singerChange) {
+
+                    }
+
+                if(singFileVerFromLocal<singerFileVersion){
                     new FileLoaderTask(SplashActivity.this, Constants.SINGER_LIST_URL, LocalStore.SINGER_LIST) {
                         @Override
                         public void postAction(String a) {
 
+                            if(a.equals("success")){
+                                AppPreference.saveToAppPreference(getApplicationContext(),Constants.CURRENT_SINGER_FILE_VERSION,singerFileVersion);
+                            }
                         }
                     }.execute();
-                }
-                if (composerChange) {
+                    }
+
+                if(compFileVerFromLocal<composerFileVersion){
                     new FileLoaderTask(SplashActivity.this, Constants.COMPOSER_LIST_URL, LocalStore.COMPOSER_LIST) {
                         @Override
                         public void postAction(String a) {
-
+                            if(a.equals("success")){
+                                AppPreference.saveToAppPreference(getApplicationContext(),Constants.CURRENT_COMPOSER_FILE_VERSION,composerFileVersion);
+                            }
                         }
                     }.execute();
-                }
-                if (directorChange) {
+                    }
+
+                if(dirFileVerFromLocal<directorFileVersion){
                     new FileLoaderTask(SplashActivity.this, Constants.DIRECTOR_LIST_URL, LocalStore.DIRECTOR_LIST) {
                         @Override
                         public void postAction(String a) {
 
+                            if(a.equals("success")){
+                                AppPreference.saveToAppPreference(getApplicationContext(),Constants.CURRENT_DIRECTOR_FILE_VERSION,directorFileVersion);
+                            }
                         }
                     }.execute();
-                }
+                   }
+
+
+
 
 
                 Call<List<Music>> call2 = MyApplication.getResAdapter().getFirstCall(Utility.getCurrentDate());

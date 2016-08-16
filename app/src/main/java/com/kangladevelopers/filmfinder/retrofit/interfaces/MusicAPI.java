@@ -63,7 +63,7 @@ public interface MusicAPI {
     @GET("dev/getIncompleteData/{id}")
     Call<List<Music>> getIncompleteData(@Path("id") String id);
 
-    @GET("doc/app")
+    @GET("leichal/appInfo.json")
     Call<VersionInfo> getVersionInfo();
 
     @GET("dataInfo/{name}")
