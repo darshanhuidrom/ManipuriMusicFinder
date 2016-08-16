@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -57,5 +58,7 @@ public class Player extends YouTubeBaseActivity implements YouTubePlayer.OnIniti
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         Utility.openPlayStore(Player.this);
+        youtubeView.setVisibility(View.GONE);
+
     }
 }

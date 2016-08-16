@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
     private LinearLayout llParentActing, llParentSinging, llParentDirecting, llParentComposing, llParentWriting;
     private String name;
     private BioData bioData;
-    private TextView tvName, tvAge, tvGender, tvOccupation, tvResidence, tvAbout;
+    private TextView tvName, tvAge, tvGender, tvOccupation, tvResidence, tvAbout,tvDob;
     private ImageView iv;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     private YouTubePlayerView playerView;
@@ -61,6 +62,8 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
     private boolean wasRestored;
     private String youtubeCode;
     private YouTubePlayerView youtubeView;
+    private RelativeLayout rlVideoView;
+    private LinearLayout ll_dob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
                     int pos = bioData.getMessage().indexOf(":");
                     Toast.makeText(getApplicationContext(), bioData.getMessage().substring(pos + 1), Toast.LENGTH_SHORT).show();
                     ProgressBarConfig.dismissProgressBar();
+                    rlVideoView.setVisibility(View.GONE);
                     return;
                 }
                 setData();
@@ -119,6 +123,12 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
                 ProgressBarConfig.dismissProgressBar();
 
 
+                if(bioData.getData().getDbNick()==null||bioData.getData().getDbNick().trim().isEmpty()){
+                    rlVideoView.setVisibility(View.GONE);
+                }
+                else {
+                    rlVideoView.setVisibility(View.VISIBLE);
+                }
                 ImageLoader imageLoader = ImageLoader.getInstance();
                 DisplayImageOptions options = new DisplayImageOptions.Builder()
                         .showImageOnLoading(R.mipmap.m)
@@ -190,6 +200,13 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
         tvOccupation.setText(bioData.getData().getType() + "");
         tvResidence.setText(bioData.getData().getBirthLocation() + "");
         tvAbout.setText(bioData.getData().getAbout() + "");
+        if(bioData.getData().getDOB().trim().isEmpty()){
+            ll_dob.setVisibility(View.GONE);
+        }
+        else{
+            ll_dob.setVisibility(View.VISIBLE);
+            tvDob.setText(bioData.getData().getDOB());
+        }
     }
 
     private void mapWithXml() {
@@ -209,6 +226,9 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
         youtubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         ivThumbnail = (ImageView) findViewById(R.id.iv_thumbnail);
         flThumbnail = (FrameLayout) findViewById(R.id.fl_thumbnail);
+        rlVideoView = (RelativeLayout) findViewById(R.id.rl_video_view);
+        tvDob= (TextView) findViewById(R.id.tv_dob);
+        ll_dob= (LinearLayout) findViewById(R.id.ll_dob);
 
     }
 
@@ -307,6 +327,9 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         Utility.openPlayStore(BioDataActivity.this);
+        youtubeView.setVisibility(View.GONE);
+        ivThumbnail.setVisibility(View.VISIBLE);
+        flThumbnail.setVisibility(View.VISIBLE);
     }
 
     public void onPlay(View view) {
@@ -315,5 +338,9 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
         ivThumbnail.setVisibility(View.GONE);
         flThumbnail.setVisibility(View.GONE);
         youtubeView.initialize(StringUtility.extractYouTubeCode(bioData.getData().getDbNick()), this);
+    }
+
+    public void onBack(View view){
+        onBackPressed();
     }
 }

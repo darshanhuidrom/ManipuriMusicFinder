@@ -4,6 +4,30 @@
     android:layout_height="match_parent"
     android:background="@color/block_color"
     android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/left_arrow"
+            android:onClick="onBack" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Bio Data"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
 
 
     <ScrollView
@@ -57,7 +81,8 @@
                             android:text="NA" />
                     </LinearLayout>
 
-                    <LinearLayout style="@style/bio_data_block">
+                    <LinearLayout style="@style/bio_data_block"
+                        android:visibility="gone">
 
                         <TextView
                             style="@style/bio_data_field1"
@@ -65,6 +90,19 @@
 
                         <TextView
                             android:id="@+id/tv_age"
+                            style="@style/bio_data_field2"
+                            android:text="NA" />
+                    </LinearLayout>
+                    <LinearLayout style="@style/bio_data_block"
+                        android:id="@+id/ll_dob"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/bio_data_field1"
+                            android:text="DOB:" />
+
+                        <TextView
+                            android:id="@+id/tv_dob"
                             style="@style/bio_data_field2"
                             android:text="NA" />
                     </LinearLayout>
@@ -145,6 +183,7 @@
                 android:text="NA" />
 
             <RelativeLayout
+                android:id="@+id/rl_video_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">

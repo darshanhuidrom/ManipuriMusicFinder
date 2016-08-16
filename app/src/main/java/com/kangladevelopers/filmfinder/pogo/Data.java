@@ -48,6 +48,16 @@ public class Data {
     public void setDbNick(String dbNick){
         this.dbNick=dbNick;
     }
+    @SerializedName("dob")
+    @Expose
+    private String dob;
+
+    public String getDOB(){
+        return dob;
+    }
+    public void setDOB(String dob){
+        this.dob=dob;
+    }
 
     /**
      * 
