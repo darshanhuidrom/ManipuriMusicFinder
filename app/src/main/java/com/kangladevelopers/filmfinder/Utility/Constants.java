@@ -5,6 +5,8 @@ package com.kangladevelopers.filmfinder.Utility;
  */
 public class Constants {
 
+    // http://192.168.1.3/leichal/appInfo.json
+
     public static final String PRODUCTION_URL="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com:8080/leichal_v1/webapi/";
     public static final String DEV_SERVER_URL = "http://192.168.1.3:8080/";
     public static final String DEV_SERVER_URL2="http://192.168.1.3/";
@@ -13,6 +15,8 @@ public class Constants {
     public static final String YOUTUBE_IMAGE_URL = "http://img.youtube.com/vi/";
     public static final String BASE_URL_LOCAL= DEV_SERVER_URL + "move_finder/webapi/";
     public static final String BASE_URL =BASE_URL_LOCAL ;
+
+    public static final String VERSION_URL=DEV_SERVER_URL2;
 
     public static final String IS_INSTALLED_FIRST="is_installed_first";
     public static final String USER_NAME = "email_address";
@@ -44,6 +48,12 @@ public class Constants {
     public static final String COMPOSER_FILE_CHANGE="composerFileChange";
     public static final String DIRECTOR_FILE_CHANGE="directorFileChange";
     public static final String WRITER_FILE_CHANGE="writerFileChange";
+
+    public static final String CURRENT_ACTOR_FILE_VERSION="current_actor_file_version";
+    public static final String CURRENT_SINGER_FILE_VERSION="current_singer_file_version";
+    public static final String CURRENT_COMPOSER_FILE_VERSION="current_composer_file_version";
+    public static final String CURRENT_DIRECTOR_FILE_VERSION="current_director_file_version";
+
 
 
 

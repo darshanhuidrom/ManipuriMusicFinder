@@ -189,6 +189,9 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         Log.d("MusicDetailActivity >>>>>>","onInitializationFailure");
         Utility.openPlayStore(MusicDetailActivity.this);
+        youtubeView.setVisibility(View.GONE);
+        ivThumbnail.setVisibility(View.VISIBLE);
+        flThumbnail.setVisibility(View.VISIBLE);
 
 
     }

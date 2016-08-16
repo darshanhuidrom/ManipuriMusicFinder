@@ -4,14 +4,22 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -23,7 +31,9 @@ import com.kangladevelopers.filmfinder.pogo.DirctingSongList;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SingingSongList;
 import com.kangladevelopers.filmfinder.pogo.WritigSongList;
+import com.kangladevelopers.filmfinder.utils.Config;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
+import com.kangladevelopers.filmfinder.utils.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -36,25 +46,30 @@ import retrofit2.Response;
 /**
  * Created by HUIDROM on 7/17/2016.
  */
-public class BioDataActivity extends BaseActivity {
+public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     private Toolbar toolbar;
     private LinearLayout llParentActing, llParentSinging, llParentDirecting, llParentComposing, llParentWriting;
     private String name;
     private BioData bioData;
-    private TextView tvName, tvAge, tvGender, tvOccupation, tvResidence, tvAbout;
+    private TextView tvName, tvAge, tvGender, tvOccupation, tvResidence, tvAbout,tvDob;
     private ImageView iv;
+    private static final int RECOVERY_DIALOG_REQUEST = 1;
+    private YouTubePlayerView playerView;
+    private ImageView ivThumbnail;
+    private FrameLayout flThumbnail;
+    private Button btThumbnail;
+    private boolean wasRestored;
+    private String youtubeCode;
+    private YouTubePlayerView youtubeView;
+    private RelativeLayout rlVideoView;
+    private LinearLayout ll_dob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.biodata);
-
         mapWithXml();
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         name = getIntent().getStringExtra("name");
 
         Call<BioData> call = MyApplication.getResAdapter().getBioData(StringUtility.removeSpaceFromFirst(name));
@@ -63,10 +78,12 @@ public class BioDataActivity extends BaseActivity {
             @Override
             public void onResponse(Call<BioData> call, Response<BioData> response) {
                 bioData = response.body();
+
                 if (bioData.getStatus().equalsIgnoreCase("Error")) {
                     int pos = bioData.getMessage().indexOf(":");
                     Toast.makeText(getApplicationContext(), bioData.getMessage().substring(pos + 1), Toast.LENGTH_SHORT).show();
                     ProgressBarConfig.dismissProgressBar();
+                    rlVideoView.setVisibility(View.GONE);
                     return;
                 }
                 setData();
@@ -104,6 +121,42 @@ public class BioDataActivity extends BaseActivity {
                     addWritingView(bioData.getWritigSongList());
                 }
                 ProgressBarConfig.dismissProgressBar();
+
+
+                if(bioData.getData().getDbNick()==null||bioData.getData().getDbNick().trim().isEmpty()){
+                    rlVideoView.setVisibility(View.GONE);
+                }
+                else {
+                    rlVideoView.setVisibility(View.VISIBLE);
+                }
+                ImageLoader imageLoader = ImageLoader.getInstance();
+                DisplayImageOptions options = new DisplayImageOptions.Builder()
+                        .showImageOnLoading(R.mipmap.m)
+                        .showImageForEmptyUri(R.mipmap.m)
+                        .showImageOnFail(R.mipmap.m)
+                        .cacheInMemory(true)
+                        .cacheOnDisk(true)
+                        .considerExifParams(true)
+                        .bitmapConfig(Bitmap.Config.RGB_565)
+                        .build();
+                String name2 = name.replaceAll(" ", "");
+                imageLoader.displayImage(Constants.PERSON_ICON_PIC_URL + name2.trim() + ".JPG", iv, options);
+
+                ImageLoader imageLoader2 = ImageLoader.getInstance();
+                DisplayImageOptions options2 = new DisplayImageOptions.Builder()
+                        .showImageOnLoading(R.mipmap.m)
+                        .showImageForEmptyUri(R.mipmap.m)
+                        .showImageOnFail(R.mipmap.m)
+                        .cacheInMemory(true)
+                        .cacheOnDisk(true)
+                        .considerExifParams(true)
+                        .bitmapConfig(Bitmap.Config.RGB_565)
+                        .build();
+                String s = bioData.getData().getDbNick();
+                Log.d("BioDataActivity>>>>",bioData.getData().getDbNick());
+
+                imageLoader2.displayImage(Constants.YOUTUBE_IMAGE_URL + StringUtility.extractYouTubeCode(bioData.getData().getDbNick()) + "/0.jpg", ivThumbnail, options2);
+
             }
 
             @Override
@@ -112,19 +165,23 @@ public class BioDataActivity extends BaseActivity {
                 ProgressBarConfig.dismissProgressBar();
             }
         });
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.m)
-                .showImageForEmptyUri(R.mipmap.m)
-                .showImageOnFail(R.mipmap.m)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
-        imageLoader.displayImage(Constants.BIO_DATA__ICON_PIC_URL + name.trim() + ".JPG", iv, options);
+
+
     }
 
+
+    private void setListener() {
+        btThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  Toast.makeText(getApplicationContext(), "onclick", Toast.LENGTH_SHORT).show();
+                playerView.setVisibility(View.VISIBLE);
+                ivThumbnail.setVisibility(View.GONE);
+                flThumbnail.setVisibility(View.GONE);
+                playerView.initialize(Config.DEVELOPER_KEY, BioDataActivity.this);
+            }
+        });
+    }
     private void setData() {
         //tvName.setText("APPLE");
         String fullName="NA";
@@ -143,6 +200,13 @@ public class BioDataActivity extends BaseActivity {
         tvOccupation.setText(bioData.getData().getType() + "");
         tvResidence.setText(bioData.getData().getBirthLocation() + "");
         tvAbout.setText(bioData.getData().getAbout() + "");
+        if(bioData.getData().getDOB().trim().isEmpty()){
+            ll_dob.setVisibility(View.GONE);
+        }
+        else{
+            ll_dob.setVisibility(View.VISIBLE);
+            tvDob.setText(bioData.getData().getDOB());
+        }
     }
 
     private void mapWithXml() {
@@ -159,6 +223,12 @@ public class BioDataActivity extends BaseActivity {
         tvOccupation = (TextView) findViewById(R.id.tv_desgn);
         tvResidence = (TextView) findViewById(R.id.tv_residence);
         tvAbout = (TextView) findViewById(R.id.tv_about);
+        youtubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        ivThumbnail = (ImageView) findViewById(R.id.iv_thumbnail);
+        flThumbnail = (FrameLayout) findViewById(R.id.fl_thumbnail);
+        rlVideoView = (RelativeLayout) findViewById(R.id.rl_video_view);
+        tvDob= (TextView) findViewById(R.id.tv_dob);
+        ll_dob= (LinearLayout) findViewById(R.id.ll_dob);
 
     }
 
@@ -244,5 +314,33 @@ public class BioDataActivity extends BaseActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+        if (!b) {
+            youTubePlayer.loadVideo(StringUtility.extractYouTubeCode(bioData.getData().getDbNick()));
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        Utility.openPlayStore(BioDataActivity.this);
+        youtubeView.setVisibility(View.GONE);
+        ivThumbnail.setVisibility(View.VISIBLE);
+        flThumbnail.setVisibility(View.VISIBLE);
+    }
+
+    public void onPlay(View view) {
+
+        youtubeView.setVisibility(View.VISIBLE);
+        ivThumbnail.setVisibility(View.GONE);
+        flThumbnail.setVisibility(View.GONE);
+        youtubeView.initialize(StringUtility.extractYouTubeCode(bioData.getData().getDbNick()), this);
+    }
+
+    public void onBack(View view){
+        onBackPressed();
     }
 }

@@ -6,110 +6,110 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataInfo {
 
-    @SerializedName("actorFileChange")
+    @SerializedName("actorFileVersion")
     @Expose
-    private Boolean actorFileChange;
-    @SerializedName("singerFileChange")
+    private Integer actorFileVersion;
+    @SerializedName("singerFileVersion")
     @Expose
-    private Boolean singerFileChange;
-    @SerializedName("composerFileChange")
+    private Integer singerFileVersion;
+    @SerializedName("composerFileVersion")
     @Expose
-    private Boolean composerFileChange;
-    @SerializedName("directorFileChange")
+    private Integer composerFileVersion;
+    @SerializedName("directorFileVersion")
     @Expose
-    private Boolean directorFileChange;
-    @SerializedName("writerFileChange")
+    private Integer directorFileVersion;
+    @SerializedName("writerFileVersion")
     @Expose
-    private Boolean writerFileChange;
+    private Integer writerFileVersion;
 
     /**
      * 
      * @return
-     *     The actorFileChange
+     *     The actorFileVersion
      */
-    public Boolean getActorFileChange() {
-        return actorFileChange;
+    public Integer getActorFileVersion() {
+        return actorFileVersion;
     }
 
     /**
      * 
-     * @param actorFileChange
-     *     The actorFileChange
+     * @param actorFileVersion
+     *     The actorFileVersion
      */
-    public void setActorFileChange(Boolean actorFileChange) {
-        this.actorFileChange = actorFileChange;
-    }
-
-    /**
-     * 
-     * @return
-     *     The singerFileChange
-     */
-    public Boolean getSingerFileChange() {
-        return singerFileChange;
-    }
-
-    /**
-     * 
-     * @param singerFileChange
-     *     The singerFileChange
-     */
-    public void setSingerFileChange(Boolean singerFileChange) {
-        this.singerFileChange = singerFileChange;
+    public void setActorFileVersion(Integer actorFileVersion) {
+        this.actorFileVersion = actorFileVersion;
     }
 
     /**
      * 
      * @return
-     *     The composerFileChange
+     *     The singerFileVersion
      */
-    public Boolean getComposerFileChange() {
-        return composerFileChange;
+    public Integer getSingerFileVersion() {
+        return singerFileVersion;
     }
 
     /**
      * 
-     * @param composerFileChange
-     *     The composerFileChange
+     * @param singerFileVersion
+     *     The singerFileVersion
      */
-    public void setComposerFileChange(Boolean composerFileChange) {
-        this.composerFileChange = composerFileChange;
-    }
-
-    /**
-     * 
-     * @return
-     *     The directorFileChange
-     */
-    public Boolean getDirectorFileChange() {
-        return directorFileChange;
-    }
-
-    /**
-     * 
-     * @param directorFileChange
-     *     The directorFileChange
-     */
-    public void setDirectorFileChange(Boolean directorFileChange) {
-        this.directorFileChange = directorFileChange;
+    public void setSingerFileVersion(Integer singerFileVersion) {
+        this.singerFileVersion = singerFileVersion;
     }
 
     /**
      * 
      * @return
-     *     The writerFileChange
+     *     The composerFileVersion
      */
-    public Boolean getWriterFileChange() {
-        return writerFileChange;
+    public Integer getComposerFileVersion() {
+        return composerFileVersion;
     }
 
     /**
      * 
-     * @param writerFileChange
-     *     The writerFileChange
+     * @param composerFileVersion
+     *     The composerFileVersion
      */
-    public void setWriterFileChange(Boolean writerFileChange) {
-        this.writerFileChange = writerFileChange;
+    public void setComposerFileVersion(Integer composerFileVersion) {
+        this.composerFileVersion = composerFileVersion;
+    }
+
+    /**
+     * 
+     * @return
+     *     The directorFileVersion
+     */
+    public Integer getDirectorFileVersion() {
+        return directorFileVersion;
+    }
+
+    /**
+     * 
+     * @param directorFileVersion
+     *     The directorFileVersion
+     */
+    public void setDirectorFileVersion(Integer directorFileVersion) {
+        this.directorFileVersion = directorFileVersion;
+    }
+
+    /**
+     * 
+     * @return
+     *     The writerFileVersion
+     */
+    public Integer getWriterFileVersion() {
+        return writerFileVersion;
+    }
+
+    /**
+     * 
+     * @param writerFileVersion
+     *     The writerFileVersion
+     */
+    public void setWriterFileVersion(Integer writerFileVersion) {
+        this.writerFileVersion = writerFileVersion;
     }
 
 }

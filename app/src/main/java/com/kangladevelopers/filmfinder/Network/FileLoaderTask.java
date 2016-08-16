@@ -49,18 +49,24 @@ public abstract class FileLoaderTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
 
 
+        String data = null;
         if(url==null){
             for (int i = 0; i < urls.size(); i++) {
-                String data = HTTP.sendGET(urls.get(i));
+                 data = HTTP.sendGET(urls.get(i));
                 LocalStore.writeToFile(data, fileNames.get(i));
             }
         }
         else {
-            String data = HTTP.sendGET(url);
+             data = HTTP.sendGET(url);
             LocalStore.writeToFile(data, fileName);
         }
+        if(data!=null&&!data.trim().isEmpty()){
+            return "success";
+        }
+        else {
+            return null;
+        }
 
-        return null;
     }
 
     @Override
