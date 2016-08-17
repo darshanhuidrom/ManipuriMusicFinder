@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.kangladevelopers.filmfinder"
+        applicationId "com.kangladevelopers.manipur_mami"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
