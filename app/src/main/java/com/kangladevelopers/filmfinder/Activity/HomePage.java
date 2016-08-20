@@ -59,6 +59,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -132,6 +133,7 @@ public class HomePage extends BaseDrawerActivity {
     //    checkForUpdates();
         setFont();
         musics = (List<Music>) getIntent().getSerializableExtra("musics");
+        Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
         if(musics!=null&&!musics.isEmpty()){
             if(musicAdapter==null){
                 hideNoDataFound();
@@ -709,6 +711,11 @@ public class HomePage extends BaseDrawerActivity {
         }
         startTime = btStartDate.getText().toString();
         endTime = btEndDate.getText().toString();
+
+        singerList = sortInOrder(singerList);
+        actorList=sortInOrder(actorList);
+        Log.d(">>>>>>After ordering",""+singerList);
+        Log.d(">>>>>>After ordering",""+actorList);
         String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
         //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
@@ -1177,5 +1184,23 @@ public class HomePage extends BaseDrawerActivity {
                 dialog.dismiss();
             }
         }.setValues("OK","CANCEL","Do you want exit app?");
+    }
+
+    public String sortInOrder(String data){
+        List<String> singerTempList = new ArrayList<>();
+        if(data!=null&&data.contains(",")){
+            String[] temp1 = data.split(",");
+            singerTempList = Arrays.asList(temp1);
+            Collections.sort(singerTempList);
+            data="";
+            for (int i=0;i<singerTempList.size();i++){
+                data=data+singerTempList.get(i);
+                if(i<singerTempList.size()-1){
+                    data=data+",";
+                }
+            }
+            return data;
+        }
+        return data;
     }
 }

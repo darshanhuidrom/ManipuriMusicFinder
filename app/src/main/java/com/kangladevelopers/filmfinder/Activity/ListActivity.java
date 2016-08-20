@@ -20,6 +20,8 @@ import com.kangladevelopers.filmfinder.utils.StringUtility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class ListActivity extends BaseActivity  implements AdapterView.OnItemClickListener{
 
@@ -74,10 +76,14 @@ public class ListActivity extends BaseActivity  implements AdapterView.OnItemCli
         }
 
         getSupportActionBar().setTitle(name);
+
         if(dataList!=null){
-            adapter = new SimpleAdapter(getApplicationContext(), Arrays.asList(dataList));
+            List<String>  list = Arrays.asList(dataList);
+            Collections.sort(list);
+
+            adapter = new SimpleAdapter(getApplicationContext(),list );
             if(is_from_normal){
-                rvListAdapter = new RvListAdapter(getApplicationContext(), Arrays.asList(dataList), new RvListAdapter.RvAdapterClickListener() {
+                rvListAdapter = new RvListAdapter(getApplicationContext(),list, new RvListAdapter.RvAdapterClickListener() {
                     @Override
                     public void onItemClick(int i, View v) {
                         String name = rvListAdapter.getDataAt(i);
