@@ -7,6 +7,10 @@ public class Constants {
 
     // http://192.168.1.3/leichal/appInfo.json
 
+
+    /// for Development
+
+    public static final boolean IS_IN_DEVELOPMENT=true;
     public static final String PRODUCTION_URL="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com:8080/leichal/webapi/";
  //   public static final String  PRODUCTION_URL_2="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com/leichal/webapi/";
     public static final String  PRODUCTION_URL_BASE="http://ec2-52-27-114-111.us-west-2.compute.amazonaws.com/";
