@@ -350,7 +350,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:visibility">invisible</item>
-        <item name="android:src">@drawable/t1</item>
+        <item name="android:src">@drawable/ts_2</item>
     </style>
 
     <style name="sort_text">
@@ -367,6 +367,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">#eaeaea</item>
+    </style>
+
+
+    <style name="dote_style">
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">14dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:background">@drawable/dote_light</item>
     </style>
 
 </resources>

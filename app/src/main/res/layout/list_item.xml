@@ -17,7 +17,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_list"
             style="@style/list_circleView"
-            android:src="@drawable/profile2"
+            android:src="@drawable/ts_2"
             app:civ_border_width="2dp" />
         <TextView
             android:id="@+id/tv_name"

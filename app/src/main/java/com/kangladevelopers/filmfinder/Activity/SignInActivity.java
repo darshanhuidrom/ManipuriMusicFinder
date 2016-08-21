@@ -176,7 +176,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             AppPreference.saveToAppPreference(getApplicationContext(),
                     Constants.IS_SIGNED_IN, false);
             AppPreference.saveToAppPreference(getApplicationContext(), Constants.USER_NAME, "");
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile2);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ts_2);
             LocalStore.saveToInternalStorage(bitmap);
 
 
@@ -202,7 +202,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             AppPreference.saveToAppPreference(getApplicationContext(),
                     Constants.IS_SIGNED_IN, false);
             AppPreference.saveToAppPreference(getApplicationContext(), Constants.USER_NAME, "");
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile2);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ts_2);
             LocalStore.saveToInternalStorage(bitmap);
 
 

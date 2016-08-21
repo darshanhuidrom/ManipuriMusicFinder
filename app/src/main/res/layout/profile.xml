@@ -30,7 +30,7 @@
                 android:layout_marginTop="-60dp"
                 android:elevation="5dp"
                 android:padding="20dp"
-                android:src="@drawable/sori"
+                android:src="@drawable/ts_2"
                 app:civ_border_width="2dp" />
 
             <RelativeLayout
