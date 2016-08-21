@@ -38,11 +38,10 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
     int[] t_page = {
             R.drawable.z1_intro,
             R.drawable.z2_filter,
-            R.drawable.z3_filter,
+            R.drawable.z3_exclusive,
             R.drawable.z4_multiple,
             R.drawable.z5_sorting};
 
-    int previousPagerIndex = 0;
     private int verCode;
     private ArrayList<Music> musicList;
     private boolean isFromHelpPage;
@@ -100,6 +99,7 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
     private void goToNextAct() {
         if(isFromHelpPage){
             finish();
+            slideFromRightToLeft();
             return;
         }
         Intent i = new Intent(this, HomePage.class);
@@ -107,21 +107,43 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
         i.putExtra("musics", musicList);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+        slideFromRightToLeft();
         Log.i(TAG, "Activity Finish");
 
     }
 
 
     //------------------------------
+    boolean lastPage;
+    int pageIndex;
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        // Log.w(TAG,"On PageScrolled: "+String.valueOf(position));
+         //Log.w(TAG,"On PageScrolled: "+String.valueOf(position));
     }
 
     @Override
     public void onPageSelected(int position) {
         //Log.i(TAG,"On onPageSelected: "+String.valueOf(position));
+        pageIndex = position;
+        manageDote(position);
+        lastPage = false;
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        //Log.v(TAG,"On PageScrollState:  "+String.valueOf(state));
+        if (state == 0 && lastPage ==true && pageIndex!= 0) {
+            goToNextAct();
+            //Log.e(TAG,"END");
+        }else{
+            lastPage = true;
+        }
+    }
+
+
+    //----------
+    private void manageDote(int position){
         tDots[position].setBackgroundResource(R.drawable.dote_dark);
         if (position != 0) {
             tDots[position - 1].setBackgroundResource(R.drawable.dote_light);
@@ -131,14 +153,6 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
             tvNext.setText("NEXT");
         } else {
             tvNext.setText("FINISH");
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        //Log.v(TAG,"On PageScrollState:  "+String.valueOf(state));
-        if (state == 1 && viewPager.getCurrentItem() == t_page.length - 1) {
-            goToNextAct();
         }
     }
 
