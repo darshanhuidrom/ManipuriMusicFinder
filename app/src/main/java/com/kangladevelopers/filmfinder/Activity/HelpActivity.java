@@ -44,6 +44,7 @@ public class HelpActivity extends AppCompatActivity implements AdapterView.OnIte
         fields.add("About");
         fields.add("FAQ");
         fields.add("Contact us");
+        fields.add("Help Demo");
         adapter = new HelpAdapter(getApplicationContext(),fields);
         lvHelp.setAdapter(adapter);
     }
@@ -62,7 +63,11 @@ public class HelpActivity extends AppCompatActivity implements AdapterView.OnIte
             case "Contact us":
                 url=Constants.CONTACT_US_URL;
                 break;
-
+            case "Help Demo":
+                Intent intent = new Intent(this,TutorialActivity.class);
+                intent.putExtra("is_from_help_page",true);
+                startActivity(intent);
+                return;
         }
         Intent intent = new Intent(HelpActivity.this,HelpDetailsActivity.class);
         intent.putExtra("url",url);

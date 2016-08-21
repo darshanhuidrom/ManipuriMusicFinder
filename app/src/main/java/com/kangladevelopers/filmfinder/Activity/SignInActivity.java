@@ -196,11 +196,12 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     AppPreference.saveToAppPreference(getApplicationContext(),
                             Constants.IS_SIGNED_IN, false);
                     AppPreference.saveToAppPreference(getApplicationContext(), Constants.USER_NAME, "");
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile2);
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.default_dp);
                     LocalStore.saveToInternalStorage(bitmap);
                 }
             }
         };
+
     }
 
     @Override
@@ -221,7 +222,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             AppPreference.saveToAppPreference(getApplicationContext(),
                     Constants.IS_SIGNED_IN, false);
             AppPreference.saveToAppPreference(getApplicationContext(), Constants.USER_NAME, "");
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ts_2);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.default_dp);
             LocalStore.saveToInternalStorage(bitmap);
 
 

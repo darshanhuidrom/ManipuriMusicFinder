@@ -14,6 +14,6 @@ public class LogMessage {
         Log.d(tag+">>>>>>",msg);
     }
     public static void showToast(String msg){
-        Toast.makeText(MyApplication.getAppContext(),msg,Toast.LENGTH_LONG).show();
+       // Toast.makeText(MyApplication.getAppContext(),msg,Toast.LENGTH_LONG).show();
     }
 }

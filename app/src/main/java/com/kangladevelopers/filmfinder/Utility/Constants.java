@@ -26,6 +26,7 @@ public class Constants {
 
 
     public static final String IS_INSTALLED_FIRST = "is_installed_first";
+    public static final String IS_INSTALLED_FIRST2 = "is_installed_first2";
     public static final String USER_NAME = "email_address";
     public static final String PASSWORD = "password";
     public static final String IMAGE_FORMAT = ".JPG";

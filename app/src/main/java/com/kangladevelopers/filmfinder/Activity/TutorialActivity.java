@@ -1,6 +1,7 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,17 +15,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.Utility.AppPreference;
+import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.pogo.Music;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by DELL PC on 8/21/2016.
  */
-public class TutorialActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
+public class TutorialActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     private static final String TAG = "TutorialActivity";
     ViewPager viewPager;
     PagerAdapter adapter;
 
-    TextView tvSkip,tvNext;
+    TextView tvSkip, tvNext;
     View[] tDots = new View[5];
     //View d1,d2,d3,d4,d5;
 
@@ -35,14 +42,19 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
             R.drawable.z4_multiple,
             R.drawable.z5_sorting};
 
-    int previousPagerIndex=0;
+    int previousPagerIndex = 0;
+    private int verCode;
+    private ArrayList<Music> musicList;
+    private boolean isFromHelpPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-
-
+        verCode = getIntent().getIntExtra("version_code", 0);
+        musicList = (ArrayList<Music>) getIntent().getSerializableExtra("musics");
+        isFromHelpPage= getIntent().getBooleanExtra("is_from_help_page",false);
+        AppPreference.saveToAppPreference(getApplicationContext(), Constants.IS_INSTALLED_FIRST2,false);
 
         // Locate the ViewPager in viewpager_main.xml
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -66,14 +78,14 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
     }
 
 
-    public void tutorial_click(View v){
-        switch(v.getId()){
+    public void tutorial_click(View v) {
+        switch (v.getId()) {
             case R.id.tv_next:
                 int currentIndex = viewPager.getCurrentItem();
                 //Log.i(TAG,String.valueOf(currentIndex));
-                if(currentIndex != t_page.length-1){
-                    viewPager.setCurrentItem(currentIndex+1);
-                }else{
+                if (currentIndex != t_page.length - 1) {
+                    viewPager.setCurrentItem(currentIndex + 1);
+                } else {
                     goToNextAct();
                 }
 
@@ -85,8 +97,17 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
         }
     }
 
-    private void goToNextAct(){
-        Log.i(TAG,"Activity Finish");
+    private void goToNextAct() {
+        if(isFromHelpPage){
+            finish();
+            return;
+        }
+        Intent i = new Intent(this, HomePage.class);
+        i.putExtra("version_no", verCode);
+        i.putExtra("musics", musicList);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        Log.i(TAG, "Activity Finish");
 
     }
 
@@ -95,20 +116,20 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-       // Log.w(TAG,"On PageScrolled: "+String.valueOf(position));
+        // Log.w(TAG,"On PageScrolled: "+String.valueOf(position));
     }
 
     @Override
     public void onPageSelected(int position) {
         //Log.i(TAG,"On onPageSelected: "+String.valueOf(position));
         tDots[position].setBackgroundResource(R.drawable.dote_dark);
-        if(position!=0){
+        if (position != 0) {
             tDots[position - 1].setBackgroundResource(R.drawable.dote_light);
         }
-        if(position != t_page.length-1){
+        if (position != t_page.length - 1) {
             tDots[position + 1].setBackgroundResource(R.drawable.dote_light);
             tvNext.setText("NEXT");
-        }else{
+        } else {
             tvNext.setText("FINISH");
         }
     }
@@ -116,7 +137,7 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
     @Override
     public void onPageScrollStateChanged(int state) {
         //Log.v(TAG,"On PageScrollState:  "+String.valueOf(state));
-        if(state==1 && viewPager.getCurrentItem() == t_page.length-1){
+        if (state == 1 && viewPager.getCurrentItem() == t_page.length - 1) {
             goToNextAct();
         }
     }
@@ -145,7 +166,7 @@ public class TutorialActivity extends BaseActivity implements ViewPager.OnPageCh
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-           View itemView = mLayoutInflater.inflate(R.layout.tutorial_slide_block, container, false);
+            View itemView = mLayoutInflater.inflate(R.layout.tutorial_slide_block, container, false);
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
             imageView.setImageResource(t_page[position]);
             container.addView(itemView);

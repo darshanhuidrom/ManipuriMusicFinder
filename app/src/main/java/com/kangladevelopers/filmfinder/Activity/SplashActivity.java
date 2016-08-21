@@ -69,7 +69,7 @@ public class SplashActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         if(!ConnectionDetector.isConnected()){
-            new DialogBox(this) {
+            new DialogBox(this,true) {
                 @Override
                 public void onPositive(DialogInterface dialog) {
                     dialog.dismiss();
@@ -82,7 +82,7 @@ public class SplashActivity extends BaseActivity {
                 public void onNegative(DialogInterface dialog) {
 
                 }
-            }.setValues("OK","This App works only on Online Mode"); ;
+            }.setValues("OK","This App requires internet.\nPlease enable the internet"); ;
             return;
         }
         if (AppPreference.isInstalledFirst(getApplicationContext())) {
@@ -266,6 +266,16 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void startHomeActivity(final int verCode){
+        boolean flag= (boolean) AppPreference.getDataFromAppPreference(getApplicationContext(),Constants.IS_INSTALLED_FIRST2,AppPreference.MODE_BOOLEAN);
+        if(AppPreference.isInstalledFirst2(getApplicationContext())){
+            Intent i = new Intent(SplashActivity.this, TutorialActivity.class);
+            i.putExtra(VERSION_NO, verCode);
+            i.putExtra("musics", musicList);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            return;
+
+        }
         new Handler().postDelayed(new Runnable() {
 
             @Override

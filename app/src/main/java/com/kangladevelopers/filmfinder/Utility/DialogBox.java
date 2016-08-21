@@ -9,9 +9,14 @@ import android.content.DialogInterface;
  */
 abstract public class DialogBox {
     Activity activity;
+    boolean isCancallable=true;
 
     public DialogBox(Activity activity) {
         this.activity = activity;
+    }
+    public DialogBox(Activity activity,boolean isCancallable) {
+        this.activity = activity;
+        this.isCancallable=false;
     }
 
     public void setValues(String ok, String message) {
@@ -29,6 +34,8 @@ abstract public class DialogBox {
     public void setValues(String ok, String cancel, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setMessage(message);
+        if(isCancallable)
+            builder.setCancelable(isCancallable);
         builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

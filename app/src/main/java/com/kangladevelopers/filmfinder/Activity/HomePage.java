@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.MyApplication;
@@ -718,6 +719,11 @@ public class HomePage extends BaseDrawerActivity {
         String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
         LogMessage.printLog(TAG, query);
 
+        if(singerList==null&&composerList==null&&directorList==null&&actorList==null){
+            ProgressBarConfig.dismissProgressBar();
+            Toast.makeText(getApplicationContext(),"You have not selected any filter.\nPlease select atleast one filter",Toast.LENGTH_LONG).show();
+            return;
+        }
         Call<List<Music>> call = MyApplication.getResAdapter().getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
         call.enqueue(new Callback<List<Music>>() {
             @Override
