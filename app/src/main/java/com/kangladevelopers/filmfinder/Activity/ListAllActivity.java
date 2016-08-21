@@ -40,7 +40,6 @@ public class ListAllActivity extends BaseActivity implements AdapterView.OnItemC
         listName.add("Composer");
         listName.add("Director");
         listName.add("Actor");
-        listName.add("Lyric");
         adapter = new SimpleAdapter(getApplicationContext(),listName);
         lvListAll.setAdapter(adapter);
         lvListAll.setOnItemClickListener(this);

@@ -64,8 +64,7 @@ public class ListActivity extends BaseActivity  implements AdapterView.OnItemCli
             case "Actor":
                 dataList=FileFetcher.getActorList();
                 break;
-            case "Lyric":
-                break;
+
             default:
                 LogMessage.showToast("Default");
 

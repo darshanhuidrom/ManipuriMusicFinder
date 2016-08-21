@@ -889,7 +889,7 @@ public class HomePage extends BaseDrawerActivity {
             case R.id.lists:
                 startActivity(new Intent(this, ListAllActivity.class));
                 return true;
-            case R.id.developer:
+           /* case R.id.developer:
                 Intent intent = new Intent(this, ListAllActivity.class);
                 intent.putExtra("IS_FROM_DEVELOPER", true);
                 startActivity(intent);
@@ -898,7 +898,7 @@ public class HomePage extends BaseDrawerActivity {
                 Intent intent2 = new Intent(this, CorrectionActivity.class);
                 intent2.putExtra("IS_FROM_DEVELOPER", true);
                 startActivity(intent2);
-                return true;
+                return true;*/
             case R.id.menu_item_share:
                // mShareActionProvider.setShareIntent(doShare());
                 share();
