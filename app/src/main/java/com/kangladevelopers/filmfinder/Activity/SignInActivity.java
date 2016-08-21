@@ -182,6 +182,25 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
         }
 
+
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken,
+                                                       AccessToken currentAccessToken) {
+                if (currentAccessToken == null) {
+                    AppPreference.saveToAppPreference(getApplicationContext(),
+                            Constants.IS_SIGNED_IN, false);
+                    AppPreference.saveToAppPreference(getApplicationContext(), Constants.USER_NAME, "");
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile2);
+                    LocalStore.saveToInternalStorage(bitmap);
+                }
+            }
+        };
     }
 
     @Override

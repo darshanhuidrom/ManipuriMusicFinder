@@ -133,6 +133,7 @@ public class HomePage extends BaseDrawerActivity {
     //    checkForUpdates();
         setFont();
         musics = (List<Music>) getIntent().getSerializableExtra("musics");
+        if(musics!=null)
         Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
         if(musics!=null&&!musics.isEmpty()){
             if(musicAdapter==null){
@@ -347,6 +348,9 @@ public class HomePage extends BaseDrawerActivity {
         llComParent = (LinearLayout) findViewById(R.id.ll_com_parent);
         llDirParent = (LinearLayout) findViewById(R.id.ll_dir_parent);
         tvResultNoDisplay = (TextView) findViewById(R.id.tv_resultNoDisplay);
+        // to enable the facebooklogin
+        if(true)
+            tvUserName.setVisibility(View.VISIBLE);
 
     }
 
@@ -905,7 +909,7 @@ public class HomePage extends BaseDrawerActivity {
         // populate the share intent with data
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT,Constants.YOUTUBE_DOWDLOADER_LINK);
+        intent.putExtra(Intent.EXTRA_TEXT,Constants.APP_DOWNDLOADERILINK);
         return intent;
     }
 
