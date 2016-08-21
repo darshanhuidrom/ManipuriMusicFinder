@@ -14,11 +14,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -28,6 +35,7 @@ import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
 import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
+import com.kangladevelopers.filmfinder.utils.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -41,9 +49,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Headers;
 
-public class EditMusicDetails extends BaseActivity {
+public class EditMusicDetails extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-    private Toolbar toolbar;
+    private YouTubePlayerView youtubeView;
+    private String youtubeCode;
+    private ImageView ivThumbnail;
+    private FrameLayout flThumbnail;
+
     private ArrayList<String> dataList;
     private String actors;
     private String singers;
@@ -61,8 +73,10 @@ public class EditMusicDetails extends BaseActivity {
     private HashMap<String, String> singerMap = new HashMap<>();
     private Music music;
     private boolean isFromDeveloper;
-    private EditText etType;
+    // private EditText etType;
     private EditText etLyrics;
+    private RadioGroup rgType;
+    private RadioButton rbAlbum, rbMovie;
 
 
     @Override
@@ -70,16 +84,27 @@ public class EditMusicDetails extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_music_details);
         music = (Music) getIntent().getSerializableExtra("music");
-        isFromDeveloper=getIntent().getBooleanExtra("is_from_developer",false);
+        isFromDeveloper = getIntent().getBooleanExtra("is_from_developer", false);
         actors = music.getActor();
         singers = music.getSingers();
         mapWithXml();
         initializeData();
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Edit Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         addCastView();
         addSingerView();
+
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.a3)
+                .showImageForEmptyUri(R.drawable.a3)
+                .showImageOnFail(R.drawable.a3)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        imageLoader.displayImage(Constants.YOUTUBE_IMAGE_URL + StringUtility.extractYouTubeCode(music.getUrl()) + "/0.jpg", ivThumbnail, options);
+
 
     }
 
@@ -136,7 +161,7 @@ public class EditMusicDetails extends BaseActivity {
             findViewById(R.id.llgv_song_name).setVisibility(View.VISIBLE);
             etSongName.setText(music.getSongName());
         }
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             findViewById(R.id.llgv_song_name).setVisibility(View.VISIBLE);
             etSongName.setText(music.getSongName());
         }
@@ -147,7 +172,7 @@ public class EditMusicDetails extends BaseActivity {
             findViewById(R.id.llgv_movie).setVisibility(View.VISIBLE);
             etMovie.setText(music.getMovie());
         }
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             findViewById(R.id.llgv_movie).setVisibility(View.VISIBLE);
             etMovie.setText(music.getMovie());
         }
@@ -160,7 +185,7 @@ public class EditMusicDetails extends BaseActivity {
             etDirector.setText(music.getDirector());
         }
 
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             findViewById(R.id.llgv_director).setVisibility(View.VISIBLE);
             etDirector.setText(music.getDirector());
         }
@@ -173,7 +198,7 @@ public class EditMusicDetails extends BaseActivity {
             etComposer.setText(music.getComposer());
         }
 
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             findViewById(R.id.llgv_composer).setVisibility(View.VISIBLE);
             etComposer.setText(music.getComposer());
         }
@@ -184,44 +209,56 @@ public class EditMusicDetails extends BaseActivity {
             findViewById(R.id.llgv_choreographer).setVisibility(View.VISIBLE);
             etChereographer.setText(music.getChoreographer());
         }
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             findViewById(R.id.llgv_choreographer).setVisibility(View.VISIBLE);
             etChereographer.setText(music.getChoreographer());
         }
 
 
-
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             findViewById(R.id.llgv_lyrics).setVisibility(View.VISIBLE);
             etLyrics.setText(music.getLyrics());
-        }
-        else {
+        } else {
             findViewById(R.id.llgv_lyrics).setVisibility(View.GONE);
         }
-        if(isFromDeveloper){
+       /* if(isFromDeveloper){
             findViewById(R.id.llgv_type).setVisibility(View.VISIBLE);
             etType.setText(music.getType());
-        }
-        else {
+        }*/
+       /* else {
             findViewById(R.id.llgv_type).setVisibility(View.GONE);
+        }*/
+        if(music.getType().trim().equalsIgnoreCase("Album")){
+
+            rbAlbum.setChecked(true);
+        }
+        else if(music.getType().trim().equalsIgnoreCase("Movie")){
+            rbMovie.setChecked(true);
         }
 
     }
 
     private void mapWithXml() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         etSongName = (EditText) findViewById(R.id.et_song_name);
         etMovie = (EditText) findViewById(R.id.et_movie_name);
         etDirector = (EditText) findViewById(R.id.et_director);
         etComposer = (EditText) findViewById(R.id.et_composer);
         etChereographer = (EditText) findViewById(R.id.et_choreographer);
-        etType = (EditText) findViewById(R.id.et_type);
+        //etType = (EditText) findViewById(R.id.et_type);
         etLyrics = (EditText) findViewById(R.id.et_lyrics);
-       // llParent = (LinearLayout) findViewById(R.id.ll_parent);
+        // llParent = (LinearLayout) findViewById(R.id.ll_parent);
         llCastParent = (LinearLayout) findViewById(R.id.ll_parent2);
         llSingerParent = (LinearLayout) findViewById(R.id.ll_parent3);
         actvCast = (AutoCompleteTextView) findViewById(R.id.actv_cast);
         actvSinger = (AutoCompleteTextView) findViewById(R.id.actv_singer);
+        rgType = (RadioGroup) findViewById(R.id.rg_type);
+        rbAlbum = (RadioButton) findViewById(R.id.rb_album);
+        rbMovie = (RadioButton) findViewById(R.id.rb_movie);
+
+        youtubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youtubeCode = StringUtility.extractYouTubeCode(music.getUrl());
+        ivThumbnail = (ImageView) findViewById(R.id.iv_thumbnail);
+        flThumbnail = (FrameLayout) findViewById(R.id.fl_thumbnail);
     }
 
 
@@ -239,7 +276,7 @@ public class EditMusicDetails extends BaseActivity {
 
     private void addCastView(String data) {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
-       String  data1= data.replaceAll(" ","");
+        String data1 = data.replaceAll(" ", "");
         String url = Constants.PERSON_ICON_PIC_URL + data1.trim() + Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actorrrrr, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actorrrrr);
@@ -263,7 +300,7 @@ public class EditMusicDetails extends BaseActivity {
 
     private void addSingerView(String data) {
         //  String url = Constants.PHOTO_URL + actvCast.getText().toString().trim() + ".jpg";
-        String  data1= data.replaceAll(" ","");
+        String data1 = data.replaceAll(" ", "");
         String url = Constants.PERSON_ICON_PIC_URL + data1.trim() + Constants.IMAGE_FORMAT;
         View view = LayoutInflater.from(this).inflate(R.layout.block_actor, null);
         TextView tvName = (TextView) view.findViewById(R.id.tv_actor);
@@ -319,7 +356,6 @@ public class EditMusicDetails extends BaseActivity {
         switch (id) {
             case R.id.iv_delete_actorrrr:
                 View viewTobeDeleted = null;
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < actorViews.size(); i++) {
                     ImageView deleteButton = (ImageView) actorViews.get(i).findViewById(R.id.iv_delete_actorrrr);
                     if (deleteButton.equals(view)) {
@@ -363,6 +399,12 @@ public class EditMusicDetails extends BaseActivity {
 
         String singerList = "";
         String actorList = "";
+        int id = rgType.getCheckedRadioButtonId();
+        RadioButton rb = (RadioButton) findViewById(id);
+        String type = null;
+        if (rb != null)
+            type = rb.getText().toString();
+        Log.d("EditMusicDetails", ">>>> Type is " + type);
         ProgressBarConfig.showProgressBar(this, null);
 
 
@@ -398,9 +440,17 @@ public class EditMusicDetails extends BaseActivity {
         music.setSongName((etSongName.getText().toString().trim().isEmpty()) ? music.getSongName() : etSongName.getText().toString());
         music.setDirector((etDirector.getText().toString().trim().isEmpty()) ? music.getDirector() : etDirector.getText().toString());
         music.setComposer((etComposer.getText().toString().trim().isEmpty()) ? music.getComposer() : etComposer.getText().toString());
-        if(isFromDeveloper){
+        if (isFromDeveloper) {
             music.setLyrics((etLyrics.getText().toString().trim().isEmpty()) ? music.getLyrics() : etLyrics.getText().toString());
-            music.setType((etType.getText().toString().trim().isEmpty()) ? music.getType() : etType.getText().toString());
+            // music.setType((etType.getText().toString().trim().isEmpty()) ? music.getType() : etType.getText().toString());
+        }
+        if (type != null)
+            music.setType(type);
+
+        /// This is for testing purpose
+        if (false) {
+            Log.d("EditMusicDetails", ">>>> Testing mode.No data is sent");
+            return;
         }
         Call<SimpleResponse> call = MyApplication.getResAdapter().putMusicDetails(music);
         call.enqueue(new Callback<SimpleResponse>() {
@@ -430,4 +480,52 @@ public class EditMusicDetails extends BaseActivity {
     }
 
 
+    public void onDelete(View view) {
+        Call<SimpleResponse> call = MyApplication.getResAdapter().deleteMusic(music.getId());
+        call.enqueue(new Callback<SimpleResponse>() {
+            @Override
+            public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
+                Response<SimpleResponse> response1=response;
+                Log.d("EditMusicDetail", ">>>>>>"+response.message()+"");
+            }
+
+            @Override
+            public void onFailure(Call<SimpleResponse> call, Throwable t) {
+
+                Throwable tt=t;
+                Log.d("EditMusicDetail", ">>>>>>"+t.getMessage()+"");
+            }
+        });
+        Log.d("EditMusicDetail", ">>>>>> onDelete");
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+        if (!b) {
+            youTubePlayer.loadVideo(youtubeCode);
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+        Utility.openPlayStore(EditMusicDetails.this);
+        youtubeView.setVisibility(View.GONE);
+        ivThumbnail.setVisibility(View.VISIBLE);
+        flThumbnail.setVisibility(View.VISIBLE);
+    }
+
+
+    public void onPlay(View view) {
+
+        youtubeView.setVisibility(View.VISIBLE);
+        ivThumbnail.setVisibility(View.GONE);
+        flThumbnail.setVisibility(View.GONE);
+        youtubeView.initialize(youtubeCode, this);
+    }
+
+    public void onBack(View view) {
+        finish();
+    }
 }

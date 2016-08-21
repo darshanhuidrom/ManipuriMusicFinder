@@ -29,54 +29,50 @@ public class MusicRestAdapter {
     }
 
 
-
-    public Call<List<Music>> getMusicDetails(String singer,String composer,String director,String actor,String fixSinger,String startTime,String endTime) {
+    public Call<List<Music>> getMusicDetails(String singer, String composer, String director, String actor, String fixSinger, String startTime, String endTime) {
         return musicApi.getMusicDetails(singer, composer, director, actor, fixSinger, startTime, endTime);
     }
 
-    public  Call<SimpleResponse> putMusicDetails(Music music){
+    public Call<SimpleResponse> putMusicDetails(Music music) {
         return musicApi.PutMusicDetails(music);
     }
 
-    public  Call<SimpleResponse> postCorrection(CorrectionModel correctionModel){
+
+    public Call<SimpleResponse> deleteMusic(Integer id) {
+        return deleteMusic(id);
+    }
+
+
+    public Call<SimpleResponse> postCorrection(CorrectionModel correctionModel) {
         return musicApi.postCorrection(correctionModel);
     }
 
-    public  Call<BioData> getBioData(String name){
+    public Call<BioData> getBioData(String name) {
         return musicApi.getBioData(name);
     }
 
-    public  Call<Music> getMusicDetails(String id){
+    public Call<Music> getMusicDetails(String id) {
         return musicApi.getMusicDetails(id);
     }
 
 
-    public Call<List<Music>> getIncompleteData(String id){
+    public Call<List<Music>> getIncompleteData(String id) {
         return musicApi.getIncompleteData(id);
     }
 
 
-    public Call<VersionInfo> getVersionInfo(){
+    public Call<VersionInfo> getVersionInfo() {
         return musicApi.getVersionInfo();
     }
 
-    public Call<String> getList(String name){
+    public Call<String> getList(String name) {
         return musicApi.getList(name);
     }
 
-    public Call<List<Music>> getFirstCall(String time){
+    public Call<List<Music>> getFirstCall(String time) {
 
         return musicApi.getFirstCall(time);
     }
-
-
-
-
-
-
-
-
-
 
 
 }

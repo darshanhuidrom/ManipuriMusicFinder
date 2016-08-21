@@ -53,11 +53,13 @@ public abstract class FileLoaderTask extends AsyncTask<Void, Void, String> {
         if(url==null){
             for (int i = 0; i < urls.size(); i++) {
                  data = HTTP.sendGET(urls.get(i));
+                if(data!=null)
                 LocalStore.writeToFile(data, fileNames.get(i));
             }
         }
         else {
              data = HTTP.sendGET(url);
+            if(data!=null)
             LocalStore.writeToFile(data, fileName);
         }
         if(data!=null&&!data.trim().isEmpty()){

@@ -14,6 +14,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -45,6 +46,9 @@ public interface MusicAPI {
     })
     @PUT("dev/dataChanger")
     Call<SimpleResponse> PutMusicDetails(@Body Music music);
+
+    @DELETE("dev/dataChanger/{id}")
+    Call<SimpleResponse> deleteMusic(@Path("id") Integer id);
 
 
     @Headers({
@@ -78,6 +82,8 @@ public interface MusicAPI {
 
     @GET("first_call")
     Call<List<Music>> getFirstCall(@Query("current_time")String time);
+
+
 
 //http://beta.json-generator.com/api/json/get/VJXwImvFZ
 

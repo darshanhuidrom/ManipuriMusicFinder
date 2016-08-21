@@ -2,7 +2,6 @@ package com.kangladevelopers.filmfinder.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -21,7 +19,9 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.pogo.Music;
+import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.kangladevelopers.filmfinder.utils.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -70,7 +70,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_cast).setVisibility(View.VISIBLE);
             tvCast.setText(music.getActor());
-            makeTagLinks(addSpace(music.getActor()), tvCast);
+            makeTagLinks(addSpace(music.getActor()), tvCast, Arrays.asList(FileFetcher.getActorList()));
         }
 //////////////////////////////////
         if (music.getSingers().isEmpty() || music.getSingers() == null) {
@@ -78,7 +78,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         } else {
             findViewById(R.id.llgv_singer).setVisibility(View.VISIBLE);
             tvSinger.setText(music.getSingers());
-            makeTagLinks(addSpace(music.getSingers()), tvSinger);
+            makeTagLinks(addSpace(music.getSingers()), tvSinger,Arrays.asList(FileFetcher.getSingerList()));
         }
 //////////////////////////////////////
         if (music.getDirector().isEmpty() || music.getDirector() == null) {
@@ -187,7 +187,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        Log.d("MusicDetailActivity >>>>>>","onInitializationFailure");
+        Log.d("MusicDet.. >>>>>>","onInitializationFailure");
         Utility.openPlayStore(MusicDetailActivity.this);
         youtubeView.setVisibility(View.GONE);
         ivThumbnail.setVisibility(View.VISIBLE);
@@ -196,7 +196,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
     }
 
-    private void makeTagLinks(final String text, final TextView tv) {
+    private void makeTagLinks(final String text, final TextView tv,List<String> list) {
         if (text == null || tv == null) {
             return;
         }
@@ -205,12 +205,16 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         final List<String> items = Arrays.asList(text.split(","));
         int start = 0, end;
 
-        for (String item : items) {
-            end = start + item.length();
+        for (int i=0;i<items.size();i++) {
+            end = start + items.get(i).length();
             if (start < end) {
-                ss.setSpan(new MyClickableSpan(item), start, end, 0);
+                if(listContains(items.get(i),list)){
+
+                    ss.setSpan(new MyClickableSpan(items.get(i)), start, end, 0);
+                }
+
             }
-            start += item.length() + 1;//comma and space in the original text ;)
+            start += items.get(i).length() + 1;//comma and space in the original text ;)
         }
         tv.setMovementMethod(LinkMovementMethod.getInstance());
         tv.setText(ss, TextView.BufferType.SPANNABLE);
@@ -234,7 +238,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
         @Override
         public void onClick(final View widget) {
-            Toast.makeText(getApplicationContext(), mText, Toast.LENGTH_SHORT).show();
+            LogMessage.showToast(""+mText);
             Intent intent = new Intent(MusicDetailActivity.this, BioDataActivity.class);
             intent.putExtra("name", mText);
             startActivity(intent);
@@ -267,5 +271,19 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
         intent.putExtra("music", music);
         startActivity(intent);
 
+    }
+
+    public boolean listContains(String data,List<String> list){
+        boolean flag = false;
+        ArrayList<String> temp = new ArrayList<>();
+        data=StringUtility.removeSpaceFromFirst(data);
+        for (int i=0;i<list.size();i++){
+            int pos = list.get(i).indexOf(":");
+            temp.add(list.get(i).substring(0,pos));
+        }
+        if(temp.contains(data)){
+            flag=true;
+        }
+        return flag;
     }
 }

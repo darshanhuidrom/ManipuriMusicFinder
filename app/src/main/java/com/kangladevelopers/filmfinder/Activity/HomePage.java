@@ -1,6 +1,5 @@
 package com.kangladevelopers.filmfinder.Activity;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,11 +33,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.MyApplication;
-import com.kangladevelopers.filmfinder.Network.FileLoaderTask;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -59,6 +56,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -132,6 +130,8 @@ public class HomePage extends BaseDrawerActivity {
     //    checkForUpdates();
         setFont();
         musics = (List<Music>) getIntent().getSerializableExtra("musics");
+        if(musics!=null)
+        Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
         if(musics!=null&&!musics.isEmpty()){
             if(musicAdapter==null){
                 hideNoDataFound();
@@ -345,6 +345,9 @@ public class HomePage extends BaseDrawerActivity {
         llComParent = (LinearLayout) findViewById(R.id.ll_com_parent);
         llDirParent = (LinearLayout) findViewById(R.id.ll_dir_parent);
         tvResultNoDisplay = (TextView) findViewById(R.id.tv_resultNoDisplay);
+        // to enable the facebooklogin
+        if(true)
+            tvUserName.setVisibility(View.VISIBLE);
 
     }
 
@@ -363,7 +366,6 @@ public class HomePage extends BaseDrawerActivity {
         int id = view.getId();
         switch (id) {
             case R.id.rl_cast:
-                //   Toast.makeText(getApplicationContext(), "filterConditionClick", Toast.LENGTH_LONG).show();
                 hideOthers(R.id.ll_castCondition);
                 break;
             case R.id.rl_director:
@@ -379,7 +381,6 @@ public class HomePage extends BaseDrawerActivity {
                 hideOthers(R.id.ll_timeCondition);
                 break;
             default:
-                //  Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -709,8 +710,12 @@ public class HomePage extends BaseDrawerActivity {
         }
         startTime = btStartDate.getText().toString();
         endTime = btEndDate.getText().toString();
+
+        singerList = sortInOrder(singerList);
+        actorList=sortInOrder(actorList);
+        Log.d(">>>>>>After ordering",""+singerList);
+        Log.d(">>>>>>After ordering",""+actorList);
         String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
-        //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
         Call<List<Music>> call = MyApplication.getResAdapter().getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
@@ -898,7 +903,7 @@ public class HomePage extends BaseDrawerActivity {
         // populate the share intent with data
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT,Constants.YOUTUBE_DOWDLOADER_LINK);
+        intent.putExtra(Intent.EXTRA_TEXT,Constants.APP_DOWNDLOADERILINK);
         return intent;
     }
 
@@ -927,7 +932,7 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onItemClick(String s, int pos) {
                 addSingerView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                LogMessage.showToast(s);
             }
         }.show();
     }
@@ -970,7 +975,7 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onItemClick(String s, int pos) {
                 addActorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                LogMessage.showToast(s);
             }
         }.show();
     }
@@ -1004,11 +1009,6 @@ public class HomePage extends BaseDrawerActivity {
             return;
         }
         popup.dismiss();
-        //TextView textView = (TextView) view;
-        //String name = textView.getText() + "";
-        //ProgressBarConfig.showProgressBar(this, null);
-        //Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
-
         ImageView ivSortName = (ImageView) blockView.findViewById(R.id.iv_sortName);
         ImageView ivSortRelease = (ImageView) blockView.findViewById(R.id.iv_sortRelease);
         ImageView ivSortRating = (ImageView) blockView.findViewById(R.id.iv_sortRating);
@@ -1029,7 +1029,7 @@ public class HomePage extends BaseDrawerActivity {
                         sortStatus.getSETsortType(SortStatus.SORT_BY_RATING,ivSortRating)));
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
+                LogMessage.showToast("Default");
         }
 
         musicAdapter.setNotifyChange(musics);
@@ -1177,5 +1177,23 @@ public class HomePage extends BaseDrawerActivity {
                 dialog.dismiss();
             }
         }.setValues("OK","CANCEL","Do you want exit app?");
+    }
+
+    public String sortInOrder(String data){
+        List<String> singerTempList = new ArrayList<>();
+        if(data!=null&&data.contains(",")){
+            String[] temp1 = data.split(",");
+            singerTempList = Arrays.asList(temp1);
+            Collections.sort(singerTempList);
+            data="";
+            for (int i=0;i<singerTempList.size();i++){
+                data=data+singerTempList.get(i);
+                if(i<singerTempList.size()-1){
+                    data=data+",";
+                }
+            }
+            return data;
+        }
+        return data;
     }
 }
