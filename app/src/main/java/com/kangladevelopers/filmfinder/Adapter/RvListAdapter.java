@@ -2,6 +2,7 @@ package com.kangladevelopers.filmfinder.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,11 +47,19 @@ public class RvListAdapter extends RecyclerView.Adapter<RvListAdapter.CustomView
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         String name = items.get(position);
+        String name1="";
 
         if(name.contains(":")){
             int pos= name.indexOf(":");
-            name= name.substring(0, pos);
-            holder.name.setText(name);
+
+            name1= name.substring(0, pos);
+            holder.name.setText(name1);
+            if(name.substring(pos+1).equalsIgnoreCase("B")){
+                holder.llParent.setBackgroundColor(Color.GREEN);
+            }
+            else {
+                holder.llParent.setBackgroundColor(Color.WHITE);
+            }
         }
         else {
             holder.name.setText(name);
@@ -67,9 +76,9 @@ public class RvListAdapter extends RecyclerView.Adapter<RvListAdapter.CustomView
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
         name=name.replaceAll(" ","");
-        imageLoader.displayImage(Constants.PERSON_ICON_PIC_URL + StringUtility.removeSpaceFromFirst(name)+ Constants.IMAGE_FORMAT, holder.iv, options);
+        imageLoader.displayImage(Constants.PERSON_ICON_PIC_URL + StringUtility.removeSpaceFromFirst(name1)+ Constants.IMAGE_FORMAT, holder.iv, options);
 
-        Log.d(">>>>>> Image Url",Constants.PERSON_ICON_PIC_URL + StringUtility.removeSpaceFromFirst(name) + Constants.IMAGE_FORMAT);
+        Log.d(">>>>>> Image Url",Constants.PERSON_ICON_PIC_URL + StringUtility.removeSpaceFromFirst(name1) + Constants.IMAGE_FORMAT);
 
     }
 
@@ -87,12 +96,14 @@ public class RvListAdapter extends RecyclerView.Adapter<RvListAdapter.CustomView
         private TextView name;
         private ImageView iv;
         private CardView cv;
+        private LinearLayout llParent;
 
         public CustomViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.tv_name);
             iv = (ImageView) view.findViewById(R.id.iv_list);
             cv = (CardView) view;
+            llParent= (LinearLayout) view.findViewById(R.id.ll_parent);
             cv.setOnClickListener(this);
         }
 

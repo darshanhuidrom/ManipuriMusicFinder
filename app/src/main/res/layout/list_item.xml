@@ -11,13 +11,14 @@
     android:background="#545656">
 
     <LinearLayout
+        android:id="@+id/ll_parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_list"
             style="@style/list_circleView"
-            android:src="@drawable/ts_2"
+            android:src="@drawable/default_dp"
             app:civ_border_width="2dp" />
         <TextView
             android:id="@+id/tv_name"
