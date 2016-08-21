@@ -114,6 +114,8 @@ public class HomePage extends BaseDrawerActivity {
     CrossHandler crossHandler = new CrossHandler();
 
     SortStatus sortStatus = new SortStatus(); // FOR SORTING ***
+    int versionCode=0;
+    String updateMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,9 +130,10 @@ public class HomePage extends BaseDrawerActivity {
         btEndDate.setText("" + mDD + "/" + (mMM + 1) + "/" + mYY);
         getDelegate().getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 
-    //    checkForUpdates();
         setFont();
         musics = (List<Music>) getIntent().getSerializableExtra("musics");
+        versionCode=getIntent().getIntExtra("version_no",0);
+        updateMsg= getIntent().getStringExtra("update_msg");
         if(musics!=null)
         Collections.sort(musics, new SortUtil.CustomComparator(SortUtil.CustomComparator.SORT_BY_DATE));
         if(musics!=null&&!musics.isEmpty()){
@@ -151,6 +154,7 @@ public class HomePage extends BaseDrawerActivity {
 
             }
         }
+        checkForUpdates();
     }
 
     private void setCurrentDate() {
@@ -1043,37 +1047,22 @@ public class HomePage extends BaseDrawerActivity {
 
 
     public void checkForUpdates(){
-        Call<VersionInfo> call =MyApplication.getResAdapter().getVersionInfo();
-        call.enqueue(new Callback<VersionInfo>() {
-            @Override
-            public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
-                VersionInfo res = response.body();
-                int verCode = res.getCurrentAppVersionCode();
-                int sysVerCode = Utility.getVersionCode();
-                if (verCode > sysVerCode) {
-                    new DialogBox(HomePage.this) {
+       if(2>Utility.getVersionCode()){
+           new DialogBox(HomePage.this) {
 
-                        @Override
-                        public void onPositive(DialogInterface dialog) {
-                            dialog.dismiss();
-                        }
+               @Override
+               public void onPositive(DialogInterface dialog) {
+                   Utility.openPlayStoreForUpdate(HomePage.this);
+                   dialog.dismiss();
+               }
 
-                        @Override
-                        public void onNegative(DialogInterface dialog) {
+               @Override
+               public void onNegative(DialogInterface dialog) {
 
-                        }
-                    }.setValues("Update", res.getMessage() + "\nLatest available version is " + res.getCurrentAppVersionName());
-                }
+               }
+           }.setValues("Update",updateMsg);
 
-            }
-
-            @Override
-            public void onFailure(Call<VersionInfo> call, Throwable t) {
-
-                String t2 = t.getMessage();
-
-            }
-        });
+       }
     }
 
 

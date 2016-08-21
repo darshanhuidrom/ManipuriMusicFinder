@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.Html;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.kangladevelopers.filmfinder.MyApplication;
@@ -18,6 +19,7 @@ import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.ConnectionDetector;
 import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.DialogBox;
+import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.VersionInfo;
 import com.kangladevelopers.filmfinder.retrofit.adapter.TestResAdapter;
@@ -53,6 +55,8 @@ public class SplashActivity extends BaseActivity {
             fcOrange = "<font color ='#f78b0f'>";
 
     String fcEnd = "</font>";
+    private String updateMessage;
+    private Integer versionNo;
 
 
     @Override
@@ -153,24 +157,25 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
                 VersionInfo res = response.body();
+                updateMessage= res.getMessage();
+                versionNo= res.getCurrentAppVersionCode();
+                LogMessage.printLog("SplashActivity","updateMssg: "+updateMessage+"\nVersion: "+versionNo);
                 if(res==null){
                     Call<List<Music>> call2 = MyApplication.getResAdapter().getFirstCall(Utility.getCurrentDate());
                     call2.enqueue(new Callback<List<Music>>() {
                         @Override
                         public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
                             musicList = (ArrayList<Music>) response.body();
-                            startHomeActivity(0);
+                            startHomeActivity(versionNo);
                         }
 
                         @Override
                         public void onFailure(Call<List<Music>> call, Throwable t) {
-                            startHomeActivity(0);
+                            startHomeActivity(versionNo);
                         }
                     });
                     return;
                 }
-                final int verCode = res.getCurrentAppVersionCode();
-                int sysVerCode = Utility.getVersionCode();
 
                 // some changes come due to some reason
                 final int actorFileVersion = res.getDataInfo().getActorFileVersion();
@@ -243,12 +248,12 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
                         musicList = (ArrayList<Music>) response.body();
-                        startHomeActivity(verCode);
+                        startHomeActivity(versionNo);
                     }
 
                     @Override
                     public void onFailure(Call<List<Music>> call, Throwable t) {
-                        startHomeActivity(verCode);
+                        startHomeActivity(versionNo);
                     }
                 });
 
@@ -260,7 +265,7 @@ public class SplashActivity extends BaseActivity {
 
                 String t2 = t.getMessage();
 
-                startHomeActivity(0);
+                startHomeActivity(versionNo);
             }
         });
     }
@@ -271,6 +276,7 @@ public class SplashActivity extends BaseActivity {
             Intent i = new Intent(SplashActivity.this, TutorialActivity.class);
             i.putExtra(VERSION_NO, verCode);
             i.putExtra("musics", musicList);
+            i.putExtra("update_msg", updateMessage);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
             return;
@@ -283,6 +289,7 @@ public class SplashActivity extends BaseActivity {
                 Intent i = new Intent(SplashActivity.this, HomePage.class);
                 i.putExtra(VERSION_NO, verCode);
                 i.putExtra("musics", musicList);
+                i.putExtra("update_msg", updateMessage);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }

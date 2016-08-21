@@ -72,6 +72,15 @@ public class Utility {
 
     }
 
+
+    public static void openPlayStoreForUpdate(final Activity activity) {
+        try {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.APP_PACKAGE_NAME)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.PLAYSTORE_MARKET_LINK + Constants.YOUTUBE_PACKAGE_NAME)));
+        }
+    }
+
     public static String getCurrentDate(){
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
