@@ -39,7 +39,7 @@ public class MusicRestAdapter {
 
 
     public Call<SimpleResponse> deleteMusic(Integer id) {
-        return deleteMusic(id);
+        return musicApi.deleteMusic(id);
     }
 
 

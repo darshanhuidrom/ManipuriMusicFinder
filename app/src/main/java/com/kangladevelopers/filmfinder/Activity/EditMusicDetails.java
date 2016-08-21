@@ -2,9 +2,7 @@ package com.kangladevelopers.filmfinder.Activity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -32,7 +30,6 @@ import com.kangladevelopers.filmfinder.Utility.Constants;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.pogo.SimpleResponse;
-import com.kangladevelopers.filmfinder.retrofit.adapter.MusicRestAdapter;
 import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
 import com.kangladevelopers.filmfinder.utils.Utility;
@@ -47,7 +44,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Headers;
 
 public class EditMusicDetails extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
@@ -487,12 +483,16 @@ public class EditMusicDetails extends YouTubeBaseActivity implements YouTubePlay
             public void onResponse(Call<SimpleResponse> call, Response<SimpleResponse> response) {
                 Response<SimpleResponse> response1=response;
                 Log.d("EditMusicDetail", ">>>>>>"+response.message()+"");
+                Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_LONG).show();
+                finish();
             }
 
             @Override
             public void onFailure(Call<SimpleResponse> call, Throwable t) {
 
                 Throwable tt=t;
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
+                finish();
                 Log.d("EditMusicDetail", ">>>>>>"+t.getMessage()+"");
             }
         });
