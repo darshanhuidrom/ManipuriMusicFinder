@@ -12,8 +12,8 @@ public class Constants {
     /// This link are use for development
     public static final String DEV_SERVER_URL = "http://192.168.1.3:8080/move_finder/webapi/";
     public static final String DEV_SERVER_URL2 = "http://192.168.1.3/";
-    //  public static final String PRODUCTION_URL=DEV_SERVER_URL;//development
-    //   public static final String  PRODUCTION_URL_BASE=DEV_SERVER_URL2;// development
+    //     public static final String PRODUCTION_URL=DEV_SERVER_URL;//development
+    //      public static final String  PRODUCTION_URL_BASE=DEV_SERVER_URL2;// development
 
 
     public static final String PERSON_ICON_PIC_URL = PRODUCTION_URL_BASE + "leichal/person_icon/";

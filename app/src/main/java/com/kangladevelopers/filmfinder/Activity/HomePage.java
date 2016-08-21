@@ -927,8 +927,10 @@ public class HomePage extends BaseDrawerActivity {
 
     public void onUserClick(View view) {
 
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivityForResult(intent, SIGN_IN_REQUEST);
+       /* Intent intent = new Intent(this, SignInActivity.class);
+        startActivityForResult(intent, SIGN_IN_REQUEST);*/
+        Toast.makeText(getApplicationContext(),"This facility will be available from the next version",Toast.LENGTH_LONG).show();
+
     }
 
     public void openSingerList(View view) {
