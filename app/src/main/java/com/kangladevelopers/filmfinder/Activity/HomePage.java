@@ -872,7 +872,7 @@ public class HomePage extends BaseDrawerActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
         MenuItem item = menu.findItem(R.id.menu_item_share);
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+      //  mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
         return true;
     }
@@ -900,7 +900,8 @@ public class HomePage extends BaseDrawerActivity {
                 startActivity(intent2);
                 return true;
             case R.id.menu_item_share:
-                mShareActionProvider.setShareIntent(doShare());
+               // mShareActionProvider.setShareIntent(doShare());
+                share();
                 return true;
             case R.id.help:
                startActivity(new Intent(this,HelpActivity.class));
@@ -1047,7 +1048,7 @@ public class HomePage extends BaseDrawerActivity {
 
 
     public void checkForUpdates(){
-       if(2>Utility.getVersionCode()){
+       if(versionCode>Utility.getVersionCode()){
            new DialogBox(HomePage.this) {
 
                @Override
@@ -1191,4 +1192,13 @@ public class HomePage extends BaseDrawerActivity {
         }
         return data;
     }
+
+    public void share(){
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT,Constants.APP_DOWNDLOADERILINK );
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
+
 }

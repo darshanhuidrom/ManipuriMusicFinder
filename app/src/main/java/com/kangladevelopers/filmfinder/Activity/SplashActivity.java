@@ -56,7 +56,7 @@ public class SplashActivity extends BaseActivity {
 
     String fcEnd = "</font>";
     private String updateMessage;
-    private Integer versionNo;
+    private int versionNo;
 
 
     @Override
@@ -156,10 +156,20 @@ public class SplashActivity extends BaseActivity {
         call.enqueue(new Callback<VersionInfo>() {
             @Override
             public void onResponse(Call<VersionInfo> call, Response<VersionInfo> response) {
-                VersionInfo res = response.body();
-                updateMessage= res.getMessage();
-                versionNo= res.getCurrentAppVersionCode();
-                LogMessage.printLog("SplashActivity","updateMssg: "+updateMessage+"\nVersion: "+versionNo);
+                VersionInfo res = null;
+                if(response==null){
+                    musicList =null;
+                  //  startHomeActivity(versionNo);
+
+                }
+                else{
+                     res = response.body();
+                    updateMessage= res.getMessage();
+                    versionNo= res.getCurrentAppVersionCode();
+                }
+
+
+             //   LogMessage.printLog("SplashActivity","updateMssg: "+updateMessage+"\nVersion: "+versionNo);
                 if(res==null){
                     Call<List<Music>> call2 = MyApplication.getResAdapter().getFirstCall(Utility.getCurrentDate());
                     call2.enqueue(new Callback<List<Music>>() {
