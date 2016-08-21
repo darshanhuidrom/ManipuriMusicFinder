@@ -1,17 +1,16 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.developers.ui.DeveloperActivity;
 
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class ListAllActivity extends BaseActivity implements AdapterView.OnItemC
             startActivity(intent);
             return;
         }
-        Toast.makeText(getApplicationContext(),adapter.getData().get(position),Toast.LENGTH_SHORT).show();
+        LogMessage.showToast(""+adapter.getData().get(position));
         Intent intent = new Intent(this,ListActivity.class);
         intent.putExtra("name",adapter.getData().get(position));
 

@@ -356,7 +356,6 @@ public class EditMusicDetails extends YouTubeBaseActivity implements YouTubePlay
         switch (id) {
             case R.id.iv_delete_actorrrr:
                 View viewTobeDeleted = null;
-                Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
                 for (int i = 0; i < actorViews.size(); i++) {
                     ImageView deleteButton = (ImageView) actorViews.get(i).findViewById(R.id.iv_delete_actorrrr);
                     if (deleteButton.equals(view)) {

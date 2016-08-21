@@ -2,7 +2,6 @@ package com.kangladevelopers.filmfinder.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.TextPaint;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -21,6 +19,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.pogo.Music;
 import com.kangladevelopers.filmfinder.utils.FileFetcher;
 import com.kangladevelopers.filmfinder.utils.StringUtility;
@@ -188,7 +187,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        Log.d("MusicDetailActivity >>>>>>","onInitializationFailure");
+        Log.d("MusicDet.. >>>>>>","onInitializationFailure");
         Utility.openPlayStore(MusicDetailActivity.this);
         youtubeView.setVisibility(View.GONE);
         ivThumbnail.setVisibility(View.VISIBLE);
@@ -239,7 +238,7 @@ public class MusicDetailActivity extends YouTubeBaseActivity implements YouTubeP
 
         @Override
         public void onClick(final View widget) {
-            Toast.makeText(getApplicationContext(), mText, Toast.LENGTH_SHORT).show();
+            LogMessage.showToast(""+mText);
             Intent intent = new Intent(MusicDetailActivity.this, BioDataActivity.class);
             intent.putExtra("name", mText);
             startActivity(intent);

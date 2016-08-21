@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -24,6 +23,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 import com.kangladevelopers.filmfinder.MyApplication;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.Constants;
+import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.Utility.ProgressBarConfig;
 import com.kangladevelopers.filmfinder.pogo.ActingSongList;
 import com.kangladevelopers.filmfinder.pogo.BioData;
@@ -84,7 +84,7 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
 
                 if (bioData.getStatus().equalsIgnoreCase("Error")) {
                     int pos = bioData.getMessage().indexOf(":");
-                    Toast.makeText(getApplicationContext(), bioData.getMessage().substring(pos + 1), Toast.LENGTH_SHORT).show();
+                    LogMessage.showToast(bioData.getMessage().substring(pos + 1));
                     ProgressBarConfig.dismissProgressBar();
                     rlVideoView.setVisibility(View.GONE);
                     scrollView3.setVisibility(View.GONE);
@@ -166,7 +166,7 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
 
             @Override
             public void onFailure(Call<BioData> call, Throwable t) {
-                Toast.makeText(BioDataActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                LogMessage.showToast(t.getMessage());
                 ProgressBarConfig.dismissProgressBar();
             }
         });
@@ -179,7 +179,6 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
         btThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  Toast.makeText(getApplicationContext(), "onclick", Toast.LENGTH_SHORT).show();
                 playerView.setVisibility(View.VISIBLE);
                 ivThumbnail.setVisibility(View.GONE);
                 flThumbnail.setVisibility(View.GONE);
@@ -292,8 +291,7 @@ public class BioDataActivity extends YouTubeBaseActivity implements YouTubePlaye
 
     public void onSongClick(View v) {
         TextView textView = (TextView) v;
-        Toast.makeText(getApplicationContext(), "name:: " + textView.getText() + "id:: " + textView.getTag(), Toast.LENGTH_SHORT).show();
-
+        LogMessage.showToast( "name:: " + textView.getText() + "id:: " + textView.getTag());
         Call<Music> call = MyApplication.getResAdapter().getMusicDetails(textView.getTag().toString());
         call.enqueue(new Callback<Music>() {
             @Override

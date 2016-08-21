@@ -1,7 +1,6 @@
 package com.kangladevelopers.filmfinder.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,15 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvListAdapter;
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.R;
+import com.kangladevelopers.filmfinder.Utility.LogMessage;
 import com.kangladevelopers.filmfinder.utils.FileFetcher;
-import com.kangladevelopers.filmfinder.utils.StringUtility;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -70,7 +67,7 @@ public class ListActivity extends BaseActivity  implements AdapterView.OnItemCli
             case "Lyric":
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
+                LogMessage.showToast("Default");
 
 
         }

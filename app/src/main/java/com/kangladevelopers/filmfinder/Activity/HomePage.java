@@ -1,6 +1,5 @@
 package com.kangladevelopers.filmfinder.Activity;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,11 +33,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.RvMusicAdapter;
 import com.kangladevelopers.filmfinder.MyApplication;
-import com.kangladevelopers.filmfinder.Network.FileLoaderTask;
 import com.kangladevelopers.filmfinder.R;
 import com.kangladevelopers.filmfinder.Utility.AppPreference;
 import com.kangladevelopers.filmfinder.Utility.Constants;
@@ -369,7 +366,6 @@ public class HomePage extends BaseDrawerActivity {
         int id = view.getId();
         switch (id) {
             case R.id.rl_cast:
-                //   Toast.makeText(getApplicationContext(), "filterConditionClick", Toast.LENGTH_LONG).show();
                 hideOthers(R.id.ll_castCondition);
                 break;
             case R.id.rl_director:
@@ -385,7 +381,6 @@ public class HomePage extends BaseDrawerActivity {
                 hideOthers(R.id.ll_timeCondition);
                 break;
             default:
-                //  Toast.makeText(getApplicationContext(), "default", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -721,7 +716,6 @@ public class HomePage extends BaseDrawerActivity {
         Log.d(">>>>>>After ordering",""+singerList);
         Log.d(">>>>>>After ordering",""+actorList);
         String query = singerList + "&" + composerList + "&" + directorList + "&" + actorList;
-        //   Toast.makeText(getApplicationContext(), "query is\n" + query, Toast.LENGTH_LONG).show();
         LogMessage.printLog(TAG, query);
 
         Call<List<Music>> call = MyApplication.getResAdapter().getMusicDetails(singerList, composerList, directorList, actorList, fixSinger, startTime, endTime);
@@ -938,7 +932,7 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onItemClick(String s, int pos) {
                 addSingerView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                LogMessage.showToast(s);
             }
         }.show();
     }
@@ -981,7 +975,7 @@ public class HomePage extends BaseDrawerActivity {
             @Override
             public void onItemClick(String s, int pos) {
                 addActorView(s, Constants.PERSON_ICON_PIC_URL + s.trim() + Constants.IMAGE_FORMAT);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                LogMessage.showToast(s);
             }
         }.show();
     }
@@ -1015,11 +1009,6 @@ public class HomePage extends BaseDrawerActivity {
             return;
         }
         popup.dismiss();
-        //TextView textView = (TextView) view;
-        //String name = textView.getText() + "";
-        //ProgressBarConfig.showProgressBar(this, null);
-        //Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
-
         ImageView ivSortName = (ImageView) blockView.findViewById(R.id.iv_sortName);
         ImageView ivSortRelease = (ImageView) blockView.findViewById(R.id.iv_sortRelease);
         ImageView ivSortRating = (ImageView) blockView.findViewById(R.id.iv_sortRating);
@@ -1040,7 +1029,7 @@ public class HomePage extends BaseDrawerActivity {
                         sortStatus.getSETsortType(SortStatus.SORT_BY_RATING,ivSortRating)));
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "Default", Toast.LENGTH_SHORT).show();
+                LogMessage.showToast("Default");
         }
 
         musicAdapter.setNotifyChange(musics);

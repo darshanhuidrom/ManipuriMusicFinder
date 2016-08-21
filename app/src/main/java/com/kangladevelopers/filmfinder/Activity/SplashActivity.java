@@ -39,7 +39,7 @@ import retrofit2.Response;
  */
 public class SplashActivity extends BaseActivity {
 
-    private static int SPLASH_TIME_OUT = 2500;
+    private static int SPLASH_TIME_OUT = 1000;
 
     TextView h1, h2;
     private String VERSION_NO ="version_no";
@@ -62,6 +62,12 @@ public class SplashActivity extends BaseActivity {
         h1 = (TextView) findViewById(R.id.tv_h1);
         h2 = (TextView) findViewById(R.id.tv_h2);
         setHeader();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if(!ConnectionDetector.isConnected()){
             new DialogBox(this) {
                 @Override
@@ -70,10 +76,6 @@ public class SplashActivity extends BaseActivity {
                     finish();
                     Intent intent=new Intent(Settings.ACTION_SETTINGS);
                     startActivity(intent);
-/*
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.setClassName("com.android.phone", "com.android.phone.NetworkSetting");
-                    startActivity(intent);*/
                 }
 
                 @Override
@@ -110,7 +112,6 @@ public class SplashActivity extends BaseActivity {
             checkForUpdates();
         }
     }
-
 
     private void setHeader() {
 

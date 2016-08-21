@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kangladevelopers.filmfinder.Adapter.SimpleAdapter;
 import com.kangladevelopers.filmfinder.Network.HTTP;
@@ -20,8 +19,6 @@ import com.kangladevelopers.filmfinder.Utility.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class DeveloperActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -31,8 +28,8 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
     private ListView lv;
     private TextView tv_count;
     ArrayList<String> dataCollectList = new ArrayList<>();
-    private String firstName,secondName,dataType;
-    private int count=0;
+    private String firstName, secondName, dataType;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +51,7 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
             @Override
             protected List<String> doInBackground(Void... params) {
 
-                String url = Constants.BASE_URL+"dev/getList/" + dataType;
+                String url = Constants.BASE_URL + "dev/getList/" + dataType;
                 String data = HTTP.sendGET(url);
                 List<String> list = convertToList(data);
                 return list;
@@ -105,30 +102,28 @@ public class DeveloperActivity extends AppCompatActivity implements AdapterView.
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-            String data = parent.getItemAtPosition(position).toString();
-            view.setBackgroundColor(Color.parseColor("#acdcaf"));//2e2d2d
-            adapter.viewMap.put(data,"#acdcaf");
+        String data = parent.getItemAtPosition(position).toString();
+        view.setBackgroundColor(Color.parseColor("#acdcaf"));//2e2d2d
+        adapter.viewMap.put(data, "#acdcaf");
 
 
-           if(firstName==null){
-               firstName=data;
-           }
-            else {
-               secondName=data;
-               Intent intent = new Intent(this, Correction.class);
-               intent.putExtra("firstName",firstName);
-               intent.putExtra("secondName",secondName);
-               intent.putExtra("dataType",dataType);
-               startActivity(intent);
-               adapter.viewMap.put(firstName,"#2e2d2d");
-               adapter.viewMap.put(secondName,"#2e2d2d");
-               adapter.notifyDataSetChanged();
-               firstName=null;
-               secondName=null;
-           }
+        if (firstName == null) {
+            firstName = data;
+        } else {
+            secondName = data;
+            Intent intent = new Intent(this, Correction.class);
+            intent.putExtra("firstName", firstName);
+            intent.putExtra("secondName", secondName);
+            intent.putExtra("dataType", dataType);
+            startActivity(intent);
+            adapter.viewMap.put(firstName, "#2e2d2d");
+            adapter.viewMap.put(secondName, "#2e2d2d");
+            adapter.notifyDataSetChanged();
+            firstName = null;
+            secondName = null;
+        }
 
     }
-
 
 
 }
